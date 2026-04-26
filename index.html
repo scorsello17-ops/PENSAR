@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unicorn Academy · Guías de Estudio</title>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YQFR59Q23T"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-YQFR59Q23T');
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f2f0ec;--white:#fdfcfb;--ink:#1a1a20;--ink2:#3a3848;
+  --muted:#8080a0;--border:#ddd8d0;
+  --p1:#2d1b69;--p1l:#edeaff;--p1b:#b0a4e8;
+  --p2:#0f5c3a;--p2l:#e4f5ee;--p2b:#7ecaa8;
+  --p3:#6a3500;--p3l:#fff2e8;--p3b:#f0b880;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);color:var(--ink);
+  font-family:'Outfit',sans-serif;font-size:15px;line-height:1.65;
+  min-height:100vh;display:flex;flex-direction:column;
+}
+.hero{background:#100820;padding:64px 48px 56px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 0% 50%,rgba(74,42,138,.25) 0%,transparent 60%),radial-gradient(ellipse 50% 60% at 100% 20%,rgba(15,92,58,.18) 0%,transparent 60%);pointer-events:none}
+.hero-inner{max-width:900px;margin:0 auto;position:relative;z-index:1}
+.hero-eyebrow{font-family:'JetBrains Mono',monospace;font-size:.68rem;color:rgba(255,255,255,.4);letter-spacing:.18em;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:10px}
+.hero-eyebrow::before{content:'';width:28px;height:1px;background:rgba(255,255,255,.25)}
+.hero-title{font-family:'Playfair Display',serif;font-weight:900;font-size:clamp(2.4rem,5vw,4rem);line-height:1.06;color:#fff;letter-spacing:-.02em;margin-bottom:16px}
+.hero-title em{color:#c8b8ff;font-style:italic}
+.hero-desc{font-size:1rem;color:rgba(255,255,255,.5);max-width:560px;line-height:1.75;margin-bottom:40px}
+.hero-tags{display:flex;flex-wrap:wrap;gap:8px}
+.hero-tag{font-family:'JetBrains Mono',monospace;font-size:.65rem;padding:4px 12px;border-radius:20px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.13);color:rgba(255,255,255,.5);letter-spacing:.05em}
+.main{flex:1;max-width:900px;margin:0 auto;padding:56px 24px 80px;width:100%}
+.section-label{font-family:'JetBrains Mono',monospace;font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.section-title{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;color:var(--ink);margin-bottom:6px}
+.section-desc{font-size:.88rem;color:var(--muted);margin-bottom:28px;line-height:1.6}
+.cards{display:flex;flex-direction:column;gap:16px;margin-bottom:56px}
+.card{background:var(--white);border:1px solid var(--border);border-radius:16px;overflow:hidden;display:grid;grid-template-columns:6px 1fr;transition:transform .2s,box-shadow .2s;text-decoration:none}
+.card:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(0,0,0,.08)}
+.card.c1 .card-stripe{background:var(--p1)}.card.c2 .card-stripe{background:var(--p2)}.card.c3 .card-stripe{background:var(--p3)}
+.card-body{padding:24px 28px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.card-session{font-family:'JetBrains Mono',monospace;font-size:.65rem;font-weight:600;text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px;padding:3px 9px;border-radius:4px;display:inline-block}
+.card.c1 .card-session{background:var(--p1l);color:var(--p1)}.card.c2 .card-session{background:var(--p2l);color:var(--p2)}.card.c3 .card-session{background:var(--p3l);color:var(--p3)}
+.card-title{font-family:'Playfair Display',serif;font-weight:700;font-size:1.2rem;color:var(--ink);margin-bottom:6px;line-height:1.2}
+.card-desc{font-size:.84rem;color:var(--muted);line-height:1.6;max-width:520px}
+.card-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.card-tag{font-family:'JetBrains Mono',monospace;font-size:.62rem;padding:2px 8px;border-radius:4px;border:1px solid;letter-spacing:.04em}
+.card.c1 .card-tag{background:var(--p1l);color:var(--p1);border-color:var(--p1b)}.card.c2 .card-tag{background:var(--p2l);color:var(--p2);border-color:var(--p2b)}.card.c3 .card-tag{background:var(--p3l);color:var(--p3);border-color:var(--p3b)}
+.card-arrow{font-size:1.3rem;color:var(--border);flex-shrink:0;transition:color .2s,transform .2s}
+.card:hover .card-arrow{color:var(--ink);transform:translate(4px,-4px)}
+.divider{display:flex;align-items:center;gap:14px;margin:0 0 28px}
+.divider::before,.divider::after{content:'';flex:1;height:1px;background:var(--border)}
+.divider span{font-family:'JetBrains Mono',monospace;font-size:.63rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;white-space:nowrap}
+.inside-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-bottom:56px}
+.inside-card{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:18px 20px}
+.inside-icon{font-size:1.3rem;margin-bottom:8px}
+.inside-title{font-weight:600;font-size:.88rem;color:var(--ink);margin-bottom:4px}
+.inside-desc{font-size:.8rem;color:var(--muted);line-height:1.55}
+.footer{background:#100820;color:rgba(255,255,255,.35);text-align:center;padding:32px 24px;font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.06em;line-height:1.8}
+.footer strong{color:rgba(255,255,255,.6)}
+@media(max-width:640px){
+  .hero{padding:44px 22px 40px}.main{padding:40px 16px 60px}
+  .card-body{flex-direction:column;align-items:flex-start}.card-arrow{display:none}
+  .inside-grid{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Unicorn Academy · Business Strategy & Analytics</div>
+    <h1 class="hero-title">Guías de Estudio<br><em>Interactivas</em></h1>
+    <p class="hero-desc">Tres sesiones completas para repasar el módulo de análisis de datos. Cada guía incluye resumen, conceptos detallados, fórmulas, cheatsheet, flashcards y quiz.</p>
+    <div class="hero-tags">
+      <span class="hero-tag">PENSAR</span>
+      <span class="hero-tag">CALCULAR</span>
+      <span class="hero-tag">COMUNICAR</span>
+      <span class="hero-tag">BSC</span>
+      <span class="hero-tag">Google Sheets</span>
+      <span class="hero-tag">QUERY / SQL</span>
+    </div>
+  </div>
+</div>
+
+<main class="main">
+
+  <div class="section-label">Las 3 sesiones</div>
+  <h2 class="section-title">Elegí la guía que querés repasar</h2>
+  <p class="section-desc">Cada guía cubre una sesión completa — ningún tema se saltea. Hacé clic en la que quieras abrir.</p>
+
+  <div class="cards">
+
+    <a class="card c1" href="guia-pensar.html">
+      <div class="card-stripe"></div>
+      <div class="card-body">
+        <div class="card-left">
+          <div class="card-session">Sesión 1</div>
+          <div class="card-title">PENSAR — Estructurar el análisis</div>
+          <div class="card-desc">Frameworks de análisis (BSC, AARRR, HEART, North Star), Fact vs Dimension Tables, granularidad, relaciones PK/FK, métricas vs dimensiones y el Business Case de Unicorn Espresso.</div>
+          <div class="card-tags">
+            <span class="card-tag">BSC</span>
+            <span class="card-tag">Fact / Dim</span>
+            <span class="card-tag">PK · FK · 1:N</span>
+            <span class="card-tag">Granularidad</span>
+            <span class="card-tag">Frameworks</span>
+          </div>
+        </div>
+        <div class="card-arrow">↗</div>
+      </div>
+    </a>
+
+    <a class="card c2" href="guia-calcular.html">
+      <div class="card-stripe"></div>
+      <div class="card-body">
+        <div class="card-left">
+          <div class="card-session">Sesión 2</div>
+          <div class="card-title">CALCULAR — Fórmulas en Google Sheets</div>
+          <div class="card-desc">BUSCARV, SUMAR.SI, CONTAR.SI, PROMEDIO.SI, SUMAR.SI.CONJUNTO. Celdas fijas con $, auxiliares, Lift porcentual y ROI. Perspectivas Financiera y Cliente del BSC.</div>
+          <div class="card-tags">
+            <span class="card-tag">BUSCARV</span>
+            <span class="card-tag">SUMAR.SI</span>
+            <span class="card-tag">CONTAR.SI</span>
+            <span class="card-tag">Lift · ROI</span>
+            <span class="card-tag">Celda fija $</span>
+          </div>
+        </div>
+        <div class="card-arrow">↗</div>
+      </div>
+    </a>
+
+    <a class="card c3" href="guia-comunicar.html">
+      <div class="card-stripe"></div>
+      <div class="card-body">
+        <div class="card-left">
+          <div class="card-session">Sesión 3</div>
+          <div class="card-title">COMUNICAR — Dashboard e Insights</div>
+          <div class="card-desc">Columna COMPRÓ, comodín *LE*, penetración de mercado, QUERY completo (SELECT · WHERE · GROUP BY · ORDER BY · LABEL), Dashboard BSC con 4 cuadrantes y storytelling ejecutivo.</div>
+          <div class="card-tags">
+            <span class="card-tag">QUERY / SQL</span>
+            <span class="card-tag">Dashboard BSC</span>
+            <span class="card-tag">Comodín *LE*</span>
+            <span class="card-tag">Penetración</span>
+            <span class="card-tag">Storytelling</span>
+          </div>
+        </div>
+        <div class="card-arrow">↗</div>
+      </div>
+    </a>
+
+  </div>
+
+  <div class="divider"><span>Qué incluye cada guía</span></div>
+
+  <div class="inside-grid">
+    <div class="inside-card">
+      <div class="inside-icon">📋</div>
+      <div class="inside-title">Resumen</div>
+      <div class="inside-desc">Mapa de todo lo cubierto en la sesión, en el orden exacto de la clase.</div>
+    </div>
+    <div class="inside-card">
+      <div class="inside-icon">📚</div>
+      <div class="inside-title">Conceptos</div>
+      <div class="inside-desc">Todos los temas desarrollados con ejemplos reales del caso Unicorn Espresso.</div>
+    </div>
+    <div class="inside-card">
+      <div class="inside-icon">🔢</div>
+      <div class="inside-title">Fórmulas</div>
+      <div class="inside-desc">Sintaxis completa, ejemplos del caso y trampas frecuentes marcadas por Alfons.</div>
+    </div>
+    <div class="inside-card">
+      <div class="inside-icon">⚡</div>
+      <div class="inside-title">Cheatsheet</div>
+      <div class="inside-desc">Todos los conceptos comprimidos para repasar rápido antes del examen.</div>
+    </div>
+    <div class="inside-card">
+      <div class="inside-icon">🃏</div>
+      <div class="inside-title">Flashcards</div>
+      <div class="inside-desc">Tarjetas interactivas — intentá responder antes de voltear.</div>
+    </div>
+    <div class="inside-card">
+      <div class="inside-icon">✏️</div>
+      <div class="inside-title">Quiz</div>
+      <div class="inside-desc">12 preguntas por sesión con feedback inmediato y explicación de cada respuesta.</div>
+    </div>
+  </div>
+
+</main>
+
+<footer class="footer">
+  <strong>Unicorn Academy · Business Strategy & Analytics</strong><br>
+  Instructor: Alfons Marquès · unicornacademy.es<br>
+  Material de repaso para uso personal del alumno
+</footer>
+
+</body>
+</html>
