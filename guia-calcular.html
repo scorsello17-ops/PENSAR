@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CALCULAR — Guía de Estudio</title>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YQFR59Q23T"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-YQFR59Q23T');
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#1a1a20;--ink2:#3a3a48;--muted:#8080a0;--bg:#f2f0ec;--white:#fdfcfb;
+  --border:#ddd8d0;--border2:#c8c0b8;
+  --v1:#0f5c3a;--v1l:#e4f5ee;--v1b:#7ecaa8;   /* verde – fórmulas */
+  --v2:#1a3a6a;--v2l:#e6eef8;--v2b:#90b0d8;   /* azul – BSC/contexto */
+  --v3:#6a2000;--v3l:#fff2e8;--v3b:#f0b880;   /* naranja – finanzas */
+  --v4:#3a1a6a;--v4l:#edeaff;--v4b:#b0a4e8;   /* púrpura – avanzado */
+  --red:#c0202a;--redl:#fce8e8;--redb:#e08090;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:'Outfit',sans-serif;font-size:15px;line-height:1.65;min-height:100vh}
+
+/* ── HERO ── */
+.hero{background:#0f2010;padding:52px 48px 40px;position:relative;overflow:hidden}
+.hero::before{content:'CALCULAR';position:absolute;right:-10px;top:-20px;font-family:'Playfair Display',serif;font-size:180px;font-weight:900;color:rgba(255,255,255,0.04);line-height:1;pointer-events:none}
+.hero-eyebrow{font-family:'JetBrains Mono',monospace;font-size:.68rem;color:rgba(255,255,255,0.4);letter-spacing:.18em;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.hero-eyebrow::before{content:'';width:24px;height:1px;background:rgba(255,255,255,0.25)}
+.hero-title{font-family:'Playfair Display',serif;font-size:clamp(2.4rem,5vw,3.6rem);font-weight:900;color:#fff;line-height:1.08;letter-spacing:-.01em;margin-bottom:14px}
+.hero-title em{color:#a0e8c0;font-style:italic}
+.hero-desc{font-size:.95rem;color:rgba(255,255,255,0.5);max-width:580px;line-height:1.7;margin-bottom:32px}
+.hero-pills{display:flex;flex-wrap:wrap;gap:8px}
+.hero-pill{font-family:'JetBrains Mono',monospace;font-size:.65rem;padding:5px 12px;border-radius:20px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.13);color:rgba(255,255,255,0.55);cursor:pointer;transition:all .2s}
+.hero-pill:hover,.hero-pill.active{background:rgba(160,232,192,0.15);color:#a0e8c0;border-color:rgba(160,232,192,0.3)}
+
+/* ── NAV ── */
+.tab-nav{display:flex;background:var(--white);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:50;overflow-x:auto}
+.tab-btn{padding:15px 24px;font-family:'Outfit',sans-serif;font-weight:600;font-size:.76rem;letter-spacing:.04em;text-transform:uppercase;background:none;border:none;border-bottom:2px solid transparent;cursor:pointer;color:var(--muted);transition:all .2s;white-space:nowrap}
+.tab-btn:hover{color:var(--ink)}
+.tab-btn.active{color:var(--v1);border-bottom-color:var(--v1)}
+
+/* ── SECTION ── */
+.section{display:none;max-width:880px;margin:0 auto;padding:44px 28px 80px}
+.section.active{display:block;animation:fadeUp .3s ease}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.sec-label{font-family:'JetBrains Mono',monospace;font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.sec-title{font-family:'Playfair Display',serif;font-size:1.7rem;font-weight:700;color:var(--ink);line-height:1.2;margin-bottom:6px}
+.sec-sub{font-size:.88rem;color:var(--muted);margin-bottom:32px;line-height:1.6}
+
+/* ── QUOTE BOX ── */
+.quote-box{background:#0f2010;color:#fff;border-radius:12px;padding:20px 24px;margin-bottom:22px;position:relative;overflow:hidden}
+.quote-box::before{content:'"';position:absolute;right:16px;top:-8px;font-family:'Playfair Display',serif;font-size:80px;color:rgba(255,255,255,0.06);line-height:1}
+.quote-label{font-family:'JetBrains Mono',monospace;font-size:.6rem;color:#a0e8c0;letter-spacing:.14em;text-transform:uppercase;margin-bottom:8px}
+.quote-text{font-size:.9rem;line-height:1.7;color:rgba(255,255,255,0.82);position:relative;z-index:1}
+.quote-text strong{color:#a0e8c0;font-weight:600}
+
+/* ── CONCEPT CARD ── */
+.cc{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:22px 24px;margin-bottom:16px;border-left:4px solid}
+.cc1{border-left-color:var(--v1)}.cc2{border-left-color:var(--v2)}.cc3{border-left-color:var(--v3)}.cc4{border-left-color:var(--v4)}
+.cc-header{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:12px}
+.cc-title{font-weight:700;font-size:.95rem;color:var(--ink);line-height:1.3}
+.cc-badge{font-family:'JetBrains Mono',monospace;font-size:.6rem;font-weight:600;padding:3px 9px;border-radius:4px;white-space:nowrap;flex-shrink:0;letter-spacing:.06em;text-transform:uppercase;margin-top:2px}
+.b1{background:var(--v1l);color:var(--v1)}.b2{background:var(--v2l);color:var(--v2)}.b3{background:var(--v3l);color:var(--v3)}.b4{background:var(--v4l);color:var(--v4)}
+.cc-body{font-size:.86rem;color:var(--ink2);line-height:1.72}
+.cc-body p+p{margin-top:8px}.cc-body ul{padding-left:18px;margin-top:6px}.cc-body li{margin-bottom:5px}
+.cc-body strong{color:var(--ink);font-weight:600}.cc-body em{color:var(--v1);font-style:italic}
+
+/* ── FORMULA BLOCK ── */
+.fblock{background:#0d1a0d;border-radius:10px;padding:16px 20px;font-family:'JetBrains Mono',monospace;font-size:.79rem;line-height:1.95;color:#d0e8d0;margin:12px 0;overflow-x:auto;border-left:3px solid var(--v1)}
+.fblock.fb2{border-left-color:var(--v2);background:#0d1020}.fblock.fb3{border-left-color:var(--v3);background:#1a0d00}.fblock.fb4{border-left-color:var(--v4);background:#100820}
+.fn{color:#7ec8f0}.kw{color:#e05454}.str{color:#f0a06a}.num{color:#a3e635}.cm{color:#4a7a4a;font-style:italic}.acc{color:#a0e8c0;font-weight:700}.hl{color:#ffd080}
+
+/* ── TIP ── */
+.tip{border-radius:8px;padding:12px 16px;font-size:.82rem;line-height:1.65;margin-top:12px;display:flex;gap:8px;align-items:flex-start}
+.tip-warn{background:#fff8e0;border:1px solid #e8d800;color:#5a4800}.tip-warn::before{content:'⚠️';flex-shrink:0}
+.tip-ok{background:var(--v1l);border:1px solid var(--v1b);color:#0a3a20}.tip-ok::before{content:'✓';flex-shrink:0;font-weight:700;color:var(--v1)}
+.tip-quote{background:#0f2010;color:rgba(255,255,255,.8);border:1px solid rgba(160,232,192,.2)}.tip-quote::before{content:'💬';flex-shrink:0}
+.tip strong{font-weight:600}
+
+/* ── TABLE ── */
+.tbl-wrap{background:var(--white);border:1px solid var(--border);border-radius:12px;overflow:hidden;overflow-x:auto;margin:14px 0}
+.dtbl{width:100%;border-collapse:collapse;font-size:.82rem}
+.dtbl th{padding:10px 14px;font-family:'JetBrains Mono',monospace;font-size:.66rem;font-weight:600;color:var(--muted);text-align:left;border-bottom:1px solid var(--border);background:var(--bg);text-transform:uppercase;letter-spacing:.06em}
+.dtbl td{padding:10px 14px;border-bottom:1px solid rgba(0,0,0,.05);color:var(--ink2);line-height:1.5}
+.dtbl tr:last-child td{border-bottom:none}.dtbl tr:hover td{background:var(--bg)}
+.dtbl .key{font-family:'JetBrains Mono',monospace;font-size:.76rem;font-weight:600}
+.c1{color:var(--v1)}.c2{color:var(--v2)}.c3{color:var(--v3)}.c4{color:var(--v4)}
+
+/* ── DIVIDER ── */
+.divider{display:flex;align-items:center;gap:12px;margin:28px 0}
+.divider::before,.divider::after{content:'';flex:1;height:1px;background:var(--border)}
+.divider span{font-family:'JetBrains Mono',monospace;font-size:.64rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;white-space:nowrap}
+
+/* ── FORMULA ACCORDION ── */
+.facc{background:var(--white);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:12px}
+.facc-header{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;cursor:pointer;background:var(--white);transition:background .15s}
+.facc-header:hover{background:var(--bg)}
+.facc-left{display:flex;align-items:center;gap:12px}
+.facc-name{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:.85rem;color:var(--ink)}
+.facc-badge{font-family:'JetBrains Mono',monospace;font-size:.62rem;padding:2px 8px;border-radius:4px;font-weight:600;letter-spacing:.06em;text-transform:uppercase}
+.facc-arrow{font-size:.8rem;color:var(--muted);transition:transform .2s}
+.facc-header.open .facc-arrow{transform:rotate(180deg)}
+.facc-body{display:none;padding:0 18px 18px;border-top:1px solid var(--border)}
+.facc-body.open{display:block}
+.facc-use{font-size:.84rem;color:var(--ink2);line-height:1.65;padding:12px 0 8px}
+.facc-use strong{color:var(--ink);font-weight:600}
+
+/* ── CHEATSHEET ── */
+.cs-wrap{background:var(--white);border:1px solid var(--border);border-radius:12px;overflow:hidden}
+.cs-row{display:grid;grid-template-columns:190px 1fr;border-bottom:1px solid var(--border)}
+.cs-row:last-child{border-bottom:none}
+.cs-term{padding:13px 16px;font-family:'JetBrains Mono',monospace;font-size:.78rem;font-weight:700;color:var(--v1);background:var(--bg);border-right:1px solid var(--border);display:flex;align-items:flex-start}
+.cs-def{padding:13px 18px;font-size:.83rem;color:var(--ink2);line-height:1.6}
+
+/* ── FLASHCARDS ── */
+.fc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(252px,1fr));gap:14px}
+.fc{perspective:600px;height:158px;cursor:pointer}
+.fc-inner{position:relative;width:100%;height:100%;transition:transform .45s;transform-style:preserve-3d}
+.fc.flipped .fc-inner{transform:rotateY(180deg)}
+.fc-front,.fc-back{position:absolute;inset:0;border-radius:12px;padding:16px 18px;backface-visibility:hidden;display:flex;flex-direction:column;justify-content:space-between}
+.fc-front{background:var(--white);border:1px solid var(--border)}
+.fc-back{background:#0f2010;transform:rotateY(180deg)}
+.fc-q{font-size:.84rem;color:var(--ink2);line-height:1.55;font-weight:500}
+.fc-hint{font-family:'JetBrains Mono',monospace;font-size:.6rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+.fc-a{font-size:.81rem;line-height:1.6;color:rgba(255,255,255,.88)}
+.fc-a strong{color:#a0e8c0}
+.fc-cat{font-family:'JetBrains Mono',monospace;font-size:.6rem;color:rgba(255,255,255,.35);text-transform:uppercase;letter-spacing:.08em}
+
+/* ── QUIZ ── */
+.qscore-bar{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:16px 22px;display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;flex-wrap:wrap;gap:10px}
+.qscore-num{font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:700;color:var(--red);line-height:1}
+.qscore-lbl{font-family:'JetBrains Mono',monospace;font-size:.62rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+.q-box{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:20px 22px;margin-bottom:16px}
+.q-num{font-family:'JetBrains Mono',monospace;font-size:.63rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px}
+.q-text{font-size:.92rem;color:var(--ink);line-height:1.65;margin-bottom:14px;font-weight:500}
+.q-opts{display:flex;flex-direction:column;gap:8px}
+.q-opt{background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:11px 14px;cursor:pointer;font-size:.84rem;color:var(--ink2);text-align:left;transition:all .15s;display:flex;align-items:flex-start;gap:10px;line-height:1.5}
+.q-opt:hover:not(:disabled){background:#ece8e0;border-color:var(--border2)}
+.q-opt:disabled{cursor:default}
+.q-opt.correct{border-color:var(--v1);background:var(--v1l);color:#0a3a20}
+.q-opt.wrong{border-color:var(--red);background:var(--redl);color:#5a1010}
+.q-opt .oid{width:22px;height:22px;border-radius:50%;background:var(--border);display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:.64rem;font-weight:700;flex-shrink:0;color:var(--muted)}
+.q-opt.correct .oid{background:var(--v1);color:#fff}
+.q-fb{border-radius:8px;padding:10px 14px;font-size:.82rem;line-height:1.6;display:none;margin-top:10px}
+.q-fb.show{display:block}
+.q-fb.ok{background:var(--v1l);border:1px solid var(--v1b);color:#0a3a20}
+.q-fb.bad{background:var(--redl);border:1px solid var(--redb);color:#5a1010}
+
+/* ── CHIPS ── */
+.chip-row{display:flex;flex-wrap:wrap;gap:7px;margin:14px 0}
+.chip{font-family:'JetBrains Mono',monospace;font-size:.64rem;padding:3px 10px;border-radius:20px;border:1px solid;letter-spacing:.04em}
+.ch1{background:var(--v1l);color:var(--v1);border-color:var(--v1b)}
+.ch2{background:var(--v2l);color:var(--v2);border-color:var(--v2b)}
+.ch3{background:var(--v3l);color:var(--v3);border-color:var(--v3b)}
+.ch4{background:var(--v4l);color:var(--v4);border-color:var(--v4b)}
+.chk{background:#f0ede8;color:#444;border-color:var(--border2)}
+
+/* ── BTN ── */
+.btn-sm{font-family:'Outfit',sans-serif;font-weight:600;font-size:.72rem;letter-spacing:.04em;text-transform:uppercase;padding:8px 16px;border-radius:7px;cursor:pointer;border:1px solid;transition:all .15s}
+.btn-pri{background:var(--v1);color:#fff;border-color:var(--v1)}.btn-pri:hover{opacity:.88}
+.btn-sec{background:transparent;color:var(--muted);border-color:var(--border)}.btn-sec:hover{border-color:var(--border2);color:var(--ink)}
+
+@media(max-width:640px){
+  .hero{padding:36px 22px 28px}
+  .section{padding:30px 16px 60px}
+  .cs-row{grid-template-columns:1fr}
+  .cs-term{border-right:none;border-bottom:1px solid var(--border)}
+  .fc-grid{grid-template-columns:1fr}
+  .tab-btn{padding:14px 16px;font-size:.7rem}
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-eyebrow">Unicorn Academy · Sesión 2</div>
+  <h1 class="hero-title">CALCULAR —<br><em>Obtener</em> los números</h1>
+  <p class="hero-desc">Clase mixta: teoría aplicada + práctica en Google Sheets. Todo lo conceptual de PENSAR se traduce en fórmulas reales sobre el caso Unicorn Espresso.</p>
+  <div class="hero-pills">
+    <span class="hero-pill" onclick="showTab('resumen',this)">Resumen</span>
+    <span class="hero-pill active" onclick="showTab('conceptos',this)">Conceptos</span>
+    <span class="hero-pill" onclick="showTab('formulas',this)">Fórmulas</span>
+    <span class="hero-pill" onclick="showTab('cheatsheet',this)">Cheatsheet</span>
+    <span class="hero-pill" onclick="showTab('flashcards',this)">Flashcards</span>
+    <span class="hero-pill" onclick="showTab('quiz',this)">Quiz</span>
+  </div>
+</div>
+
+<nav class="tab-nav">
+  <button class="tab-btn" onclick="showTab('resumen',this)">📋 Resumen</button>
+  <button class="tab-btn active" onclick="showTab('conceptos',this)">📚 Conceptos</button>
+  <button class="tab-btn" onclick="showTab('formulas',this)">🔢 Fórmulas</button>
+  <button class="tab-btn" onclick="showTab('cheatsheet',this)">⚡ Cheatsheet</button>
+  <button class="tab-btn" onclick="showTab('flashcards',this)">🃏 Flashcards</button>
+  <button class="tab-btn" onclick="showTab('quiz',this)">✏️ Quiz</button>
+</nav>
+
+<!-- ═══════════ RESUMEN ═══════════ -->
+<div class="section" id="tab-resumen">
+  <div class="sec-label">Vista general</div>
+  <h2 class="sec-title">¿Qué se hizo en esta clase?</h2>
+  <p class="sec-sub">Mapa completo de la sesión: de qué se habló, en qué orden y qué quedó pendiente para la próxima.</p>
+
+  <div class="quote-box">
+    <div class="quote-label">💬 Alfons, abriendo la sesión</div>
+    <div class="quote-text">"Todo lo que hicimos hasta ahora fue PENSAR: entender cómo se plantea el análisis. Ahora ya empezamos la parte de CALCULAR. Lo que vamos a hacer es tomar todo ese contexto y darle respuesta a las <strong>3 preguntas del CFO</strong> usando fórmulas reales en Google Sheets."</div>
+  </div>
+
+  <div class="cc cc2">
+    <div class="cc-header"><div class="cc-title">Lo que se cubrió en esta sesión</div><div class="cc-badge b2">Mapa</div></div>
+    <div class="cc-body">
+      <ul>
+        <li><strong>Repaso del caso:</strong> datos disponibles, coste campaña (€27.362), precio sleeve (€4,50)</li>
+        <li><strong>Cómo conectar tablas:</strong> BUSCARV — enriquecer order_line_table con segmento y comunicación</li>
+        <li><strong>El parámetro FALSO en BUSCARV</strong> — coincidencia exacta vs aproximada</li>
+        <li><strong>Por qué BUSCARV solo funciona en relaciones 1→N y 1:1</strong> (no N:N)</li>
+        <li><strong>Perspectiva Financiera:</strong> SUMAR.SI, Lift porcentual, ROI</li>
+        <li><strong>Celdas fijas ($) y F4</strong> — para no romper fórmulas al arrastrar</li>
+        <li><strong>Perspectiva Cliente:</strong> CONTAR.SI, distribución por segmento, ingreso por persona</li>
+        <li><strong>Perspectiva Procesos/Innovación:</strong> SUMAR.SI.CONJUNTO con 2 condiciones (segmento + comunicación)</li>
+        <li><strong>Lift por segmento</strong> — insight clave: la campaña no funcionó igual para todos</li>
+        <li><strong>Preview de la próxima sesión:</strong> QUERY, Dashboard, Storytelling</li>
+      </ul>
+      <div class="tip tip-warn">Lo que quedó pendiente para la próxima sesión: terminar perspectivas, QUERY (= SQL en Sheets), Dashboard y cómo presentar al director financiero.</div>
+    </div>
+  </div>
+
+  <div class="cc cc1">
+    <div class="cc-header"><div class="cc-title">El hilo conductor: el patrón que todo sigue</div><div class="cc-badge b1">Concepto clave</div></div>
+    <div class="cc-body">
+      <p>Alfons lo repite en esta sesión varias veces. Todas las fórmulas que se vieron, sin excepción, siguen el mismo patrón de la sesión anterior:</p>
+      <div class="fblock">
+        <span class="acc">[ OPERACIÓN ]</span> sobre <span class="acc">[ MÉTRICA ]</span> por <span class="acc">[ DIMENSIÓN ]</span><br><br>
+        <span class="cm">// Ejemplos directos de la clase:</span><br>
+        <span class="fn">SUMA</span> de <span class="hl">NB_SLEEVES</span> donde <span class="str">RECEIVED_COMM = 1</span>   → <span class="cm">revenue grupo mailing</span><br>
+        <span class="fn">CONTAR</span> de <span class="hl">CLIENT_ID</span> donde <span class="str">CLIENT_SEGMENT = 1</span>  → <span class="cm">cuántos Champions</span><br>
+        <span class="fn">SUMA</span> de <span class="hl">NB_SLEEVES</span> donde <span class="str">SEGMENT=1 Y COMM=1</span>  → <span class="cm">ventas Champions con carta</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="chip-row">
+    <span class="chip ch1">BUSCARV</span><span class="chip ch1">SUMAR.SI</span>
+    <span class="chip ch1">CONTAR.SI</span><span class="chip ch1">SUMAR.SI.CONJUNTO</span>
+    <span class="chip ch3">Lift</span><span class="chip ch3">ROI</span>
+    <span class="chip ch2">Celda fija $</span><span class="chip ch2">Auxiliares</span>
+    <span class="chip chk">Perspectiva Financiera</span><span class="chip chk">Perspectiva Cliente</span>
+  </div>
+</div>
+
+<!-- ═══════════ CONCEPTOS ═══════════ -->
+<div class="section active" id="tab-conceptos">
+  <div class="sec-label">Todos los conceptos</div>
+  <h2 class="sec-title">Conceptos clave de la sesión</h2>
+  <p class="sec-sub">Cada tema en el orden en que Alfons lo explicó, con ejemplos del caso real y las trampas que marcó.</p>
+
+  <div class="divider"><span>Parte 1 · El plan antes de calcular</span></div>
+
+  <div class="cc cc2">
+    <div class="cc-header"><div class="cc-title">El plan de análisis (BSC aplicado)</div><div class="cc-badge b2">Contexto</div></div>
+    <div class="cc-body">
+      <p>Antes de abrir Sheets, Alfons insiste en tener un plan. El BSC organiza qué calcular en cada perspectiva:</p>
+      <div class="tbl-wrap">
+        <table class="dtbl">
+          <thead><tr><th>Perspectiva BSC</th><th>Pregunta del CFO</th><th>Qué calcular</th><th>Tabla base</th></tr></thead>
+          <tbody>
+            <tr><td class="key c3">Financiera</td><td>¿Fue rentable?</td><td>Revenue mailing vs control, Lift, ROI</td><td>order_line_table (enriquecida)</td></tr>
+            <tr><td class="key c1">Cliente</td><td>¿Cómo respondieron?</td><td>Clientes por segmento, ingreso por persona</td><td>client_table</td></tr>
+            <tr><td class="key c2">Procesos/Innovación</td><td>¿Qué aprendemos?</td><td>Ventas por segmento × comunicación (Lift por segmento)</td><td>order_line_table (enriquecida)</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="tip tip-quote">Alfons: "En un mundo ideal hacéis un plan detallado. En la realidad, muchas veces te dicen 'tenés media hora'. Entonces hacés el BSC a mano en un whiteboard y a partir de ahí empezás."</div>
+    </div>
+  </div>
+
+  <div class="cc cc2">
+    <div class="cc-header"><div class="cc-title">Los datos del caso — lo que sabemos</div><div class="cc-badge b2">Datos</div></div>
+    <div class="cc-body">
+      <ul>
+        <li><strong>client_table:</strong> 35.903 clientes (35.902 datos reales + 1 encabezado = truco del encabezado)</li>
+        <li><strong>order_line_table:</strong> 66.912 líneas de pedido (el doble → confirma que hay múltiples pedidos por cliente)</li>
+        <li><strong>Coste campaña:</strong> €27.362 (cartas físicas: diseño + impresión + envío postal)</li>
+        <li><strong>Precio sleeve:</strong> €4,50 (1 sleeve = caja de 10 cápsulas, como las de Nespresso)</li>
+      </ul>
+      <div class="tip tip-warn"><strong>Truco del encabezado:</strong> si contás todas las filas de una tabla, el resultado incluye el encabezado. Siempre restar 1. Este es un error muy común cuando vas rápido. Alfons lo marcó expresamente como "pregunta de examen".</div>
+    </div>
+  </div>
+
+  <div class="divider"><span>Parte 2 · Enriquecer la tabla (BUSCARV)</span></div>
+
+  <div class="cc cc1">
+    <div class="cc-header"><div class="cc-title">Por qué hay que enriquecer la tabla primero</div><div class="cc-badge b1">Pre-requisito</div></div>
+    <div class="cc-body">
+      <p>El problema: <strong>order_line_table</strong> tiene las ventas (NB_SLEEVES) pero <em>no sabe</em> si el cliente recibió el mailing ni cuál es su segmento. Esa info está en <strong>client_table</strong>.</p>
+      <p>La solución: usar BUSCARV para agregar 2 columnas a order_line_table:</p>
+      <ul>
+        <li><strong>CLIENT_SEGMENT</strong> (columna 2 de client_table)</li>
+        <li><strong>RECEIVED_COMMUNICATION</strong> (columna 5 de client_table)</li>
+      </ul>
+      <p>Con esas 2 columnas agregadas, ya se puede calcular todo lo demás.</p>
+      <div class="tip tip-ok">Este paso se llama <strong>"enriquecer la tabla"</strong>. Es el Paso 0 antes de calcular cualquier métrica. Sin él, ninguna fórmula condicional puede funcionar.</div>
+    </div>
+  </div>
+
+  <div class="cc cc1">
+    <div class="cc-header"><div class="cc-title">El parámetro FALSO en BUSCARV — qué significa</div><div class="cc-badge b1">Detalle importante</div></div>
+    <div class="cc-body">
+      <p>BUSCARV tiene 4 argumentos. El último (<code>FALSO</code> o <code>VERDADERO</code>) define cómo se hace la búsqueda:</p>
+      <div class="tbl-wrap">
+        <table class="dtbl">
+          <thead><tr><th>Valor</th><th>Qué hace</th><th>Cuándo usarlo</th></tr></thead>
+          <tbody>
+            <tr><td class="key c1">FALSO</td><td>Coincidencia EXACTA — el valor tiene que ser idéntico</td><td>Siempre con IDs numéricos (CLIENT_ID). Es el estándar.</td></tr>
+            <tr><td class="key c3">VERDADERO</td><td>Coincidencia APROXIMADA — busca el valor más parecido</td><td>Raramente. Podría usarse si los nombres de clientes tienen typos ("María" vs "Marìa").</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="tip tip-quote">Alfons: "Idealmente, como analistas de datos, estaremos muy contentos si siempre tenemos que utilizar el FALSO. Si necesitamos VERDADERO, hay un problema de calidad de datos."</div>
+    </div>
+  </div>
+
+  <div class="cc cc1">
+    <div class="cc-header"><div class="cc-title">BUSCARV y los tipos de relación — la limitación clave</div><div class="cc-badge b1">Límite técnico</div></div>
+    <div class="cc-body">
+      <p>BUSCARV solo funciona correctamente en dos tipos de relación entre tablas:</p>
+      <ul>
+        <li><strong>1:1</strong> — un registro en cada tabla</li>
+        <li><strong>1:N</strong> — el valor buscado está una vez en la tabla de referencia (la Dimension Table)</li>
+      </ul>
+      <p><strong>No funciona en N:N.</strong> Ejemplo: si quisieras agregar las ventas totales de un cliente a client_table usando BUSCARV, solo traería la primera venta — no la suma de todas.</p>
+      <div class="tip tip-warn">Por eso el enriquecimiento va siempre de Fact → Dimension (order_line_table busca en client_table), nunca al revés. Para cruzar en el sentido contrario (Dimension → Fact con agregación), hay que usar QUERY.</div>
+    </div>
+  </div>
+
+  <div class="divider"><span>Parte 3 · Perspectiva Financiera</span></div>
+
+  <div class="cc cc3">
+    <div class="cc-header"><div class="cc-title">Auxiliares — la técnica que Alfons usa siempre</div><div class="cc-badge b3">Técnica práctica</div></div>
+    <div class="cc-body">
+      <p>Un auxiliar es una celda con un valor de referencia (ej: <code>1</code> para mailing, <code>0</code> para control) que después se referencia dentro de la fórmula en vez de escribir el número a mano.</p>
+      <p><strong>Ventaja:</strong> si necesitás cambiar el criterio, solo cambiás el auxiliar — la fórmula se actualiza sola. No hace falta tocar cada fórmula individualmente.</p>
+      <div class="fblock fb3">
+        <span class="cm">// Sin auxiliar (hay que editar cada fórmula manualmente):</span><br>
+        <span class="fn">=SUMIF(</span><span class="str">F:F</span><span class="kw">;</span><span class="num">1</span><span class="kw">;</span><span class="str">B:B</span><span class="fn">)</span><br><br>
+        <span class="cm">// Con auxiliar en celda H1 = 1 (mucho más flexible):</span><br>
+        <span class="fn">=SUMIF(</span><span class="str">F:F</span><span class="kw">;</span><span class="hl">$H$1</span><span class="kw">;</span><span class="str">B:B</span><span class="fn">)</span>   <span class="cm">← si cambias H1, la fórmula cambia sola</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="cc cc3">
+    <div class="cc-header"><div class="cc-title">Celdas fijas con $ — cómo funciona</div><div class="cc-badge b3">Técnica Sheets</div></div>
+    <div class="cc-body">
+      <p>Al arrastrar una fórmula, las referencias de celdas se mueven automáticamente. El símbolo <code>$</code> bloquea parte de la referencia para que no se mueva:</p>
+      <div class="tbl-wrap">
+        <table class="dtbl">
+          <thead><tr><th>Sintaxis</th><th>Qué bloquea</th><th>Cuándo usarlo</th></tr></thead>
+          <tbody>
+            <tr><td class="key c1">$C$3</td><td>Bloquea columna C y fila 3 — la celda no se mueve nunca</td><td>Precio por sleeve (siempre es la misma celda)</td></tr>
+            <tr><td class="key c2">$C3</td><td>Bloquea solo la columna C — la fila sí se mueve al bajar</td><td>Si arrastrás hacia abajo pero no a los lados</td></tr>
+            <tr><td class="key c3">C$3</td><td>Bloquea solo la fila 3 — la columna sí se mueve al arrastrar a la derecha</td><td>Si arrastrás a los lados pero no hacia abajo</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="tip tip-ok"><strong>Atajo:</strong> seleccioná la referencia dentro de la fórmula y presioná <strong>F4</strong> para agregar los $ automáticamente. Cicla entre las 4 opciones.</div>
+    </div>
+  </div>
+
+  <div class="cc cc3">
+    <div class="cc-header"><div class="cc-title">Lift porcentual y ROI — los indicadores clave</div><div class="cc-badge b3">Financiero</div></div>
+    <div class="cc-body">
+      <p><strong>Lift porcentual:</strong> mide cuánto más vendió el grupo mailing respecto al grupo control, en términos relativos.</p>
+      <div class="fblock fb3">
+        <span class="acc">Lift %</span> = (Revenue_mailing − Revenue_control) / Revenue_control × 100<br>
+        <span class="cm">// En el caso: (841.000 − 522.000) / 522.000 = 61% más de ingresos</span>
+      </div>
+      <p style="margin-top:10px"><strong>ROI (Return on Investment):</strong> por cada euro invertido en la campaña, ¿cuánto retornó?</p>
+      <div class="fblock fb3">
+        <span class="acc">ROI</span> = (Lift_€ − Coste_campaña) / Coste_campaña<br>
+        <span class="cm">// Lift_€ = diferencia en euros = Revenue_mailing − Revenue_control</span><br>
+        <span class="cm">// En el caso: (319.000 − 27.362) / 27.362 ≈ 10,67</span><br>
+        <span class="cm">// = por cada €1 invertido en cartas, retornaron ~€10,67</span>
+      </div>
+      <div class="tip tip-quote">Alfons: "Ojalá todas las empresas funcionaran así. Todas las campañas sería ideal." — Un ROI de 10 es muy positivo. Si es negativo, la campaña perdió dinero.</div>
+    </div>
+  </div>
+
+  <div class="divider"><span>Parte 4 · Perspectiva Cliente</span></div>
+
+  <div class="cc cc1">
+    <div class="cc-header"><div class="cc-title">Por qué analizar los clientes antes de quedarse con los totales</div><div class="cc-badge b1">Perspectiva Cliente</div></div>
+    <div class="cc-body">
+      <p>El 61% de lift general suena bien. Pero ese número esconde algo: <em>¿quiénes compraron más?</em>. Si el lift vino solo de Champions (segmento 1) que habrían comprado igual, el impacto real es menor.</p>
+      <p>La perspectiva de cliente permite entender:</p>
+      <ul>
+        <li><strong>Distribución de clientes</strong>: cuántos hay en cada segmento y qué % representan</li>
+        <li><strong>Ingreso por persona</strong>: cuánto dejó cada segmento en promedio</li>
+        <li><strong>Qué segmentos respondieron al mailing</strong> (cruzando con SUMAR.SI.CONJUNTO)</li>
+      </ul>
+      <div class="tip tip-quote">Nazarena en clase: "El segmento 6, siendo solo el 9% de los clientes, te da el 15% del ingreso." — Exactamente el tipo de insight que se puede sacar con estas fórmulas.</div>
+    </div>
+  </div>
+
+  <div class="cc cc4">
+    <div class="cc-header"><div class="cc-title">SUMAR.SI.CONJUNTO — el insight de segmento por comunicación</div><div class="cc-badge b4">Insight clave</div></div>
+    <div class="cc-body">
+      <p>Al cruzar <strong>segmento</strong> (1-6) con <strong>si recibió mailing</strong> (0 o 1) y calcular el Lift por segmento, se descubre algo crucial: <em>la campaña no funcionó igual para todos los segmentos</em>.</p>
+      <p>Los segmentos 1, 2 y 3 respondieron bien. Los segmentos 4, 5 y 6 generaron muy poco o incluso tuvieron Lift negativo (se "perdió dinero" enviándoles la carta).</p>
+      <div class="tip tip-ok"><strong>Recomendación que surge del análisis:</strong> en la próxima campaña, enfocar el mailing solo en segmentos 1 a 3. Eso reduce el coste manteniendo (o mejorando) el revenue incremental.</div>
+      <div class="tip tip-quote">Carolina en clase: "No mandarle cartas, no gastar ese dinero en esos grupos." — Exactamente la conclusión correcta. Los datos permiten optimizar la próxima campaña.</div>
+    </div>
+  </div>
+
+  <div class="divider"><span>Parte 5 · Consideraciones generales</span></div>
+
+  <div class="cc cc2">
+    <div class="cc-header"><div class="cc-title">El análisis no es lineal — reflexión de cierre</div><div class="cc-badge b2">Meta-aprendizaje</div></div>
+    <div class="cc-body">
+      <p>Gisela lo resumió perfectamente al final de la clase, y Alfons lo confirmó:</p>
+      <div class="tip tip-quote">"El análisis es como que uno va entrando y va descubriendo cosas, y va descartando otras. No siempre hay una receta exacta."<br><br>Alfons: "Los frameworks nos sirven para saber exactamente hacia dónde enfocarlo, pero aún así hay una parte creativa donde vamos viendo qué tiene sentido y qué no."</div>
+      <p style="margin-top:10px">En la clase, Alfons mismo calculó una fórmula, vio que no daba la info más útil, y la reemplazó por el Lift. Eso es análisis real: iterativo, no mecánico.</p>
+    </div>
+  </div>
+
+  <div class="cc cc2">
+    <div class="cc-header"><div class="cc-title">¿En inglés o en español las fórmulas?</div><div class="cc-badge b2">Consejo práctico</div></div>
+    <div class="cc-body">
+      <p>Google Sheets acepta ambos idiomas y traduce automáticamente. Alfons recomienda aprender en inglés por estas razones:</p>
+      <ul>
+        <li>SQL, Python, Power BI — todo está en inglés. Aprender SUMIF ahora facilita aprender SUM() en Python o SQL después.</li>
+        <li>Cuando busques ayuda online o uses IA, en inglés tendrás mejores resultados.</li>
+        <li>Si compartís archivos con colegas de otros países, el inglés es el estándar.</li>
+      </ul>
+      <div class="tip tip-ok">Para este curso está bien usar español. Pero a largo plazo, la recomendación es ir migrando al inglés. Los nombres de las funciones son los mismos, solo cambia el idioma.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ FÓRMULAS ═══════════ -->
+<div class="section" id="tab-formulas">
+  <div class="sec-label">Referencia técnica</div>
+  <h2 class="sec-title">Todas las fórmulas de la sesión</h2>
+  <p class="sec-sub">Hacé clic en cada fórmula para ver la explicación completa, sintaxis y ejemplo del caso real. Las fórmulas aparecen en inglés (recomendación de Alfons) con el equivalente en español.</p>
+
+  <!-- BUSCARV -->
+  <div class="facc">
+    <div class="facc-header" onclick="toggleFacc(this)">
+      <div class="facc-left">
+        <span class="facc-name">BUSCARV / VLOOKUP</span>
+        <span class="facc-badge b1">Cruzar tablas</span>
+      </div>
+      <span class="facc-arrow">▾</span>
+    </div>
+    <div class="facc-body">
+      <div class="facc-use"><strong>Para qué:</strong> traer datos de otra tabla usando un ID común. Aquí: agregar CLIENT_SEGMENT y RECEIVED_COMMUNICATION a order_line_table.</div>
+      <div class="fblock">
+        <span class="cm">// Sintaxis completa:</span><br>
+        <span class="fn">=BUSCARV(</span><span class="str">valor_buscado</span><span class="kw">;</span> <span class="str">rango_tabla</span><span class="kw">;</span> <span class="num">nº_columna</span><span class="kw">;</span> <span class="kw">FALSO</span><span class="fn">)</span><br><br>
+        <span class="cm">// Traer CLIENT_SEGMENT (columna 2 de client_table):</span><br>
+        <span class="fn">=BUSCARV(</span><span class="str">A2</span><span class="kw">;</span> <span class="str">client_table!A:E</span><span class="kw">;</span> <span class="num">2</span><span class="kw">;</span> <span class="kw">FALSO</span><span class="fn">)</span><br><br>
+        <span class="cm">// Traer RECEIVED_COMMUNICATION (columna 5):</span><br>
+        <span class="fn">=BUSCARV(</span><span class="str">A2</span><span class="kw">;</span> <span class="str">client_table!A:E</span><span class="kw">;</span> <span class="num">5</span><span class="kw">;</span> <span class="kw">FALSO</span><span class="fn">)</span><br><br>
+        <span class="cm">// A:E = columnas A hasta E de client_table</span><br>
+        <span class="cm">// 2 = segunda columna del rango (B = CLIENT_SEGMENT)</span><br>
+        <span class="cm">// 5 = quinta columna del rango (E = RECEIVED_COMMUNICATION)</span><br>
+        <span class="cm">// FALSO = coincidencia EXACTA (siempre con IDs)</span>
+      </div>
+      <div class="tip tip-warn">BUSCARV solo trae la <strong>primera coincidencia</strong>. Funciona para cruzar N→1 (order_line hacia client_table). No sirve para agregar totales de ventas por cliente (eso es 1→N, hay que usar QUERY).</div>
+    </div>
+  </div>
+
+  <!-- SUMA / SUMIF -->
+  <div class="facc">
+    <div class="facc-header" onclick="toggleFacc(this)">
+      <div class="facc-left">
+        <span class="facc-name">SUMA / SUM</span>
+        <span class="facc-badge b1">Revenue total</span>
+      </div>
+      <span class="facc-arrow">▾</span>
+    </div>
+    <div class="facc-body">
+      <div class="facc-use"><strong>Para qué:</strong> sumar todos los valores de una columna. Es el punto de partida — la línea base antes de filtrar.</div>
+      <div class="fblock">
+        <span class="cm">// Total de sleeves vendidas (toda la tabla):</span><br>
+        <span class="fn">=SUMA(</span><span class="str">1.Enriquecer!B:B</span><span class="fn">)</span>   <span class="cm">→ en inglés: =SUM(...)</span><br><br>
+        <span class="cm">// Revenue total (sleeves × precio):</span><br>
+        <span class="fn">=SUMA(</span><span class="str">B:B</span><span class="fn">)</span> <span class="kw">*</span> <span class="hl">$C$3</span>    <span class="cm">← C3 tiene el precio fijado con $</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SUMAR.SI / SUMIF -->
+  <div class="facc">
+    <div class="facc-header" onclick="toggleFacc(this)">
+      <div class="facc-left">
+        <span class="facc-name">SUMAR.SI / SUMIF</span>
+        <span class="facc-badge b1">Sumar con 1 condición</span>
+      </div>
+      <span class="facc-arrow">▾</span>
+    </div>
+    <div class="facc-body">
+      <div class="facc-use"><strong>Para qué:</strong> sumar una métrica solo para los registros que cumplen UNA condición. Esencial para la Perspectiva Financiera.</div>
+      <div class="fblock">
+        <span class="cm">// Sintaxis:</span><br>
+        <span class="fn">=SUMAR.SI(</span><span class="str">rango_criterio</span><span class="kw">;</span> <span class="str">criterio</span><span class="kw">;</span> <span class="str">rango_suma</span><span class="fn">)</span><br><br>
+        <span class="cm">// Sleeves del grupo mailing (RECEIVED_COMM = 1):</span><br>
+        <span class="fn">=SUMAR.SI(</span><span class="str">F:F</span><span class="kw">;</span> <span class="num">1</span><span class="kw">;</span> <span class="str">B:B</span><span class="fn">)</span>   <span class="cm">→ en inglés: =SUMIF(F:F, 1, B:B)</span><br><br>
+        <span class="cm">// Sleeves del grupo control (RECEIVED_COMM = 0):</span><br>
+        <span class="fn">=SUMAR.SI(</span><span class="str">F:F</span><span class="kw">;</span> <span class="num">0</span><span class="kw">;</span> <span class="str">B:B</span><span class="fn">)</span><br><br>
+        <span class="cm">// Sleeves por segmento (usando auxiliar en celda H1):</span><br>
+        <span class="fn">=SUMAR.SI(</span><span class="str">E:E</span><span class="kw">;</span> <span class="hl">$H$1</span><span class="kw">;</span> <span class="str">B:B</span><span class="fn">)</span>   <span class="cm">← H1 tiene el número de segmento</span><br><br>
+        <span class="cm">// Para convertir a revenue: multiplicar por precio del sleeve</span><br>
+        <span class="fn">=SUMAR.SI(</span><span class="str">F:F</span><span class="kw">;</span><span class="num">1</span><span class="kw">;</span><span class="str">B:B</span><span class="fn">)</span> <span class="kw">*</span> <span class="hl">$C$3</span>
+      </div>
+      <div class="tip tip-warn"><strong>Orden de los argumentos:</strong> primero el rango donde buscás la condición, luego la condición, luego el rango que querés sumar. Alfons lo confundió en clase al principio — es un error común.</div>
+    </div>
+  </div>
+
+  <!-- CONTAR.SI / COUNTIF -->
+  <div class="facc">
+    <div class="facc-header" onclick="toggleFacc(this)">
+      <div class="facc-left">
+        <span class="facc-name">CONTAR.SI / COUNTIF</span>
+        <span class="facc-badge b1">Contar con 1 condición</span>
+      </div>
+      <span class="facc-arrow">▾</span>
+    </div>
+    <div class="facc-body">
+      <div class="facc-use"><strong>Para qué:</strong> contar cuántos registros cumplen una condición. Perspectiva Cliente: cuántos clientes hay en cada segmento.</div>
+      <div class="fblock">
+        <span class="cm">// Sintaxis:</span><br>
+        <span class="fn">=CONTAR.SI(</span><span class="str">rango</span><span class="kw">;</span> <span class="str">criterio</span><span class="fn">)</span>   <span class="cm">→ en inglés: =COUNTIF(...)</span><br><br>
+        <span class="cm">// Cuántos clientes son Champions (segmento 1):</span><br>
+        <span class="fn">=CONTAR.SI(</span><span class="str">client_table!B:B</span><span class="kw">;</span> <span class="num">1</span><span class="fn">)</span><br><br>
+        <span class="cm">// Cuántos clientes recibieron mailing:</span><br>
+        <span class="fn">=CONTAR.SI(</span><span class="str">client_table!E:E</span><span class="kw">;</span> <span class="num">1</span><span class="fn">)</span><br><br>
+        <span class="cm">// % que representa un segmento sobre el total:</span><br>
+        <span class="fn">=CONTAR.SI(</span><span class="str">B:B</span><span class="kw">;</span><span class="hl">$H$1</span><span class="fn">)</span> <span class="kw">/</span> <span class="fn">CONTAR.SI(</span><span class="str">B:B</span><span class="kw">;</span><span class="str">"&gt;0"</span><span class="fn">)</span>
+      </div>
+      <div class="tip tip-ok">Para calcular el ingreso por persona de cada segmento: <code>=Revenue_segmento / Clientes_segmento</code>. Esto se hace dividiendo el resultado de SUMAR.SI entre el de CONTAR.SI.</div>
+    </div>
+  </div>
+
+  <!-- SUMAR.SI.CONJUNTO -->
+  <div class="facc">
+    <div class="facc-header" onclick="toggleFacc(this)">
+      <div class="facc-left">
+        <span class="facc-name">SUMAR.SI.CONJUNTO / SUMIFS</span>
+        <span class="facc-badge b4">Múltiples condiciones</span>
+      </div>
+      <span class="facc-arrow">▾</span>
+    </div>
+    <div class="facc-body">
+      <div class="facc-use"><strong>Para qué:</strong> sumar con DOS o más condiciones simultáneas (AND lógico). El insight clave de la sesión: ventas por segmento Y por si recibió mailing.</div>
+      <div class="fblock fb4">
+        <span class="cm">// Sintaxis (rango_suma va PRIMERO aquí, al revés de SUMAR.SI):</span><br>
+        <span class="fn">=SUMAR.SI.CONJUNTO(</span><span class="str">rango_suma</span><span class="kw">;</span> <span class="str">rango_crit1</span><span class="kw">;</span> <span class="str">crit1</span><span class="kw">;</span> <span class="str">rango_crit2</span><span class="kw">;</span> <span class="str">crit2</span><span class="fn">)</span><br>
+        <span class="cm">// En inglés: =SUMIFS(...)</span><br><br>
+        <span class="cm">// Sleeves de Champions (seg=1) que recibieron mailing (comm=1):</span><br>
+        <span class="fn">=SUMAR.SI.CONJUNTO(</span><span class="str">B:B</span><span class="kw">;</span> <span class="str">E:E</span><span class="kw">;</span> <span class="hl">$H$1</span><span class="kw">;</span> <span class="str">F:F</span><span class="kw">;</span> <span class="num">1</span><span class="fn">)</span><br>
+        <span class="cm">// B:B = NB_SLEEVES · E:E = CLIENT_SEGMENT · F:F = RECEIVED_COMM</span><br><br>
+        <span class="cm">// Mismo segmento, grupo control (no recibió mailing):</span><br>
+        <span class="fn">=SUMAR.SI.CONJUNTO(</span><span class="str">B:B</span><span class="kw">;</span> <span class="str">E:E</span><span class="kw">;</span> <span class="hl">$H$1</span><span class="kw">;</span> <span class="str">F:F</span><span class="kw">;</span> <span class="num">0</span><span class="fn">)</span>
+      </div>
+      <div class="tip tip-warn"><strong>Trampa del orden:</strong> en SUMAR.SI el rango_suma va al final. En SUMAR.SI.CONJUNTO va al PRINCIPIO. Alfons se confundió en clase con esto — es el error más típico.</div>
+    </div>
+  </div>
+
+  <!-- Lift y ROI como fórmulas -->
+  <div class="facc">
+    <div class="facc-header" onclick="toggleFacc(this)">
+      <div class="facc-left">
+        <span class="facc-name">Lift porcentual y ROI</span>
+        <span class="facc-badge b3">Indicadores financieros</span>
+      </div>
+      <span class="facc-arrow">▾</span>
+    </div>
+    <div class="facc-body">
+      <div class="facc-use"><strong>Para qué:</strong> medir el impacto financiero real de la campaña y su rentabilidad.</div>
+      <div class="fblock fb3">
+        <span class="cm">// LIFT PORCENTUAL — cuánto % más vendió el grupo mailing:</span><br>
+        <span class="acc">Lift %</span> = (Revenue_mailing − Revenue_control) / Revenue_control<br>
+        <span class="cm">// = (841.000 − 522.000) / 522.000 = 0,61 = 61%</span><br><br>
+        <span class="cm">// LIFT EN EUROS — diferencia absoluta:</span><br>
+        <span class="acc">Lift €</span> = Revenue_mailing − Revenue_control<br>
+        <span class="cm">// = 841.000 − 522.000 = €319.000</span><br><br>
+        <span class="cm">// ROI — retorno por cada euro invertido en la campaña:</span><br>
+        <span class="acc">ROI</span> = (Lift_€ − Coste_campaña) / Coste_campaña<br>
+        <span class="cm">// = (319.000 − 27.362) / 27.362 ≈ 10,67</span><br>
+        <span class="cm">// = por cada €1 en cartas, retornaron ~€10,67</span><br><br>
+        <span class="cm">// LIFT POR SEGMENTO — insight clave de la sesión:</span><br>
+        <span class="acc">Lift_seg</span> = (Ventas_mailing_seg − Ventas_control_seg) / Ventas_control_seg<br>
+        <span class="cm">// Segmentos 1-3: Lift positivo → la carta funcionó</span><br>
+        <span class="cm">// Segmentos 4-6: Lift neutro o negativo → no valió la pena</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ CHEATSHEET ═══════════ -->
+<div class="section" id="tab-cheatsheet">
+  <div class="sec-label">Referencia rápida</div>
+  <h2 class="sec-title">Cheatsheet de la sesión</h2>
+  <p class="sec-sub">Todo comprimido para repasar rápido. Conceptos + fórmulas + trampas.</p>
+
+  <div class="cs-wrap">
+    <div class="cs-row"><div class="cs-term">BUSCARV / VLOOKUP</div><div class="cs-def">Conecta dos tablas por un ID común. Trae datos de una Dimension Table a una Fact Table. Sintaxis: <code>=BUSCARV(valor; rango; nº_columna; FALSO)</code>. El nº de columna se cuenta desde el inicio del rango.</div></div>
+    <div class="cs-row"><div class="cs-term">FALSO en BUSCARV</div><div class="cs-def">Exige coincidencia exacta. Siempre usarlo con IDs. VERDADERO busca el valor más parecido — solo tiene sentido si hay errores tipográficos en los datos.</div></div>
+    <div class="cs-row"><div class="cs-term">Límite de BUSCARV</div><div class="cs-def">Solo funciona en relaciones 1:1 y 1:N (de Fact hacia Dimension). No funciona al revés (N:1 agregado). Para eso se usa QUERY.</div></div>
+    <div class="cs-row"><div class="cs-term">Enriquecer la tabla</div><div class="cs-def">Paso 0 antes de calcular. Agregar CLIENT_SEGMENT y RECEIVED_COMMUNICATION a order_line_table con BUSCARV. Sin esto, ninguna fórmula condicional puede funcionar.</div></div>
+    <div class="cs-row"><div class="cs-term">Auxiliares</div><div class="cs-def">Celdas con valores de referencia (ej: 1 para mailing, segmentos 1-6) que se referencian dentro de las fórmulas. Permiten cambiar el criterio sin tocar cada fórmula.</div></div>
+    <div class="cs-row"><div class="cs-term">$ (celda fija)</div><div class="cs-def"><code>$C$3</code> = fija columna y fila. <code>$C3</code> = fija solo columna. <code>C$3</code> = fija solo fila. Atajo: seleccioná la referencia en la barra de fórmulas y presioná F4.</div></div>
+    <div class="cs-row"><div class="cs-term">SUMA / SUM</div><div class="cs-def">Suma todos los valores de un rango. Primer paso para tener la línea base total. <code>=SUMA(B:B)</code></div></div>
+    <div class="cs-row"><div class="cs-term">SUMAR.SI / SUMIF</div><div class="cs-def">Suma con UNA condición. <code>=SUMAR.SI(rango_criterio; criterio; rango_suma)</code>. El rango_suma va al FINAL. Ejemplo: sleeves del grupo mailing.</div></div>
+    <div class="cs-row"><div class="cs-term">CONTAR.SI / COUNTIF</div><div class="cs-def">Cuenta registros con UNA condición. <code>=CONTAR.SI(rango; criterio)</code>. Perspectiva Cliente: cuántos clientes hay por segmento.</div></div>
+    <div class="cs-row"><div class="cs-term">SUMAR.SI.CONJUNTO / SUMIFS</div><div class="cs-def">Suma con DOS o más condiciones (AND). <code>=SUMAR.SI.CONJUNTO(rango_suma; rango_c1; c1; rango_c2; c2)</code>. El rango_suma va al PRINCIPIO (al revés de SUMAR.SI).</div></div>
+    <div class="cs-row"><div class="cs-term">Truco del encabezado</div><div class="cs-def">Cuando contás todas las filas de una tabla, el resultado incluye el encabezado. Siempre restar 1 al total. Error muy común cuando se va rápido.</div></div>
+    <div class="cs-row"><div class="cs-term">Lift porcentual</div><div class="cs-def">(Revenue_mailing − Revenue_control) / Revenue_control. Mide cuánto % más vendió el grupo que recibió la carta.</div></div>
+    <div class="cs-row"><div class="cs-term">ROI</div><div class="cs-def">(Lift_€ − Coste_campaña) / Coste_campaña. Por cada euro invertido, cuánto retornó. En el caso: ~10,67 → muy positivo.</div></div>
+    <div class="cs-row"><div class="cs-term">Lift por segmento</div><div class="cs-def">Calcular el Lift para cada segmento (1-6) revela qué grupos respondieron a la campaña. Segmentos 1-3: positivo. Segmentos 4-6: neutro o negativo.</div></div>
+    <div class="cs-row"><div class="cs-term">Patrón universal</div><div class="cs-def">OPERACIÓN sobre MÉTRICA por DIMENSIÓN. Todas las fórmulas de Sheets siguen este patrón: la dimensión es la condición del SI, la métrica es lo que sumás o contás.</div></div>
+    <div class="cs-row"><div class="cs-term">Sleeve</div><div class="cs-def">Unidad de medida del caso. 1 sleeve = caja de 10 cápsulas de café. Precio: €4,50 por sleeve.</div></div>
+    <div class="cs-row"><div class="cs-term">Coste campaña</div><div class="cs-def">€27.362 (diseño + impresión + envío de cartas físicas al 50% de los clientes).</div></div>
+    <div class="cs-row"><div class="cs-term">F4 (atajo)</div><div class="cs-def">Dentro de la barra de fórmulas, seleccionás una referencia y presionás F4 para agregar $ automáticamente. Cicla entre las 4 opciones de bloqueo.</div></div>
+  </div>
+</div>
+
+<!-- ═══════════ FLASHCARDS ═══════════ -->
+<div class="section" id="tab-flashcards">
+  <div class="sec-label">Memorización activa</div>
+  <h2 class="sec-title">Flashcards — Tocá para ver la respuesta</h2>
+  <p class="sec-sub">Cubrí la respuesta, intentá responder en tu cabeza, después tocá. Repetí las que fallés.</p>
+
+  <div class="fc-grid">
+
+    <div class="fc" onclick="this.classList.toggle('flipped')">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-q">¿Por qué hay que "enriquecer" order_line_table antes de calcular?</div><div class="fc-hint">BUSCARV · Paso 0</div></div>
+        <div class="fc-back"><div class="fc-a">Porque order_line_table <strong>no sabe</strong> si el cliente recibió el mailing ni cuál es su segmento. Sin agregar esas columnas (BUSCARV), no se puede filtrar por grupo ni por segmento.</div><div class="fc-cat">BUSCARV</div></div>
+      </div>
+    </div>
+
+    <div class="fc" onclick="this.classList.toggle('flipped')">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-q">¿Qué significa poner <strong>FALSO</strong> al final del BUSCARV?</div><div class="fc-hint">BUSCARV · Parámetros</div></div>
+        <div class="fc-back"><div class="fc-a">Que la búsqueda es por <strong>coincidencia exacta</strong>. El ID tiene que ser idéntico. VERDADERO busca el valor más parecido — se usa raramente, solo si hay errores tipográficos en los datos.</div><div class="fc-cat">BUSCARV</div></div>
+      </div>
+    </div>
+
+    <div class="fc" onclick="this.classList.toggle('flipped')">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-q">¿Cuál es la diferencia de <strong>orden de argumentos</strong> entre SUMAR.SI y SUMAR.SI.CONJUNTO?</div><div class="fc-hint">Fórmulas · Trampa</div></div>
+        <div class="fc-back"><div class="fc-a"><strong>SUMAR.SI:</strong> criterio → suma (rango_suma al FINAL)<br><strong>SUMAR.SI.CONJUNTO:</strong> suma → criterios (rango_suma al PRINCIPIO)<br><br>Es la trampa más común. Alfons se confundió en clase.</div><div class="fc-cat">Fórmulas</div></div>
+      </div>
+    </div>
+
+    <div class="fc" onclick="this.classList.toggle('flipped')">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-q">¿Para qué sirve poner <strong>$</strong> en una referencia de celda?</div><div class="fc-hint">Celda fija · Técnica</div></div>
+        <div class="fc-back"><div class="fc-a">Para <strong>bloquear</strong> que la referencia se mueva al arrastrar la fórmula. <code>$C$3</code> = bloquea todo. <code>$C3</code> = solo columna. <code>C$3</code> = solo fila. Atajo: F4 sobre la referencia.</div><div class="fc-cat">Sheets</div></div>
+      </div>
+    </div>
+
+    <div class="fc" onclick="this.classList.toggle('flipped')">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-q">¿Cuál es la fórmula del <strong>ROI</strong> de la campaña?</div><div class="fc-hint">Financiero</div></div>
+        <div class="fc-back"><div class="fc-a"><strong>ROI = (Lift_€ − Coste_campaña) / Coste_campaña</strong><br><br>En el caso: (319.000 − 27.362) / 27.362 ≈ <strong>10,67</strong><br>= por cada €1 en cartas, retornaron ~€10,67</div><div class="fc-cat">Financiero</div></div>
+      </div>
+    </div>
+
+    <div class="fc" onclick="this.classList.toggle('flipped')">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-q">¿Por qué <strong>BUSCARV no sirve</strong> para agregar las ventas totales por cliente a client_table?</div><div class="fc-hint">BUSCARV · Límite</div></div>
+        <div class="fc-back"><div class="fc-a">Porque esa operación es <strong>N→1 agregada</strong> (muchos pedidos → 1 cliente). BUSCARV solo trae la primera coincidencia, no la suma de todas. Para eso se necesita QUERY o una tabla dinámica.</div><div class="fc-cat">BUSCARV</div></div>
+      </div>
+    </div>
+
+    <div class="fc" onclick="this.classList.toggle('flipped')">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-q">¿Cuál fue el <strong>insight más importante</strong> del Lift por segmento?</div><div class="fc-hint">Perspectiva Cliente</div></div>
+        <div class="fc-back"><div class="fc-a">La campaña no funcionó igual para todos. Los <strong>segmentos 1-3</strong> respondieron bien. Los <strong>segmentos 4-6</strong> tuvieron Lift neutro o negativo → recomendación: la próxima campaña solo enviar a segmentos 1-3.</div><div class="fc-cat">Insight</div></div>
+      </div>
+    </div>
+
+    <div class="fc" onclick="this.classList.toggle('flipped')">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-q">¿Qué es un <strong>auxiliar</strong> en Sheets y para qué sirve?</div><div class="fc-hint">Técnica práctica</div></div>
+        <div class="fc-back"><div class="fc-a">Una celda con un valor de referencia (ej: <code>1</code> para mailing) que se usa como criterio en las fórmulas. Si cambiás el auxiliar, todas las fórmulas que lo referencian se actualizan solas.</div><div class="fc-cat">Técnica</div></div>
+      </div>
+    </div>
+
+    <div class="fc" onclick="this.classList.toggle('flipped')">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-q">¿Cuántas columnas tiene client_table y cuál es la 5ª?</div><div class="fc-hint">Business Case · Datos</div></div>
+        <div class="fc-back"><div class="fc-a">5 columnas: CLIENT_ID (1), CLIENT_SEGMENT (2), AVG_CONSO (3), AVG_BASKET_SIZE (4), <strong>RECEIVED_COMMUNICATION (5)</strong>. Por eso el BUSCARV usa índice 5 para traer la comunicación.</div><div class="fc-cat">Business Case</div></div>
+      </div>
+    </div>
+
+    <div class="fc" onclick="this.classList.toggle('flipped')">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-q">¿Cuándo usar <strong>SUMAR.SI</strong> vs <strong>SUMAR.SI.CONJUNTO</strong>?</div><div class="fc-hint">Fórmulas</div></div>
+        <div class="fc-back"><div class="fc-a"><strong>SUMAR.SI</strong>: cuando tenés UNA condición (ej: solo por si recibió mailing).<br><strong>SUMAR.SI.CONJUNTO</strong>: cuando tenés DOS o más condiciones simultáneas (ej: segmento=1 Y recibió mailing=1).</div><div class="fc-cat">Fórmulas</div></div>
+      </div>
+    </div>
+
+    <div class="fc" onclick="this.classList.toggle('flipped')">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-q">¿Qué error hay que evitar al contar filas de una tabla completa?</div><div class="fc-hint">Truco del encabezado</div></div>
+        <div class="fc-back"><div class="fc-a">El conteo incluye el encabezado. Siempre <strong>restar 1</strong> al resultado. client_table tiene 35.903 clientes, no 35.904. "Pregunta de examen" según Alfons.</div><div class="fc-cat">Trampa</div></div>
+      </div>
+    </div>
+
+    <div class="fc" onclick="this.classList.toggle('flipped')">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-q">¿Qué queda pendiente para la próxima sesión?</div><div class="fc-hint">Preview</div></div>
+        <div class="fc-back"><div class="fc-a">1. Terminar perspectivas restantes<br>2. <strong>QUERY</strong> (equivalente a SQL en Sheets)<br>3. <strong>Dashboard</strong> (cuadro de mandos — Power BI es mejor para esto)<br>4. <strong>Storytelling</strong>: cómo presentar al director financiero</div><div class="fc-cat">Preview</div></div>
+      </div>
+    </div>
+
+  </div>
+  <div style="text-align:right;margin-top:16px">
+    <button class="btn-sm btn-sec" onclick="document.querySelectorAll('.fc').forEach(c=>c.classList.remove('flipped'))">↺ Reiniciar tarjetas</button>
+  </div>
+</div>
+
+<!-- ═══════════ QUIZ ═══════════ -->
+<div class="section" id="tab-quiz">
+  <div class="sec-label">Autoevaluación</div>
+  <h2 class="sec-title">Quiz de repaso — 12 preguntas</h2>
+  <p class="sec-sub">Elegí la respuesta correcta. Si fallás, la explicación aparece abajo.</p>
+
+  <div class="qscore-bar">
+    <div><div class="qscore-num" id="qscore">0 / 12</div><div class="qscore-lbl">respuestas correctas</div></div>
+    <button class="btn-sm btn-sec" onclick="resetQuiz()">↺ Reiniciar</button>
+  </div>
+
+  <div class="q-box"><div class="q-num">Pregunta 1 · BUSCARV</div>
+    <div class="q-text">Querés agregar CLIENT_SEGMENT a order_line_table. CLIENT_SEGMENT es la segunda columna de client_table (rango A:E). ¿Qué índice de columna usás en BUSCARV?</div>
+    <div class="q-opts">
+      <button class="q-opt" data-c="0" onclick="qa(this,1)"><span class="oid">A</span>1 — es la primera variable que nos importa</button>
+      <button class="q-opt" data-c="1" onclick="qa(this,1)"><span class="oid">B</span>2 — es la segunda columna del rango A:E</button>
+      <button class="q-opt" data-c="0" onclick="qa(this,1)"><span class="oid">C</span>5 — siempre se usa el número de la última columna del rango</button>
+      <button class="q-opt" data-c="0" onclick="qa(this,1)"><span class="oid">D</span>0 — para buscar en toda la tabla</button>
+    </div>
+    <div class="q-fb" id="f1"></div>
+  </div>
+
+  <div class="q-box"><div class="q-num">Pregunta 2 · BUSCARV · FALSO</div>
+    <div class="q-text">¿Cuándo tiene sentido usar VERDADERO (en vez de FALSO) en el último argumento de BUSCARV?</div>
+    <div class="q-opts">
+      <button class="q-opt" data-c="0" onclick="qa(this,2)"><span class="oid">A</span>Siempre que los datos vengan de otra pestaña</button>
+      <button class="q-opt" data-c="0" onclick="qa(this,2)"><span class="oid">B</span>Cuando buscás en columnas numéricas</button>
+      <button class="q-opt" data-c="1" onclick="qa(this,2)"><span class="oid">C</span>Cuando hay errores tipográficos y querés encontrar el valor más parecido</button>
+      <button class="q-opt" data-c="0" onclick="qa(this,2)"><span class="oid">D</span>Cuando la tabla de referencia tiene más de 1.000 filas</button>
+    </div>
+    <div class="q-fb" id="f2"></div>
+  </div>
+
+  <div class="q-box"><div class="q-num">Pregunta 3 · Límite de BUSCARV</div>
+    <div class="q-text">Querés agregar el total de sleeves vendidos por cada cliente a client_table usando BUSCARV. ¿Por qué no funciona directamente?</div>
+    <div class="q-opts">
+      <button class="q-opt" data-c="0" onclick="qa(this,3)"><span class="oid">A</span>Porque NB_SLEEVES no es una columna numérica</button>
+      <button class="q-opt" data-c="1" onclick="qa(this,3)"><span class="oid">B</span>Porque un cliente tiene N pedidos (relación 1:N) y BUSCARV solo trae la primera coincidencia, no la suma</button>
+      <button class="q-opt" data-c="0" onclick="qa(this,3)"><span class="oid">C</span>Porque client_table y order_line_table no comparten columnas</button>
+      <button class="q-opt" data-c="0" onclick="qa(this,3)"><span class="oid">D</span>Porque las tablas están en pestañas diferentes</button>
+    </div>
+    <div class="q-fb" id="f3"></div>
+  </div>
+
+  <div class="q-box"><div class="q-num">Pregunta 4 · Celda fija</div>
+    <div class="q-text">Tenés en C3 el precio del sleeve (€4,50) y querés multiplicar NB_SLEEVES por ese precio en cada fila. Al arrastrar la fórmula hacia abajo, ¿cómo referenciás C3 para que no se mueva?</div>
+    <div class="q-opts">
+      <button class="q-opt" data-c="0" onclick="qa(this,4)"><span class="oid">A</span>C3 — sin ningún símbolo</button>
+      <button class="q-opt" data-c="0" onclick="qa(this,4)"><span class="oid">B</span>$C3 — fija solo la columna</button>
+      <button class="q-opt" data-c="1" onclick="qa(this,4)"><span class="oid">C</span>$C$3 — fija tanto columna como fila</button>
+      <button class="q-opt" data-c="0" onclick="qa(this,4)"><span class="oid">D</span>C$3 — fija solo la fila</button>
+    </div>
+    <div class="q-fb" id="f4"></div>
+  </div>
+
+  <div class="q-box"><div class="q-num">Pregunta 5 · SUMAR.SI</div>
+    <div class="q-text">Querés calcular el total de sleeves del grupo control (RECEIVED_COMMUNICATION = 0). La columna F tiene RECEIVED_COMM y la columna B tiene NB_SLEEVES. ¿Cuál es la fórmula correcta?</div>
+    <div class="q-opts">
+      <button class="q-opt" data-c="0" onclick="qa(this,5)"><span class="oid">A</span>=SUMAR.SI(B:B; 0; F:F)</button>
+      <button class="q-opt" data-c="0" onclick="qa(this,5)"><span class="oid">B</span>=SUMAR.SI(0; F:F; B:B)</button>
+      <button class="q-opt" data-c="1" onclick="qa(this,5)"><span class="oid">C</span>=SUMAR.SI(F:F; 0; B:B)</button>
+      <button class="q-opt" data-c="0" onclick="qa(this,5)"><span class="oid">D</span>=SUMAR.SI(B:B; F:F; 0)</button>
+    </div>
+    <div class="q-fb" id="f5"></div>
+  </div>
+
+  <div class="q-box"><div class="q-num">Pregunta 6 · SUMAR.SI.CONJUNTO</div>
+    <div class="q-text">¿Cuál es la diferencia de orden de argumentos entre SUMAR.SI y SUMAR.SI.CONJUNTO?</div>
+    <div class="q-opts">
+      <button class="q-opt" data-c="0" onclick="qa(this,6)"><span class="oid">A</span>No hay diferencia, los argumentos son exactamente iguales</button>
+      <button class="q-opt" data-c="1" onclick="qa(this,6)"><span class="oid">B</span>En SUMAR.SI el rango_suma va al FINAL. En SUMAR.SI.CONJUNTO va al PRINCIPIO</button>
+      <button class="q-opt" data-c="0" onclick="qa(this,6)"><span class="oid">C</span>En SUMAR.SI.CONJUNTO el rango_suma va al FINAL, igual que en SUMAR.SI</button>
+      <button class="q-opt" data-c="0" onclick="qa(this,6)"><span class="oid">D</span>SUMAR.SI.CONJUNTO no tiene un rango_suma — solo tiene condiciones</button>
+    </div>
+    <div class="q-fb" id="f6"></div>
+  </div>
+
+  <div class="q-box"><div class="q-num">Pregunta 7 · Lift</div>
+    <div class="q-text">El grupo mailing vendió €841.000 en sleeves. El grupo control vendió €522.000. ¿Cuál es el Lift porcentual?</div>
+    <div class="q-opts">
+      <button class="q-opt" data-c="0" onclick="qa(this,7)"><span class="oid">A</span>38% — porque 522/841 = 0,62 y 1-0,62 = 38%</button>
+      <button class="q-opt" data-c="0" onclick="qa(this,7)"><span class="oid">B</span>319% — porque la diferencia es €319.000</button>
+      <button class="q-opt" data-c="1" onclick="qa(this,7)"><span class="oid">C</span>61% — porque (841.000 − 522.000) / 522.000 ≈ 0,61</button>
+      <button class="q-opt" data-c="0" onclick="qa(this,7)"><span class="oid">D</span>161% — porque 841.000 / 522.000 ≈ 1,61</button>
+    </div>
+    <div class="q-fb" id="f7"></div>
+  </div>
+
+  <div class="q-box"><div class="q-num">Pregunta 8 · ROI</div>
+    <div class="q-text">El Lift en euros fue €319.000 y el coste de la campaña fue €27.362. ¿Qué significa un ROI de 10,67?</div>
+    <div class="q-opts">
+      <button class="q-opt" data-c="0" onclick="qa(this,8)"><span class="oid">A</span>La campaña generó un 10,67% más de ingresos que el año anterior</button>
+      <button class="q-opt" data-c="0" onclick="qa(this,8)"><span class="oid">B</span>El 10,67% de los clientes que recibieron carta compraron</button>
+      <button class="q-opt" data-c="1" onclick="qa(this,8)"><span class="oid">C</span>Por cada €1 invertido en cartas, retornaron ~€10,67 de ingresos adicionales</button>
+      <button class="q-opt" data-c="0" onclick="qa(this,8)"><span class="oid">D</span>La campaña costó 10,67 veces más de lo previsto</button>
+    </div>
+    <div class="q-fb" id="f8"></div>
+  </div>
+
+  <div class="q-box"><div class="q-num">Pregunta 9 · Perspectiva Cliente</div>
+    <div class="q-text">¿Para qué sirve calcular el "ingreso por persona" en la perspectiva de cliente?</div>
+    <div class="q-opts">
+      <button class="q-opt" data-c="0" onclick="qa(this,9)"><span class="oid">A</span>Para reemplazar el cálculo de SUMAR.SI</button>
+      <button class="q-opt" data-c="1" onclick="qa(this,9)"><span class="oid">B</span>Para comparar el valor real de cada segmento más allá de los totales absolutos. Un segmento pequeño puede ser más valioso por persona que uno grande.</button>
+      <button class="q-opt" data-c="0" onclick="qa(this,9)"><span class="oid">C</span>Para calcular el coste de envío de la carta por cliente</button>
+      <button class="q-opt" data-c="0" onclick="qa(this,9)"><span class="oid">D</span>Es solo un paso intermedio sin valor de análisis</button>
+    </div>
+    <div class="q-fb" id="f9"></div>
+  </div>
+
+  <div class="q-box"><div class="q-num">Pregunta 10 · Insight del Lift por segmento</div>
+    <div class="q-text">Al calcular el Lift por segmento, se descubre que los segmentos 4, 5 y 6 tuvieron un Lift neutro o negativo. ¿Qué recomendación concreta surge de ese dato?</div>
+    <div class="q-opts">
+      <button class="q-opt" data-c="0" onclick="qa(this,10)"><span class="oid">A</span>Eliminar los segmentos 4, 5 y 6 de la base de clientes</button>
+      <button class="q-opt" data-c="0" onclick="qa(this,10)"><span class="oid">B</span>Duplicar el presupuesto de la próxima campaña para llegar a más segmentos</button>
+      <button class="q-opt" data-c="1" onclick="qa(this,10)"><span class="oid">C</span>En la próxima campaña, enfocar el mailing solo en segmentos 1-3 para reducir coste sin perder revenue incremental</button>
+      <button class="q-opt" data-c="0" onclick="qa(this,10)"><span class="oid">D</span>Cambiar el precio del sleeve para los segmentos de menor valor</button>
+    </div>
+    <div class="q-fb" id="f10"></div>
+  </div>
+
+  <div class="q-box"><div class="q-num">Pregunta 11 · Truco del encabezado</div>
+    <div class="q-text">Al hacer =CONTAR(client_table!A:A) te da 35.904. ¿Cuál es el número real de clientes?</div>
+    <div class="q-opts">
+      <button class="q-opt" data-c="0" onclick="qa(this,11)"><span class="oid">A</span>35.904 — la fórmula está bien</button>
+      <button class="q-opt" data-c="1" onclick="qa(this,11)"><span class="oid">B</span>35.903 — hay que restar 1 porque el conteo incluye el encabezado</button>
+      <button class="q-opt" data-c="0" onclick="qa(this,11)"><span class="oid">C</span>35.902 — hay que restar 2 por margen de error</button>
+      <button class="q-opt" data-c="0" onclick="qa(this,11)"><span class="oid">D</span>No se puede saber sin ver la tabla</button>
+    </div>
+    <div class="q-fb" id="f11"></div>
+  </div>
+
+  <div class="q-box"><div class="q-num">Pregunta 12 · Concepto general</div>
+    <div class="q-text">Alfons dice que "el análisis no es A, B, C, D sino que tiene una parte creativa". ¿Qué quiere decir con eso?</div>
+    <div class="q-opts">
+      <button class="q-opt" data-c="0" onclick="qa(this,12)"><span class="oid">A</span>Que no hay reglas en el análisis y cada uno hace lo que quiere</button>
+      <button class="q-opt" data-c="0" onclick="qa(this,12)"><span class="oid">B</span>Que las fórmulas de Sheets son opcionales</button>
+      <button class="q-opt" data-c="1" onclick="qa(this,12)"><span class="oid">C</span>Que el framework da dirección, pero durante el análisis uno va calculando, descartando lo que no suma y quedándose con lo más representativo. No es mecánico.</button>
+      <button class="q-opt" data-c="0" onclick="qa(this,12)"><span class="oid">D</span>Que hay que agregar gráficos de colores para que el análisis sea más atractivo</button>
+    </div>
+    <div class="q-fb" id="f12"></div>
+  </div>
+
+</div>
+
+<script>
+const qfb={
+  1:{ok:"Correcto. El índice de columna se cuenta desde el inicio del rango. Si el rango es A:E, la columna A=1, B=2, C=3, D=4, E=5. CLIENT_SEGMENT es la segunda columna → índice 2.",bad:"El índice es la posición dentro del rango, no el número de columna del spreadsheet. Si el rango empieza en A, entonces A=1, B=2, etc. CLIENT_SEGMENT está en B → índice 2."},
+  2:{ok:"Exacto. VERDADERO usa coincidencia aproximada — útil si hay typos en los datos. Pero como analistas, siempre preferimos FALSO porque significa que los datos están bien limpios (sin errores tipográficos).",bad:"VERDADERO busca el valor más parecido. Solo tiene sentido si los datos tienen errores tipográficos. Alfons lo explicó con 'María Martínez' vs 'Mari Martínez'. Con IDs numéricos siempre FALSO."},
+  3:{ok:"Exacto. Un cliente puede tener 3, 5 o 50 pedidos en order_line_table. BUSCARV solo trae la primera fila que encuentra — no puede sumar todas las ventas de ese cliente. Para eso se necesita QUERY o una tabla dinámica.",bad:"El problema es la relación 1:N. Un cliente → muchos pedidos. BUSCARV solo trae la primera coincidencia, no la suma de todas. La solución es usar QUERY (que veremos en la próxima sesión)."},
+  4:{ok:"Correcto. $C$3 bloquea tanto la columna C como la fila 3. Al arrastrar hacia abajo, la referencia no cambia. F4 es el atajo para agregar los $ automáticamente.",bad:"Para que una celda no se mueva NUNCA al arrastrar, hay que bloquear tanto la columna como la fila: $C$3. $C3 solo bloquea la columna (la fila cambia al bajar). C$3 solo bloquea la fila (la columna cambia al moverse a los lados)."},
+  5:{ok:"Exacto. La sintaxis de SUMAR.SI es: primero el rango donde buscás la condición (F:F = RECEIVED_COMM), luego la condición (0 = control), luego el rango que querés sumar (B:B = NB_SLEEVES).",bad:"La sintaxis es: =SUMAR.SI(rango_criterio; criterio; rango_suma). Primero la columna donde buscás la condición (F:F), luego el valor (0), luego la columna que sumás (B:B). El rango_suma va al FINAL."},
+  6:{ok:"Exacto. Y es la trampa más común. En SUMAR.SI: criterio → suma (rango_suma al final). En SUMAR.SI.CONJUNTO: suma → criterios (rango_suma al principio). Alfons mismo se confundió en clase.",bad:"Este es el error más frecuente. En SUMAR.SI el rango_suma va AL FINAL. En SUMAR.SI.CONJUNTO va AL PRINCIPIO. Siempre hay que verificar el orden al escribir la fórmula."},
+  7:{ok:"Correcto. Lift % = (Tratamiento − Control) / Control = (841.000 − 522.000) / 522.000 = 319.000 / 522.000 ≈ 0,61 = 61%. Significa que el grupo mailing vendió un 61% más que el grupo control.",bad:"El Lift porcentual es (Mailing − Control) / Control. = (841.000 − 522.000) / 522.000 = 319.000 / 522.000 ≈ 61%. No es la diferencia absoluta (319.000) ni el ratio simple (161%)."},
+  8:{ok:"Exacto. ROI = (Lift_€ − Coste) / Coste = (319.000 − 27.362) / 27.362 ≈ 10,67. Significa que por cada €1 que se invirtió en cartas, retornaron ~€10,67 de revenue incremental. Un ROI muy positivo.",bad:"ROI = (Lift_€ − Coste) / Coste. El resultado (10,67) significa que por cada €1 invertido, retornaron ~€10,67. Es el retorno por unidad de inversión, no un porcentaje de crecimiento ni de conversión."},
+  9:{ok:"Correcto. Los totales absolutos pueden engañar. Un segmento con pocos clientes pero alto ingreso por persona puede ser más valioso estratégicamente que uno con muchos clientes de bajo valor. Nazarena lo describió perfectamente en clase.",bad:"El ingreso por persona permite comparar el valor real de cada segmento independientemente de su tamaño. Segmento 1 puede tener menos clientes que el 3, pero si cada Champion gasta mucho más, eso cambia la estrategia."},
+  10:{ok:"Exacto. Si los segmentos 4-6 no respondieron a la campaña, enviarles la carta fue un gasto sin retorno. La recomendación es enfocar el presupuesto en quienes SÍ responden. Eso es optimizar la próxima campaña con datos.",bad:"El Lift negativo en segmentos 4-6 significa que gastar en esos clientes no generó retorno. La acción correcta es no gastarles en la próxima campaña, no duplicar el presupuesto ni cambiar los precios."},
+  11:{ok:"Exacto. El CONTAR de una columna completa incluye el encabezado (la fila del título). Siempre restar 1. client_table tiene 35.903 clientes. Alfons lo marcó como 'pregunta de examen'.",bad:"El conteo de filas incluye el encabezado. 35.904 − 1 = 35.903 clientes reales. Es un error muy común cuando se va rápido. Siempre acordarse de restar 1 cuando se cuenta toda una columna."},
+  12:{ok:"Exacto. El framework te da la brújula (BSC = 4 perspectivas). Pero dentro de cada perspectiva, uno va calculando, mira si el resultado aporta insight, lo descarta si no suma, y busca la métrica que mejor cuenta la historia. No es un proceso mecánico.",bad:"Alfons lo explicó así: el framework da la dirección, pero el analista va iterando — calcula algo, lo mira, decide si sirve o no, lo ajusta. En clase él mismo descartó un cálculo y lo reemplazó por el Lift porque era más representativo."}
+};
+
+let qcorr=0,qcnt=0;
+function qa(btn,n){
+  const all=btn.closest('.q-opts').querySelectorAll('.q-opt');
+  all.forEach(b=>b.disabled=true);
+  const fb=document.getElementById('f'+n);
+  const ok=btn.dataset.c==='1';
+  if(ok){btn.classList.add('correct');qcorr++;fb.className='q-fb ok show';fb.textContent=qfb[n].ok;}
+  else{btn.classList.add('wrong');fb.className='q-fb bad show';fb.textContent=qfb[n].bad;all.forEach(b=>{if(b.dataset.c==='1')b.classList.add('correct')});}
+  qcnt++;
+  document.getElementById('qscore').textContent=qcorr+' / '+qcnt;
+}
+function resetQuiz(){
+  qcorr=0;qcnt=0;
+  document.getElementById('qscore').textContent='0 / 12';
+  document.querySelectorAll('.q-opt').forEach(b=>{b.disabled=false;b.classList.remove('correct','wrong')});
+  document.querySelectorAll('.q-fb').forEach(f=>f.className='q-fb');
+}
+
+function toggleFacc(hdr){
+  const body=hdr.nextElementSibling;
+  hdr.classList.toggle('open');
+  body.classList.toggle('open');
+}
+
+function showTab(id,el){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.tab-btn,.hero-pill').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  if(el)el.classList.add('active');
+  document.querySelectorAll('.tab-btn').forEach(b=>{if(b.textContent.toLowerCase().includes(id.slice(0,4)))b.classList.add('active')});
+  document.querySelectorAll('.hero-pill').forEach(p=>{if(p.textContent.toLowerCase().includes(id.slice(0,4)))p.classList.add('active')});
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+</script>
+</body>
+</html>
