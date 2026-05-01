@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>COMUNICAR — Guía de Estudio</title>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YQFR59Q23T"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-YQFR59Q23T');
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#1a1a20;--ink2:#3a3848;--muted:#8080a0;--bg:#f2f0ec;--white:#fdfcfb;
+  --border:#ddd8d0;--border2:#c8c0b8;
+  --v1:#4a1a8a;--v1l:#edeaff;--v1b:#c0a8f8;   /* púrpura – QUERY */
+  --v2:#0f5c3a;--v2l:#e4f5ee;--v2b:#7ecaa8;   /* verde – fórmulas */
+  --v3:#7a4000;--v3l:#fff2e8;--v3b:#f0b880;   /* naranja – dashboard */
+  --v4:#1a3a6a;--v4l:#e6eef8;--v4b:#90b0d8;   /* azul – storytelling */
+  --red:#c0202a;--redl:#fce8e8;--redb:#e08090;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:'Outfit',sans-serif;font-size:15px;line-height:1.65;min-height:100vh}
+
+.hero{background:linear-gradient(135deg,#1a0a30 0%,#0a1a20 100%);padding:52px 48px 40px;position:relative;overflow:hidden}
+.hero::before{content:'COMUNICAR';position:absolute;right:-10px;top:-20px;font-family:'Playfair Display',serif;font-size:160px;font-weight:900;color:rgba(255,255,255,0.04);line-height:1;pointer-events:none}
+.hero-eyebrow{font-family:'JetBrains Mono',monospace;font-size:.68rem;color:rgba(255,255,255,0.4);letter-spacing:.18em;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.hero-eyebrow::before{content:'';width:24px;height:1px;background:rgba(255,255,255,0.25)}
+.hero-title{font-family:'Playfair Display',serif;font-size:clamp(2.4rem,5vw,3.6rem);font-weight:900;color:#fff;line-height:1.08;letter-spacing:-.01em;margin-bottom:14px}
+.hero-title em{color:#d0b8ff;font-style:italic}
+.hero-desc{font-size:.95rem;color:rgba(255,255,255,0.5);max-width:580px;line-height:1.7;margin-bottom:32px}
+.hero-pills{display:flex;flex-wrap:wrap;gap:8px}
+.hero-pill{font-family:'JetBrains Mono',monospace;font-size:.65rem;padding:5px 12px;border-radius:20px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.13);color:rgba(255,255,255,0.55);cursor:pointer;transition:all .2s}
+.hero-pill:hover,.hero-pill.active{background:rgba(208,184,255,0.15);color:#d0b8ff;border-color:rgba(208,184,255,0.3)}
+
+.tab-nav{display:flex;background:var(--white);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:50;overflow-x:auto}
+.tab-btn{padding:15px 22px;font-family:'Outfit',sans-serif;font-weight:600;font-size:.75rem;letter-spacing:.04em;text-transform:uppercase;background:none;border:none;border-bottom:2px solid transparent;cursor:pointer;color:var(--muted);transition:all .2s;white-space:nowrap}
+.tab-btn:hover{color:var(--ink)}
+.tab-btn.active{color:var(--v1);border-bottom-color:var(--v1)}
+
+.section{display:none;max-width:880px;margin:0 auto;padding:44px 28px 80px}
+.section.active{display:block;animation:fadeUp .3s ease}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+.sec-label{font-family:'JetBrains Mono',monospace;font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.sec-title{font-family:'Playfair Display',serif;font-size:1.7rem;font-weight:700;color:var(--ink);line-height:1.2;margin-bottom:6px}
+.sec-sub{font-size:.88rem;color:var(--muted);margin-bottom:32px;line-height:1.6}
+
+.quote-box{background:linear-gradient(135deg,#1a0a30,#0a1a20);color:#fff;border-radius:12px;padding:20px 24px;margin-bottom:22px;position:relative;overflow:hidden}
+.quote-box::before{content:'"';position:absolute;right:16px;top:-8px;font-family:'Playfair Display',serif;font-size:80px;color:rgba(255,255,255,0.06);line-height:1}
+.quote-label{font-family:'JetBrains Mono',monospace;font-size:.6rem;color:#d0b8ff;letter-spacing:.14em;text-transform:uppercase;margin-bottom:8px}
+.quote-text{font-size:.9rem;line-height:1.7;color:rgba(255,255,255,0.82);position:relative;z-index:1}
+.quote-text strong{color:#d0b8ff;font-weight:600}
+
+.cc{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:22px 24px;margin-bottom:16px;border-left:4px solid}
+.cc1{border-left-color:var(--v1)}.cc2{border-left-color:var(--v2)}.cc3{border-left-color:var(--v3)}.cc4{border-left-color:var(--v4)}
+.cc-header{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:12px}
+.cc-title{font-weight:700;font-size:.95rem;color:var(--ink);line-height:1.3}
+.cc-badge{font-family:'JetBrains Mono',monospace;font-size:.6rem;font-weight:600;padding:3px 9px;border-radius:4px;white-space:nowrap;flex-shrink:0;letter-spacing:.06em;text-transform:uppercase;margin-top:2px}
+.b1{background:var(--v1l);color:var(--v1)}.b2{background:var(--v2l);color:var(--v2)}.b3{background:var(--v3l);color:var(--v3)}.b4{background:var(--v4l);color:var(--v4)}
+.cc-body{font-size:.86rem;color:var(--ink2);line-height:1.72}
+.cc-body p+p{margin-top:8px}.cc-body ul{padding-left:18px;margin-top:6px}.cc-body li{margin-bottom:5px}
+.cc-body strong{color:var(--ink);font-weight:600}.cc-body em{color:var(--v1);font-style:italic}
+
+.fblock{background:#0d0820;border-radius:10px;padding:16px 20px;font-family:'JetBrains Mono',monospace;font-size:.78rem;line-height:1.95;color:#d0c0f0;margin:12px 0;overflow-x:auto;border-left:3px solid var(--v1)}
+.fblock.fb2{border-left-color:var(--v2);background:#0d1a0d;color:#c0e8d0}.fblock.fb3{border-left-color:var(--v3);background:#1a0d00;color:#f0d0a0}
+.fn{color:#7ec8f0}.kw{color:#ff7070}.str{color:#f0a06a}.num{color:#a3e635}.cm{color:#5050a0;font-style:italic}.acc{color:#d0b8ff;font-weight:700}.hl{color:#ffd080}.kc{color:#ff9060}
+
+.tip{border-radius:8px;padding:12px 16px;font-size:.82rem;line-height:1.65;margin-top:12px;display:flex;gap:8px;align-items:flex-start}
+.tip-warn{background:#fff8e0;border:1px solid #e8d800;color:#5a4800}.tip-warn::before{content:'⚠️';flex-shrink:0}
+.tip-ok{background:var(--v2l);border:1px solid var(--v2b);color:#0a3a20}.tip-ok::before{content:'✓';flex-shrink:0;font-weight:700;color:var(--v2)}
+.tip-quote{background:#0d0820;color:rgba(255,255,255,.8);border:1px solid rgba(208,184,255,.2)}.tip-quote::before{content:'💬';flex-shrink:0}
+.tip strong{font-weight:600}
+
+.tbl-wrap{background:var(--white);border:1px solid var(--border);border-radius:12px;overflow:hidden;overflow-x:auto;margin:14px 0}
+.dtbl{width:100%;border-collapse:collapse;font-size:.82rem}
+.dtbl th{padding:10px 14px;font-family:'JetBrains Mono',monospace;font-size:.66rem;font-weight:600;color:var(--muted);text-align:left;border-bottom:1px solid var(--border);background:var(--bg);text-transform:uppercase;letter-spacing:.06em}
+.dtbl td{padding:10px 14px;border-bottom:1px solid rgba(0,0,0,.05);color:var(--ink2);line-height:1.5}
+.dtbl tr:last-child td{border-bottom:none}.dtbl tr:hover td{background:var(--bg)}
+.dtbl .key{font-family:'JetBrains Mono',monospace;font-size:.76rem;font-weight:600}
+.c1{color:var(--v1)}.c2{color:var(--v2)}.c3{color:var(--v3)}.c4{color:var(--v4)}
+
+.divider{display:flex;align-items:center;gap:12px;margin:28px 0}
+.divider::before,.divider::after{content:'';flex:1;height:1px;background:var(--border)}
+.divider span{font-family:'JetBrains Mono',monospace;font-size:.64rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;white-space:nowrap}
+
+/* QUERY visual builder */
+.query-builder{background:#0d0820;border-radius:12px;padding:20px 22px;margin:14px 0;font-family:'JetBrains Mono',monospace;font-size:.82rem}
+.qb-row{display:flex;align-items:flex-start;gap:12px;margin-bottom:10px}
+.qb-row:last-child{margin-bottom:0}
+.qb-clause{color:#ff9060;font-weight:700;min-width:80px;flex-shrink:0;line-height:1.6}
+.qb-content{color:#d0c0f0;line-height:1.6}
+.qb-desc{font-family:'Outfit',sans-serif;font-size:.75rem;color:rgba(255,255,255,.4);font-style:italic;margin-left:12px}
+.qb-col{color:#a3e635}.qb-op{color:#7ec8f0}.qb-val{color:#f0a06a}
+
+/* SQL vs QUERY comparator */
+.compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0}
+.cmp-card{border-radius:10px;padding:16px 18px;border:1px solid}
+.cmp-q{background:#0d0820;border-color:rgba(208,184,255,.25)}
+.cmp-s{background:#0d1a0d;border-color:rgba(160,232,160,.2)}
+.cmp-label{font-family:'JetBrains Mono',monospace;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px}
+.cmp-q .cmp-label{color:#d0b8ff}.cmp-s .cmp-label{color:#a0e8c0}
+.cmp-code{font-family:'JetBrains Mono',monospace;font-size:.74rem;line-height:1.9;color:rgba(255,255,255,.8)}
+
+/* Cheatsheet rows */
+.cs-wrap{background:var(--white);border:1px solid var(--border);border-radius:12px;overflow:hidden}
+.cs-row{display:grid;grid-template-columns:190px 1fr;border-bottom:1px solid var(--border)}
+.cs-row:last-child{border-bottom:none}
+.cs-term{padding:13px 16px;font-family:'JetBrains Mono',monospace;font-size:.78rem;font-weight:700;color:var(--v1);background:var(--bg);border-right:1px solid var(--border);display:flex;align-items:flex-start}
+.cs-def{padding:13px 18px;font-size:.83rem;color:var(--ink2);line-height:1.6}
+
+/* Flashcards */
+.fc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(252px,1fr));gap:14px}
+.fc{perspective:600px;height:158px;cursor:pointer}
+.fc-inner{position:relative;width:100%;height:100%;transition:transform .45s;transform-style:preserve-3d}
+.fc.flipped .fc-inner{transform:rotateY(180deg)}
+.fc-front,.fc-back{position:absolute;inset:0;border-radius:12px;padding:16px 18px;backface-visibility:hidden;display:flex;flex-direction:column;justify-content:space-between}
+.fc-front{background:var(--white);border:1px solid var(--border)}
+.fc-back{background:linear-gradient(135deg,#1a0a30,#0a1a20);transform:rotateY(180deg)}
+.fc-q{font-size:.84rem;color:var(--ink2);line-height:1.55;font-weight:500}
+.fc-hint{font-family:'JetBrains Mono',monospace;font-size:.6rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+.fc-a{font-size:.81rem;line-height:1.6;color:rgba(255,255,255,.88)}
+.fc-a strong{color:#d0b8ff}
+.fc-cat{font-family:'JetBrains Mono',monospace;font-size:.6rem;color:rgba(255,255,255,.35);text-transform:uppercase;letter-spacing:.08em}
+
+/* Quiz */
+.qscore-bar{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:16px 22px;display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;flex-wrap:wrap;gap:10px}
+.qscore-num{font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:700;color:var(--red);line-height:1}
+.qscore-lbl{font-family:'JetBrains Mono',monospace;font-size:.62rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+.q-box{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:20px 22px;margin-bottom:16px}
+.q-num{font-family:'JetBrains Mono',monospace;font-size:.63rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px}
+.q-text{font-size:.92rem;color:var(--ink);line-height:1.65;margin-bottom:14px;font-weight:500}
+.q-opts{display:flex;flex-direction:column;gap:8px}
+.q-opt{background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:11px 14px;cursor:pointer;font-size:.84rem;color:var(--ink2);text-align:left;transition:all .15s;display:flex;align-items:flex-start;gap:10px;line-height:1.5}
+.q-opt:hover:not(:disabled){background:#ece8e0;border-color:var(--border2)}
+.q-opt:disabled{cursor:default}
+.q-opt.correct{border-color:var(--v2);background:var(--v2l);color:#0a3a20}
+.q-opt.wrong{border-color:var(--red);background:var(--redl);color:#5a1010}
+.q-opt .oid{width:22px;height:22px;border-radius:50%;background:var(--border);display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:.64rem;font-weight:700;flex-shrink:0;color:var(--muted)}
+.q-opt.correct .oid{background:var(--v2);color:#fff}
+.q-fb{border-radius:8px;padding:10px 14px;font-size:.82rem;line-height:1.6;display:none;margin-top:10px}
+.q-fb.show{display:block}
+.q-fb.ok{background:var(--v2l);border:1px solid var(--v2b);color:#0a3a20}
+.q-fb.bad{background:var(--redl);border:1px solid var(--redb);color:#5a1010}
+
+.chip-row{display:flex;flex-wrap:wrap;gap:7px;margin:14px 0}
+.chip{font-family:'JetBrains Mono',monospace;font-size:.64rem;padding:3px 10px;border-radius:20px;border:1px solid;letter-spacing:.04em}
+.ch1{background:var(--v1l);color:var(--v1);border-color:var(--v1b)}.ch2{background:var(--v2l);color:var(--v2);border-color:var(--v2b)}
+.ch3{background:var(--v3l);color:var(--v3);border-color:var(--v3b)}.ch4{background:var(--v4l);color:var(--v4);border-color:var(--v4b)}
+.chk{background:#f0ede8;color:#444;border-color:var(--border2)}
+
+.btn-sm{font-family:'Outfit',sans-serif;font-weight:600;font-size:.72rem;letter-spacing:.04em;text-transform:uppercase;padding:8px 16px;border-radius:7px;cursor:pointer;border:1px solid;transition:all .15s}
+.btn-sec{background:transparent;color:var(--muted);border-color:var(--border)}.btn-sec:hover{border-color:var(--border2);color:var(--ink)}
+
+@media(max-width:640px){
+  .hero{padding:36px 22px 28px}.section{padding:30px 16px 60px}
+  .compare-grid{grid-template-columns:1fr}.cs-row{grid-template-columns:1fr}
+  .cs-term{border-right:none;border-bottom:1px solid var(--border)}
+  .fc-grid{grid-template-columns:1fr}.tab-btn{padding:14px 14px;font-size:.68rem}
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-eyebrow">Unicorn Academy · Sesión 3 · Última sesión del módulo</div>
+  <h1 class="hero-title">COMUNICAR —<br><em>Contar</em> la historia</h1>
+  <p class="hero-desc">Sesión práctica intensa: métricas de Procesos e Innovación, QUERY (= SQL en Sheets), Dashboard BSC con gráficos y Storytelling para el director financiero.</p>
+  <div class="hero-pills">
+    <span class="hero-pill" onclick="showTab('resumen',this)">Resumen</span>
+    <span class="hero-pill active" onclick="showTab('conceptos',this)">Conceptos</span>
+    <span class="hero-pill" onclick="showTab('query',this)">QUERY</span>
+    <span class="hero-pill" onclick="showTab('cheatsheet',this)">Cheatsheet</span>
+    <span class="hero-pill" onclick="showTab('flashcards',this)">Flashcards</span>
+    <span class="hero-pill" onclick="showTab('quiz',this)">Quiz</span>
+  </div>
+</div>
+
+<nav class="tab-nav">
+  <button class="tab-btn" onclick="showTab('resumen',this)">📋 Resumen</button>
+  <button class="tab-btn active" onclick="showTab('conceptos',this)">📚 Conceptos</button>
+  <button class="tab-btn" onclick="showTab('query',this)">🔍 QUERY</button>
+  <button class="tab-btn" onclick="showTab('cheatsheet',this)">⚡ Cheatsheet</button>
+  <button class="tab-btn" onclick="showTab('flashcards',this)">🃏 Flashcards</button>
+  <button class="tab-btn" onclick="showTab('quiz',this)">✏️ Quiz</button>
+</nav>
+
+<!-- ═══════════ RESUMEN ═══════════ -->
+<div class="section" id="tab-resumen">
+  <div class="sec-label">Vista general · Sesión 3</div>
+  <h2 class="sec-title">¿Qué se hizo en esta clase?</h2>
+  <p class="sec-sub">Última sesión del módulo de Google Sheets. Se terminaron las métricas, se aprendió QUERY y se construyó el Dashboard BSC final.</p>
+
+  <div class="quote-box">
+    <div class="quote-label">💬 Alfons, abriendo la sesión</div>
+    <div class="quote-text">"Esta es la última sesión de esta primera parte. Lo que vamos a hacer es terminar de calcular las métricas que nos faltaban, entrar en QUERY — que es <strong>exactamente lo mismo que SQL</strong> — y después armar el Dashboard que le vamos a presentar al director financiero."</div>
+  </div>
+
+  <div class="cc cc1">
+    <div class="cc-header"><div class="cc-title">Todo lo cubierto en esta sesión</div><div class="cc-badge b1">Mapa completo</div></div>
+    <div class="cc-body">
+      <ul>
+        <li><strong>Perspectiva Procesos:</strong> cobertura de campaña (50,8%), columna COMPRÓ (2 formas), tasa de conversión</li>
+        <li><strong>IA como copiloto:</strong> uso de Gemini para generar fórmulas complejas desde lenguaje natural</li>
+        <li><strong>Perspectiva Innovación:</strong> clientes LE (comodín <code>*LE*</code>), unidades LE, Venezia vs Istanbul, penetración de mercado (4,3%)</li>
+        <li><strong>QUERY completo:</strong> SELECT, GROUP BY, WHERE, ORDER BY, LABEL, AVG, COUNT, DESC, diferencia con SQL</li>
+        <li><strong>Ejercicio QUERY:</strong> revenue por segmento, revenue por grupo mailing/control</li>
+        <li><strong>Dashboard BSC:</strong> layout de 4 cuadrantes, "teoría de los cuadrados", gráficos, colores, Lift por segmento</li>
+        <li><strong>Storytelling:</strong> cómo presentar el análisis al director financiero en un vistazo</li>
+        <li><strong>Cierre del módulo:</strong> recomendación de práctica, próximo módulo (Frameworks avanzados)</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="chip-row">
+    <span class="chip ch1">QUERY / SQL</span><span class="chip ch1">SELECT · GROUP BY</span>
+    <span class="chip ch2">Comodín *LE*</span><span class="chip ch2">Penetración</span>
+    <span class="chip ch3">Dashboard BSC</span><span class="chip ch3">4 cuadrantes</span>
+    <span class="chip ch4">Storytelling</span><span class="chip chk">IA copiloto</span>
+  </div>
+</div>
+
+<!-- ═══════════ CONCEPTOS ═══════════ -->
+<div class="section active" id="tab-conceptos">
+  <div class="sec-label">Todos los temas</div>
+  <h2 class="sec-title">Conceptos clave de la sesión</h2>
+  <p class="sec-sub">En el orden exacto en que Alfons los presentó. Sin saltarse nada.</p>
+
+  <div class="divider"><span>Parte 1 · Perspectiva Procesos — ¿Funcionó la campaña?</span></div>
+
+  <div class="cc cc2">
+    <div class="cc-header"><div class="cc-title">Cobertura de la campaña — dos formas de calcularla</div><div class="cc-badge b2">Procesos</div></div>
+    <div class="cc-body">
+      <p>Lo primero que calculamos: ¿cuántos clientes recibieron el mailing? Y ¿qué % del total representan?</p>
+      <p>Alfons mostró <strong>dos formas equivalentes</strong> de calcular la cantidad de clientes que recibieron comunicación:</p>
+      <div class="fblock fb2">
+        <span class="cm">// Opción 1: CONTAR.SI (cuenta los 1s en la columna)</span><br>
+        <span class="fn">=COUNTIF(</span><span class="str">client_table!E:E</span><span class="kw">;</span> <span class="num">1</span><span class="fn">)</span><br><br>
+        <span class="cm">// Opción 2: SUMA directa (funciona porque los valores son 0 y 1)</span><br>
+        <span class="fn">=SUM(</span><span class="str">client_table!E:E</span><span class="fn">)</span><br><br>
+        <span class="cm">// Cobertura % = clientes con mailing / total clientes</span><br>
+        <span class="cm">// Resultado: 50,8% → confirmó que era ~50/50 como se planeó</span>
+      </div>
+      <div class="tip tip-quote">Alfons: "No hay una sola forma de hacerlo. Hay gente que prefiere el CONTAR.SI y hay gente que prefiere el SUMA. <strong>Ambas son correctas</strong>. Siempre preguntate cuál te resulta más simple."</div>
+    </div>
+  </div>
+
+  <div class="cc cc2">
+    <div class="cc-header"><div class="cc-title">Columna COMPRÓ — la métrica más compleja de la sesión</div><div class="cc-badge b2">Procesos</div></div>
+    <div class="cc-body">
+      <p>Para calcular la tasa de conversión (% de los que recibieron carta y compraron), necesitamos saber quién compró. Pero <strong>client_table no tiene esa columna</strong>. Hay que construirla.</p>
+      <p><strong>La lógica:</strong> si el CLIENT_ID aparece en order_line_table → compró (1). Si no aparece → no compró (0).</p>
+      <div class="fblock fb2">
+        <span class="cm">// Fórmula compuesta: BUSCARV + SI + ESNUMERO</span><br>
+        <span class="fn">=SI(</span><span class="fn">ESNUMERO(</span><span class="fn">BUSCARV(</span><span class="str">A2</span><span class="kw">;</span> <span class="str">order_line_table!A:A</span><span class="kw">;</span> <span class="num">1</span><span class="kw">;</span> <span class="kw">FALSO</span><span class="fn">))</span><span class="kw">;</span> <span class="num">1</span><span class="kw">;</span> <span class="num">0</span><span class="fn">)</span><br>
+        <span class="cm">// Si BUSCARV encuentra el ID (devuelve número) → 1</span><br>
+        <span class="cm">// Si no lo encuentra (devuelve #N/A) → 0</span>
+      </div>
+      <div class="tip tip-warn">Esta fórmula es compleja. Alfons usó <strong>Gemini IA</strong> en vivo para generarla: describió el objetivo en lenguaje natural y la IA produjo la fórmula. Es una técnica válida en la práctica real.</div>
+      <div class="tip tip-quote">Alfons: "Yo, si tuviera que hacer esta fórmula de 0, estaría 10 minutos buenos buscando. Lo que importa es saber qué querés lograr y hacia dónde la querés llevar — la IA te da el cómo."</div>
+    </div>
+  </div>
+
+  <div class="cc cc1">
+    <div class="cc-header"><div class="cc-title">IA como copiloto de análisis — cuándo y cómo usarla</div><div class="cc-badge b1">Meta-habilidad</div></div>
+    <div class="cc-body">
+      <p>Alfons explicó un cambio de paradigma importante sobre la IA en el trabajo de datos:</p>
+      <ul>
+        <li>La <strong>parte técnica</strong> (sintaxis de fórmulas, código) se está volviendo una <em>commodity</em> — accesible a cualquiera con IA.</li>
+        <li>Lo que <strong>no se puede automatizar</strong> es la parte de PENSAR: saber qué querés medir y por qué.</li>
+        <li><strong>Cómo usarla bien:</strong> describí el objetivo y el punto de partida → la IA produce la fórmula → vos evaluás si tiene sentido.</li>
+      </ul>
+      <div class="tip tip-quote">Alfons: "Lo que también está haciendo la IA es que el proceso de PENSAR sigue siendo igual de importante — aún más. La parte técnica ya es accesible a todos. Lo que te diferencia es saber qué analizar."</div>
+    </div>
+  </div>
+
+  <div class="divider"><span>Parte 2 · Perspectiva Innovación — Productos LE</span></div>
+
+  <div class="cc cc2">
+    <div class="cc-header"><div class="cc-title">Métricas de Edición Limitada (LE)</div><div class="cc-badge b2">Innovación</div></div>
+    <div class="cc-body">
+      <p>Para la perspectiva de Innovación se calcularon 4 métricas sobre los productos Caffè Venezia LE y Café Istanbul LE:</p>
+      <div class="tbl-wrap">
+        <table class="dtbl">
+          <thead><tr><th>Métrica</th><th>Fórmula clave</th><th>Resultado del caso</th></tr></thead>
+          <tbody>
+            <tr><td>Clientes que compraron algún LE</td><td class="key c1">=COUNTUNIQUE con filtro *LE*</td><td>Clientes únicos con pedido LE</td></tr>
+            <tr><td>Total unidades LE vendidas</td><td class="key c2">=SUMIF(col;"*LE*";sleeves)</td><td>13.218 sleeves</td></tr>
+            <tr><td>Venezia LE vs Istanbul LE</td><td class="key c2">=SUMIF(col;"Caffè Venezia LE";sleeves)</td><td>~50% / ~50% cada una</td></tr>
+            <tr><td>Penetración de mercado LE</td><td class="key c3">Total LE / Total sleeves × 100</td><td>4,3% del total de ventas</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="cc cc2">
+    <div class="cc-header"><div class="cc-title">El comodín * en SUMAR.SI — detectar texto parcial</div><div class="cc-badge b2">Fórmula</div></div>
+    <div class="cc-body">
+      <p>El asterisco <code>*</code> actúa como comodín en los criterios de SUMAR.SI y CONTAR.SI. Detecta si la celda <em>contiene</em> ese texto, independientemente de lo que haya antes o después.</p>
+      <div class="fblock fb2">
+        <span class="cm">// Suma todas las sleeves de productos que contengan "LE":</span><br>
+        <span class="fn">=SUMIF(</span><span class="str">C:C</span><span class="kw">;</span> <span class="str">"*LE*"</span><span class="kw">;</span> <span class="str">B:B</span><span class="fn">)</span><br><br>
+        <span class="cm">// Suma solo Caffè Venezia LE (nombre exacto):</span><br>
+        <span class="fn">=SUMIF(</span><span class="str">C:C</span><span class="kw">;</span> <span class="str">"Caffè Venezia LE"</span><span class="kw">;</span> <span class="str">B:B</span><span class="fn">)</span>
+      </div>
+      <div class="tip tip-warn"><strong>Trampa del comodín:</strong> si la base tiene productos con "LE" en el nombre sin ser ediciones limitadas (ej: "Levanto"), los capturaría también. Siempre revisar los valores únicos de la columna antes de aplicar el comodín.</div>
+    </div>
+  </div>
+
+  <div class="cc cc3">
+    <div class="cc-header"><div class="cc-title">Penetración de mercado — qué es y cuándo importa</div><div class="cc-badge b3">Concepto</div></div>
+    <div class="cc-body">
+      <p>La <strong>penetración</strong> mide qué % del total de ventas representa un producto específico. Sirve para evaluar si un lanzamiento tuvo éxito relativo.</p>
+      <div class="fblock fb3">
+        <span class="acc">Penetración %</span> = (Total unidades LE / Total unidades vendidas) × 100<br>
+        <span class="cm">// En el caso: 13.218 / ~302.000 = 4,3%</span>
+      </div>
+      <ul style="margin-top:10px">
+        <li><strong>Menor a 5%:</strong> edición limitada esperada — funciona como promoción ocasional.</li>
+        <li><strong>Entre 5% y 15%:</strong> buen resultado — vale la pena seguir invirtiendo.</li>
+        <li><strong>Mayor a 20%:</strong> superproducto — considerar volverlo permanente en el catálogo.</li>
+      </ul>
+      <div class="tip tip-quote">Alfons: "Si la penetración fuera del 20%, eso quiere decir que es un superproducto y que te sale a cuenta mantenerlo. En cambio, el 4,3% indica que es lo que se esperaba de una edición limitada."</div>
+    </div>
+  </div>
+
+  <div class="divider"><span>Parte 3 · Dashboard BSC</span></div>
+
+  <div class="cc cc3">
+    <div class="cc-header"><div class="cc-title">Cómo se construye el Dashboard en Google Sheets</div><div class="cc-badge b3">Dashboard</div></div>
+    <div class="cc-body">
+      <p>El Dashboard no es una nueva pestaña mágica — es construir visualmente sobre celdas de Sheets, llamando los valores ya calculados en otras pestañas.</p>
+      <p><strong>El proceso manual que mostró Alfons:</strong></p>
+      <ul>
+        <li>Crear una pestaña nueva dedicada al Dashboard.</li>
+        <li>Colorear el fondo gris y dividirlo en secciones más oscuras (los 4 cuadrantes BSC).</li>
+        <li>En cada cuadrante, referenciar los valores calculados en la pestaña de Métricas (<code>='2.Métricas_BSC'!B5</code>).</li>
+        <li>Insertar gráficos seleccionando los rangos de datos ya calculados.</li>
+        <li>Ajustar colores de fuente a blanco para que sean visibles sobre fondo oscuro.</li>
+      </ul>
+      <div class="tip tip-quote">Alfons: "Hacer un Dashboard en Sheets es bastante manual. No hay ningún truco para hacerlo. Para algo que verá toda la empresa, Power BI es mucho mejor y para eso está creado."</div>
+    </div>
+  </div>
+
+  <div class="cc cc3">
+    <div class="cc-header"><div class="cc-title">La "teoría de los cuadrados" — regla de diseño de dashboards</div><div class="cc-badge b3">Diseño</div></div>
+    <div class="cc-body">
+      <p>Alfons compartió su regla personal para no sobrecargar un dashboard:</p>
+      <ul>
+        <li>Máximo <strong>4 cuadrantes</strong> por pantalla (uno por perspectiva BSC).</li>
+        <li>Máximo <strong>4 elementos por cuadrante</strong> (2 KPIs + 1 gráfico + 1 tabla pequeña).</li>
+        <li>Eso da un máximo de <strong>16 elementos en total</strong> — ya es mucho. Menos es mejor.</li>
+      </ul>
+      <div class="tip tip-quote">Alfons: "No es un proceso lineal. Yo pongo el ROI, lo miro, no me termina de gustar, lo cambio de lugar. Así está mejor. Haciendo un dashboard así es normal pasar por ese proceso."</div>
+    </div>
+  </div>
+
+  <div class="cc cc3">
+    <div class="cc-header"><div class="cc-title">Contenido de cada cuadrante BSC en el Dashboard</div><div class="cc-badge b3">Dashboard</div></div>
+    <div class="cc-body">
+      <div class="tbl-wrap">
+        <table class="dtbl">
+          <thead><tr><th>Cuadrante</th><th>KPIs mostrados</th><th>Gráfico sugerido</th></tr></thead>
+          <tbody>
+            <tr><td class="key c2">💰 Financiera</td><td>Revenue total, ROI de la campaña (10,67), Lift porcentual (61%)</td><td>Barras: Lift por segmento (Champions, Loyal, etc.)</td></tr>
+            <tr><td class="key c1">👥 Cliente</td><td>Total clientes por segmento, % de cada segmento</td><td>Donut o barras: distribución de clientes</td></tr>
+            <tr><td class="key c3">⚙️ Procesos</td><td>Cobertura (50,8%), tasa de conversión, COMPRÓ sí/no</td><td>Barras comparativas: mailing vs control</td></tr>
+            <tr><td class="key c4">🚀 Innovación</td><td>Unidades LE (13.218), Venezia vs Istanbul (50/50), penetración (4,3%)</td><td>Barras: Venezia LE vs Café Istanbul LE</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"><span>Parte 4 · Storytelling</span></div>
+
+  <div class="cc cc4">
+    <div class="cc-header"><div class="cc-title">Cómo leer el Dashboard en 30 segundos — storytelling ejecutivo</div><div class="cc-badge b4">Storytelling</div></div>
+    <div class="cc-body">
+      <p>Alfons mostró cómo un director financiero debería poder leer el Dashboard sin necesitar explicación. El flujo de lectura es:</p>
+      <div class="tbl-wrap">
+        <table class="dtbl">
+          <thead><tr><th>Paso</th><th>Qué ve</th><th>Qué concluye</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td>Revenue total + ROI 10,67</td><td>"La campaña fue muy rentable"</td></tr>
+            <tr><td>2</td><td>Lift 61% con carta</td><td>"El mailing generó un 61% más de ingresos"</td></tr>
+            <tr><td>3</td><td>Lift por segmento: seg. 1-3 positivo, seg. 4-5 casi neutro</td><td>"La próxima: solo enviar a segmentos 1-3"</td></tr>
+            <tr><td>4</td><td>Penetración LE 4,3%</td><td>"Los LE funcionaron como esperado para una edición limitada"</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="tip tip-quote">Alfons: "De un vistazo, el director financiero es capaz de determinar todo el storytelling de esa perspectiva. Eso es lo que tiene que lograr un buen dashboard."</div>
+    </div>
+  </div>
+
+  <div class="cc cc4">
+    <div class="cc-header"><div class="cc-title">Google Sheets vs Power BI — cuándo usar cada uno</div><div class="cc-badge b4">Herramientas</div></div>
+    <div class="cc-body">
+      <div class="tbl-wrap">
+        <table class="dtbl">
+          <thead><tr><th>Herramienta</th><th>Mejor para</th><th>Tendencia actual</th></tr></thead>
+          <tbody>
+            <tr><td class="key c2">Google Sheets</td><td>Análisis y reporting interno de equipo (5-10 personas). Cálculos, exploración, compartir datos crudos.</td><td>Sigue usándose para cálculos y colaboración en equipo pequeño</td></tr>
+            <tr><td class="key c1">Power BI / Looker</td><td>Dashboards que verá toda la empresa. Visualizaciones interactivas. Mayor escala de datos.</td><td>Cada vez más dominante para dashboards formales</td></tr>
+            <tr><td class="key c3">Excel</td><td>Finanzas, modelos complejos, entornos corporativos tradicionales.</td><td>En desuso productivo general, pero aún fuerte en finanzas</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"><span>Cierre del módulo</span></div>
+
+  <div class="cc cc1">
+    <div class="cc-header"><div class="cc-title">Recomendación de práctica y próximos pasos</div><div class="cc-badge b1">Cierre</div></div>
+    <div class="cc-body">
+      <p>Alfons cerró el módulo con consejos concretos sobre cómo consolidar lo aprendido:</p>
+      <ul>
+        <li><strong>No hacer 50 casos en una semana.</strong> Mejor 2-3 horas semanales constantes que maratones que agotan.</li>
+        <li><strong>Repetir el caso de Unicorn Espresso solo.</strong> Partiendo de los datos crudos (client_table + order_line_table) y llegando a un Dashboard completo sin ayuda.</li>
+        <li><strong>Después hacer un caso nuevo</strong> del final del módulo, donde no tenés tanto contexto previo.</li>
+        <li><strong>Buscar proyectos reales</strong> en el trabajo o armar un portfolio propio con datos propios.</li>
+      </ul>
+      <div class="tip tip-quote">Alfons: "No tengáis miedo de hacer cosas en Sheets. Lo peor que te puede pasar es que te salga un error. No se termina el mundo, no te echan de ningún sitio. Volvés atrás y lo hacés de otra forma."</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ QUERY ═══════════ -->
+<div class="section" id="tab-query">
+  <div class="sec-label">Fórmula avanzada</div>
+  <h2 class="sec-title">QUERY — SQL dentro de Google Sheets</h2>
+  <p class="sec-sub">La fórmula más poderosa de Sheets. Alfons: "Si sabés usar QUERY, ya sabés SQL. Son lo mismo."</p>
+
+  <div class="quote-box">
+    <div class="quote-label">💬 Alfons antes de empezar QUERY</div>
+    <div class="quote-text">"No os asustéis con QUERY. Ya veréis que lo vais a amar. Y de hecho, <strong>SQL es básicamente QUERY</strong>. Así que si entendéis esto, ya estáis muy cerca de SQL."</div>
+  </div>
+
+  <div class="divider"><span>La sintaxis completa</span></div>
+
+  <div class="cc cc1">
+    <div class="cc-header"><div class="cc-title">Cómo se estructura una QUERY en Sheets</div><div class="cc-badge b1">Sintaxis</div></div>
+    <div class="cc-body">
+      <p>QUERY tiene 3 partes obligatorias: la tabla de datos, la consulta en lenguaje SQL-like, y opcionalmente el número de encabezados.</p>
+      <div class="fblock">
+        <span class="fn">=QUERY(</span><span class="str">datos</span><span class="kw">;</span> <span class="str">"consulta"</span><span class="kw">;</span> <span class="num">1</span><span class="fn">)</span><br>
+        <span class="cm">// datos = rango de la tabla (ej: 1.Enriquecer!A:S)</span><br>
+        <span class="cm">// consulta = string con cláusulas SQL-like SIEMPRE EN INGLÉS</span><br>
+        <span class="cm">// 1 = número de filas de encabezado (casi siempre 1)</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="cc cc1">
+    <div class="cc-header"><div class="cc-title">Todas las cláusulas de QUERY</div><div class="cc-badge b1">Cláusulas</div></div>
+    <div class="cc-body">
+      <div class="query-builder">
+        <div class="qb-row">
+          <div class="qb-clause">SELECT</div>
+          <div class="qb-content"><span class="qb-col">E</span>, <span class="qb-op">SUM</span>(<span class="qb-col">B</span>)</div>
+          <div class="qb-desc">Qué columnas mostrar. Separadas por coma. La última NO lleva coma.</div>
+        </div>
+        <div class="qb-row">
+          <div class="qb-clause">WHERE</div>
+          <div class="qb-content"><span class="qb-col">F</span> = <span class="qb-val">1</span></div>
+          <div class="qb-desc">Filtrar filas. Igual que el criterio en SUMAR.SI.</div>
+        </div>
+        <div class="qb-row">
+          <div class="qb-clause">GROUP BY</div>
+          <div class="qb-content"><span class="qb-col">E</span></div>
+          <div class="qb-desc">Agrupar por dimensión. Obligatorio cuando hay operaciones (SUM, AVG, COUNT).</div>
+        </div>
+        <div class="qb-row">
+          <div class="qb-clause">ORDER BY</div>
+          <div class="qb-content"><span class="qb-op">SUM</span>(<span class="qb-col">B</span>) <span class="kc">DESC</span></div>
+          <div class="qb-desc">Ordenar resultados. DESC = descendente (mayor a menor).</div>
+        </div>
+        <div class="qb-row">
+          <div class="qb-clause">LABEL</div>
+          <div class="qb-content"><span class="qb-col">E</span> <span class="qb-val">'Segmento'</span>, <span class="qb-op">SUM</span>(<span class="qb-col">B</span>) <span class="qb-val">'Sleeves'</span></div>
+          <div class="qb-desc">Renombrar columnas del resultado. Va siempre al final.</div>
+        </div>
+      </div>
+
+      <div class="tbl-wrap" style="margin-top:14px">
+        <table class="dtbl">
+          <thead><tr><th>Operación</th><th>Sintaxis en QUERY</th><th>Equivalente</th></tr></thead>
+          <tbody>
+            <tr><td>Sumar</td><td class="key c1">SUM(B)</td><td>SUMAR.SI</td></tr>
+            <tr><td>Contar</td><td class="key c1">COUNT(B)</td><td>CONTAR.SI</td></tr>
+            <tr><td>Promedio</td><td class="key c1">AVG(B)</td><td>PROMEDIO.SI</td></tr>
+            <tr><td>Máximo</td><td class="key c1">MAX(B)</td><td>MAX con condición</td></tr>
+            <tr><td>Mínimo</td><td class="key c1">MIN(B)</td><td>MIN con condición</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="tip tip-warn"><strong>Regla de la coma:</strong> en SELECT, todas las columnas se separan con coma — EXCEPTO la última. Si ponés coma al final de la última columna, da error.</div>
+      <div class="tip tip-warn"><strong>Regla del paréntesis:</strong> la coma separa columnas. El paréntesis envuelve las operaciones: <code>SUM(B)</code>, <code>AVG(E)</code>. QUERY solo entiende de columnas — no de celdas individuales.</div>
+    </div>
+  </div>
+
+  <div class="divider"><span>Ejemplos reales del caso</span></div>
+
+  <div class="cc cc1">
+    <div class="cc-header"><div class="cc-title">Ejemplo 1 — Revenue por segmento</div><div class="cc-badge b1">Ejercicio</div></div>
+    <div class="cc-body">
+      <p>Equivalent to: SUMAR.SI agrupado por CLIENT_SEGMENT. En QUERY es una sola fórmula.</p>
+      <div class="fblock">
+        <span class="fn">=QUERY(</span><span class="str">1.Enriquecer!A:S</span><span class="kw">;</span><br>
+        &nbsp;&nbsp;<span class="str">"SELECT E, SUM(B)</span><br>
+        &nbsp;&nbsp;&nbsp;<span class="str">GROUP BY E</span><br>
+        &nbsp;&nbsp;&nbsp;<span class="str">ORDER BY SUM(B) DESC</span><br>
+        &nbsp;&nbsp;&nbsp;<span class="str">LABEL E 'Segmento', SUM(B) 'Sleeves'"</span><span class="kw">;</span> <span class="num">1</span><span class="fn">)</span><br><br>
+        <span class="cm">// E = CLIENT_SEGMENT · B = NB_SLEEVES</span><br>
+        <span class="cm">// Resultado: tabla con 6 filas, ordenada de mayor a menor venta</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="cc cc1">
+    <div class="cc-header"><div class="cc-title">Ejemplo 2 — Revenue por grupo mailing/control</div><div class="cc-badge b1">Ejercicio</div></div>
+    <div class="cc-body">
+      <p>Cambiar de agrupar por segmento (E) a agrupar por si recibió comunicación (F). Solo cambia la columna.</p>
+      <div class="fblock">
+        <span class="fn">=QUERY(</span><span class="str">1.Enriquecer!A:S</span><span class="kw">;</span><br>
+        &nbsp;&nbsp;<span class="str">"SELECT F, COUNT(A), SUM(B)</span><br>
+        &nbsp;&nbsp;&nbsp;<span class="str">GROUP BY F</span><br>
+        &nbsp;&nbsp;&nbsp;<span class="str">LABEL F 'Mailing', COUNT(A) 'Clientes', SUM(B) 'Sleeves'"</span><span class="kw">;</span> <span class="num">1</span><span class="fn">)</span><br><br>
+        <span class="cm">// F = RECEIVED_COMMUNICATION (0 o 1)</span><br>
+        <span class="cm">// Resultado: 2 filas — grupo mailing (1) y grupo control (0)</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="cc cc1">
+    <div class="cc-header"><div class="cc-title">Ejemplo 3 — Con filtro WHERE</div><div class="cc-badge b1">Ejercicio</div></div>
+    <div class="cc-body">
+      <p>Para ver solo el grupo mailing (F=1) agrupado por segmento:</p>
+      <div class="fblock">
+        <span class="fn">=QUERY(</span><span class="str">1.Enriquecer!A:S</span><span class="kw">;</span><br>
+        &nbsp;&nbsp;<span class="str">"SELECT E, SUM(B)</span><br>
+        &nbsp;&nbsp;&nbsp;<span class="str">WHERE F = 1</span><br>
+        &nbsp;&nbsp;&nbsp;<span class="str">GROUP BY E</span><br>
+        &nbsp;&nbsp;&nbsp;<span class="str">LABEL E 'Segmento', SUM(B) 'Sleeves con carta'"</span><span class="kw">;</span> <span class="num">1</span><span class="fn">)</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"><span>QUERY vs SQL — las diferencias</span></div>
+
+  <div class="compare-grid">
+    <div class="cmp-card cmp-q">
+      <div class="cmp-label">QUERY en Google Sheets</div>
+      <div class="cmp-code">
+        =QUERY(datos;<br>
+        "SELECT E, SUM(B)<br>
+        &nbsp;WHERE F = 1<br>
+        &nbsp;GROUP BY E<br>
+        &nbsp;ORDER BY SUM(B) DESC<br>
+        &nbsp;LABEL E 'Seg'"; 1)
+      </div>
+    </div>
+    <div class="cmp-card cmp-s">
+      <div class="cmp-label">SQL equivalente</div>
+      <div class="cmp-code">
+        SELECT segment, SUM(sleeves)<br>
+        FROM order_line_table<br>
+        WHERE received_comm = 1<br>
+        GROUP BY segment<br>
+        ORDER BY SUM(sleeves) DESC
+      </div>
+    </div>
+  </div>
+
+  <div class="cc cc1" style="margin-top:14px">
+    <div class="cc-header"><div class="cc-title">Las 2 diferencias reales entre QUERY y SQL</div><div class="cc-badge b1">Comparativa</div></div>
+    <div class="cc-body">
+      <ul>
+        <li><strong>FROM:</strong> en SQL se especifica la tabla dentro de la consulta. En QUERY, la tabla va como primer argumento fuera de las comillas.</li>
+        <li><strong>Múltiples tablas:</strong> SQL puede unir N tablas (JOIN). QUERY solo trabaja sobre UNA tabla. Por eso usamos BUSCARV primero para enriquecer la tabla y después QUERY la trabaja.</li>
+      </ul>
+      <div class="tip tip-ok">Aprender QUERY en Sheets es aprender SQL. Las cláusulas SELECT, WHERE, GROUP BY, ORDER BY son exactamente las mismas en ambos lenguajes. Solo cambia cómo se especifica la tabla.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ CHEATSHEET ═══════════ -->
+<div class="section" id="tab-cheatsheet">
+  <div class="sec-label">Referencia rápida</div>
+  <h2 class="sec-title">Cheatsheet completo</h2>
+  <p class="sec-sub">Todo lo de la sesión en formato compacto.</p>
+
+  <div class="cs-wrap">
+    <div class="cs-row"><div class="cs-term">Cobertura campaña</div><div class="cs-def">% de clientes que recibieron el mailing. Resultado: 50,8% (≈50/50 como se planeó). Se puede calcular con CONTAR.SI o con SUMA directa (porque los valores son 0 y 1).</div></div>
+    <div class="cs-row"><div class="cs-term">Columna COMPRÓ</div><div class="cs-def">Columna auxiliar en client_table: 1 si el cliente compró, 0 si no. Se construye con BUSCARV + ESNUMERO + SI. Es la más compleja de la sesión — Alfons usó Gemini para generarla.</div></div>
+    <div class="cs-row"><div class="cs-term">IA copiloto</div><div class="cs-def">Cuándo usarla: si sabés qué querés lograr pero no la sintaxis exacta. Describís el objetivo en lenguaje natural → la IA genera la fórmula → vos evaluás si tiene sentido. Lo que no automatiza: PENSAR.</div></div>
+    <div class="cs-row"><div class="cs-term">Comodín *LE*</div><div class="cs-def">Detecta si una celda contiene "LE" en cualquier posición. =SUMIF(C:C;"*LE*";B:B). Antes de usarlo, verificar que no haya otros productos con "LE" en el nombre que no sean ediciones limitadas.</div></div>
+    <div class="cs-row"><div class="cs-term">Penetración LE</div><div class="cs-def">Total sleeves LE / Total sleeves × 100. Resultado del caso: 4,3%. Benchmark: &lt;5% = edición limitada normal · 5-15% = buen resultado · &gt;20% = superproducto, considerar hacerlo permanente.</div></div>
+    <div class="cs-row"><div class="cs-term">Venezia vs Istanbul</div><div class="cs-def">Ambas representaron ~50% de las ventas LE. No hay diferencia significativa → no se puede recomendar una sobre la otra. Si fuera 70/30, sí habría conclusión estratégica clara.</div></div>
+    <div class="cs-row"><div class="cs-term">QUERY — sintaxis</div><div class="cs-def">=QUERY(datos; "SELECT cols GROUP BY col LABEL col 'nombre'"; 1). Siempre en inglés. La tabla va fuera de las comillas como primer argumento.</div></div>
+    <div class="cs-row"><div class="cs-term">SELECT</div><div class="cs-def">Qué columnas mostrar. Columnas separadas por coma. La ÚLTIMA no lleva coma. Columnas referenciadas por letra (A, B, C...). Operaciones: SUM(B), AVG(B), COUNT(A).</div></div>
+    <div class="cs-row"><div class="cs-term">GROUP BY</div><div class="cs-def">Agrupa filas con el mismo valor. Obligatorio cuando hay operaciones (SUM, AVG, COUNT) sobre otras columnas. Las columnas del GROUP BY deben coincidir con las columnas sin operación del SELECT.</div></div>
+    <div class="cs-row"><div class="cs-term">WHERE</div><div class="cs-def">Filtra filas antes de agrupar. Equivalente al criterio de SUMAR.SI. Ejemplo: WHERE F = 1 (solo los que recibieron mailing).</div></div>
+    <div class="cs-row"><div class="cs-term">ORDER BY + DESC</div><div class="cs-def">Ordena el resultado. ORDER BY SUM(B) DESC = de mayor a menor. Sin DESC = ascendente (menor a mayor).</div></div>
+    <div class="cs-row"><div class="cs-term">LABEL</div><div class="cs-def">Renombra las columnas del resultado. Siempre va al final de la consulta. Formato: LABEL E 'Nombre', SUM(B) 'Otro nombre'.</div></div>
+    <div class="cs-row"><div class="cs-term">Coma vs paréntesis</div><div class="cs-def">Coma = separa columnas en SELECT. Paréntesis = envuelve operaciones: SUM(B), AVG(E). QUERY solo entiende columnas (letras), no celdas individuales.</div></div>
+    <div class="cs-row"><div class="cs-term">QUERY vs SQL</div><div class="cs-def">Son iguales. Diferencias: (1) en SQL la tabla va en FROM dentro de la consulta; en QUERY va como argumento fuera. (2) SQL puede hacer JOIN entre N tablas; QUERY solo trabaja sobre 1 tabla.</div></div>
+    <div class="cs-row"><div class="cs-term">Dashboard BSC</div><div class="cs-def">4 cuadrantes: Financiera · Cliente · Procesos · Innovación. Cada uno con 2 KPIs + 1 gráfico. Se construye manualmente en Sheets. Para dashboards empresariales, mejor Power BI.</div></div>
+    <div class="cs-row"><div class="cs-term">Teoría de cuadrados</div><div class="cs-def">Regla de Alfons: máx. 4 cuadrantes × 4 elementos cada uno = 16 elementos en pantalla. Ya es mucho. Menos es mejor. El director tiene que entenderlo de un vistazo.</div></div>
+    <div class="cs-row"><div class="cs-term">Sheets vs Power BI</div><div class="cs-def">Sheets: análisis interno de equipo, cálculos, colaboración. Power BI / Looker: dashboards formales para toda la empresa, mayor volumen de datos. Excel: finanzas, pero en desuso productivo general.</div></div>
+    <div class="cs-row"><div class="cs-term">Práctica recomendada</div><div class="cs-def">Repetir el caso Unicorn Espresso solo, de 0. Luego hacer un caso nuevo del módulo. 2-3 horas semanales constantes > maratones. No hacer 50 casos en una semana.</div></div>
+  </div>
+</div>
+
+<!-- ═══════════ FLASHCARDS ═══════════ -->
+<div class="section" id="tab-flashcards">
+  <div class="sec-label">Memorización activa</div>
+  <h2 class="sec-title">Flashcards — Tocá para ver la respuesta</h2>
+  <p class="sec-sub">Intentá responder antes de voltear. Repetí las que te cuesten.</p>
+
+  <div class="fc-grid">
+
+    <div class="fc" onclick="this.classList.toggle('flipped')">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-q">¿Cuáles son las <strong>dos formas</strong> de calcular cuántos clientes recibieron el mailing?</div><div class="fc-hint">Procesos · Cobertura</div></div>
+        <div class="fc-back"><div class="fc-a"><strong>CONTAR.SI</strong> (cuenta los 1s) y <strong>SUMA directa</strong> (suma la columna — funciona porque los valores son 0 y 1). Ambas dan el mismo resultado. Usá la que te resulte más simple.</div><div class="fc-cat">Perspectiva Procesos</div></div>
+      </div>
+    </div>
+
+    <div class="fc" onclick="this.classList.toggle('flipped')">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-q">¿Por qué la columna <strong>COMPRÓ</strong> es la más compleja de construir?</div><div class="fc-hint">Procesos · Columna auxiliar</div></div>
+        <div class="fc-back"><div class="fc-a">Porque client_table no tiene esa información. Hay que buscar el CLIENT_ID en order_line_table: si está → 1. Si no → 0. Requiere combinar BUSCARV + ESNUMERO + SI. Alfons usó Gemini para generarla.</div><div class="fc-cat">Perspectiva Procesos</div></div>
+      </div>
+    </div>
+
+    <div class="fc" onclick="this.classList.toggle('flipped')">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-q">¿Qué es la <strong>penetración</strong> de mercado de los productos LE? ¿Cuál fue en el caso?</div><div class="fc-hint">Innovación</div></div>
+        <div class="fc-back"><div class="fc-a">Total sleeves LE / Total sleeves × 100. En el caso: <strong>4,3%</strong>. Por debajo del 5% → edición limitada normal, como esperado. Más del 20% = superproducto a considerar permanente.</div><div class="fc-cat">Penetración de mercado</div></div>
+      </div>
+    </div>
+
+    <div class="fc" onclick="this.classList.toggle('flipped')">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-q">¿Qué detecta el comodín <strong>*LE*</strong> en SUMAR.SI? ¿Cuándo puede fallar?</div><div class="fc-hint">Innovación · Comodín</div></div>
+        <div class="fc-back"><div class="fc-a">Detecta cualquier celda que contenga "LE" en cualquier posición. Puede fallar si hay productos con "LE" en el nombre que NO son ediciones limitadas. Siempre revisar los valores únicos de la columna antes de aplicarlo.</div><div class="fc-cat">Comodín *</div></div>
+      </div>
+    </div>
+
+    <div class="fc" onclick="this.classList.toggle('flipped')">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-q">¿Cuáles son las <strong>cláusulas</strong> que puede tener una QUERY?</div><div class="fc-hint">QUERY</div></div>
+        <div class="fc-back"><div class="fc-a"><strong>SELECT</strong> (qué columnas) · <strong>WHERE</strong> (filtrar filas) · <strong>GROUP BY</strong> (agrupar por dimensión) · <strong>ORDER BY</strong> (ordenar) · <strong>DESC</strong> (descendente) · <strong>LABEL</strong> (renombrar columnas)</div><div class="fc-cat">QUERY</div></div>
+      </div>
+    </div>
+
+    <div class="fc" onclick="this.classList.toggle('flipped')">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-q">¿Cuándo es <strong>obligatorio</strong> el GROUP BY en una QUERY?</div><div class="fc-hint">QUERY · Regla</div></div>
+        <div class="fc-back"><div class="fc-a">Cuando hay operaciones aritméticas (SUM, AVG, COUNT) en el SELECT. Las columnas que NO tienen operación deben estar en el GROUP BY. Si no, da error.</div><div class="fc-cat">QUERY</div></div>
+      </div>
+    </div>
+
+    <div class="fc" onclick="this.classList.toggle('flipped')">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-q">¿Cuáles son las <strong>2 diferencias</strong> entre QUERY y SQL?</div><div class="fc-hint">QUERY vs SQL</div></div>
+        <div class="fc-back"><div class="fc-a">1. En SQL la tabla va en <strong>FROM</strong> dentro de la consulta. En QUERY va como argumento externo.<br>2. SQL puede unir N tablas (<strong>JOIN</strong>). QUERY solo trabaja sobre <strong>1 tabla</strong> a la vez.</div><div class="fc-cat">QUERY vs SQL</div></div>
+      </div>
+    </div>
+
+    <div class="fc" onclick="this.classList.toggle('flipped')">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-q">¿Qué regla usa Alfons para no sobrecargar un <strong>dashboard</strong>?</div><div class="fc-hint">Dashboard · Diseño</div></div>
+        <div class="fc-back"><div class="fc-a">"Teoría de los cuadrados": máximo <strong>4 cuadrantes</strong> por pantalla × máximo <strong>4 elementos</strong> por cuadrante = 16 elementos en total. Ya es mucho. Menos es mejor.</div><div class="fc-cat">Dashboard</div></div>
+      </div>
+    </div>
+
+    <div class="fc" onclick="this.classList.toggle('flipped')">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-q">En QUERY, ¿cuándo se usa <strong>coma</strong> y cuándo <strong>paréntesis</strong>?</div><div class="fc-hint">QUERY · Sintaxis</div></div>
+        <div class="fc-back"><div class="fc-a"><strong>Coma</strong>: separa columnas en SELECT. La última columna NO lleva coma.<br><strong>Paréntesis</strong>: envuelve operaciones: SUM(B), AVG(E), COUNT(A). QUERY solo entiende letras de columna, no celdas.</div><div class="fc-cat">QUERY</div></div>
+      </div>
+    </div>
+
+    <div class="fc" onclick="this.classList.toggle('flipped')">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-q">¿Cuál es el mensaje central de Alfons sobre la <strong>IA y el análisis de datos</strong>?</div><div class="fc-hint">IA · Meta-habilidad</div></div>
+        <div class="fc-back"><div class="fc-a">La IA hace la parte técnica accesible a todos (generar fórmulas). Lo que NO se automatiza es la parte de <strong>PENSAR</strong>: saber qué querés medir, por qué y cómo estructurar el análisis. Eso es lo que te diferencia.</div><div class="fc-cat">IA copiloto</div></div>
+      </div>
+    </div>
+
+    <div class="fc" onclick="this.classList.toggle('flipped')">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-q">¿Para qué sirve <strong>LABEL</strong> en QUERY y dónde va?</div><div class="fc-hint">QUERY</div></div>
+        <div class="fc-back"><div class="fc-a">Renombra las columnas del resultado. Siempre va <strong>al final</strong> de la consulta. Ejemplo: <code>LABEL E 'Segmento', SUM(B) 'Sleeves'</code>. Sin LABEL, los encabezados son la letra de columna y la operación.</div><div class="fc-cat">QUERY</div></div>
+      </div>
+    </div>
+
+    <div class="fc" onclick="this.classList.toggle('flipped')">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-q">¿Cuál fue el resultado de <strong>Venezia LE vs Istanbul LE</strong> y qué implica estratégicamente?</div><div class="fc-hint">Innovación</div></div>
+        <div class="fc-back"><div class="fc-a">Ambas representaron <strong>~50% cada una</strong> de las ventas LE. Sin diferencia significativa → no se puede recomendar expandir una sobre la otra. Si fuera 70/30, se recomendaría expandir la ganadora.</div><div class="fc-cat">Perspectiva Innovación</div></div>
+      </div>
+    </div>
+
+  </div>
+  <div style="text-align:right;margin-top:16px">
+    <button class="btn-sm btn-sec" onclick="document.querySelectorAll('.fc').forEach(c=>c.classList.remove('flipped'))">↺ Reiniciar tarjetas</button>
+  </div>
+</div>
+
+<!-- ═══════════ QUIZ ═══════════ -->
+<div class="section" id="tab-quiz">
+  <div class="sec-label">Autoevaluación</div>
+  <h2 class="sec-title">Quiz de repaso — 12 preguntas</h2>
+  <p class="sec-sub">Elegí la respuesta correcta. Feedback inmediato en cada pregunta.</p>
+
+  <div class="qscore-bar">
+    <div><div class="qscore-num" id="qscore">0 / 12</div><div class="qscore-lbl">respuestas correctas</div></div>
+    <button class="btn-sm btn-sec" onclick="resetQuiz()">↺ Reiniciar</button>
+  </div>
+
+  <div class="q-box"><div class="q-num">Pregunta 1 · Cobertura</div>
+    <div class="q-text">La cobertura de campaña fue del 50,8%. ¿Qué dos fórmulas producen ese mismo resultado?</div>
+    <div class="q-opts">
+      <button class="q-opt" data-c="0" onclick="qa(this,1)"><span class="oid">A</span>BUSCARV y SUMAR.SI</button>
+      <button class="q-opt" data-c="1" onclick="qa(this,1)"><span class="oid">B</span>CONTAR.SI y SUMA directa de la columna</button>
+      <button class="q-opt" data-c="0" onclick="qa(this,1)"><span class="oid">C</span>PROMEDIO.SI y CONTAR.SI.CONJUNTO</button>
+      <button class="q-opt" data-c="0" onclick="qa(this,1)"><span class="oid">D</span>QUERY y SUMAR.SI</button>
+    </div>
+    <div class="q-fb" id="f1"></div>
+  </div>
+
+  <div class="q-box"><div class="q-num">Pregunta 2 · Columna COMPRÓ</div>
+    <div class="q-text">¿Por qué no se puede usar un BUSCARV simple para crear la columna COMPRÓ (0 o 1)?</div>
+    <div class="q-opts">
+      <button class="q-opt" data-c="0" onclick="qa(this,2)"><span class="oid">A</span>Porque BUSCARV no puede buscar en order_line_table</button>
+      <button class="q-opt" data-c="1" onclick="qa(this,2)"><span class="oid">B</span>Porque cuando el cliente no compró, BUSCARV devuelve #N/A, no un 0. Hay que envolver con ESNUMERO + SI para convertir el #N/A en 0.</button>
+      <button class="q-opt" data-c="0" onclick="qa(this,2)"><span class="oid">C</span>Porque solo funciona con datos numéricos</button>
+      <button class="q-opt" data-c="0" onclick="qa(this,2)"><span class="oid">D</span>Porque ya existe una columna COMPRÓ en order_line_table</button>
+    </div>
+    <div class="q-fb" id="f2"></div>
+  </div>
+
+  <div class="q-box"><div class="q-num">Pregunta 3 · Comodín *</div>
+    <div class="q-text">=SUMIF(C:C;"*LE*";B:B) — ¿qué detecta exactamente este criterio?</div>
+    <div class="q-opts">
+      <button class="q-opt" data-c="0" onclick="qa(this,3)"><span class="oid">A</span>Solo las celdas que empiezan exactamente con "LE"</button>
+      <button class="q-opt" data-c="0" onclick="qa(this,3)"><span class="oid">B</span>Solo las celdas que terminan exactamente con "LE"</button>
+      <button class="q-opt" data-c="1" onclick="qa(this,3)"><span class="oid">C</span>Cualquier celda que contenga "LE" en cualquier posición del texto</button>
+      <button class="q-opt" data-c="0" onclick="qa(this,3)"><span class="oid">D</span>Solo celdas cuyo valor sea exactamente "LE"</button>
+    </div>
+    <div class="q-fb" id="f3"></div>
+  </div>
+
+  <div class="q-box"><div class="q-num">Pregunta 4 · Penetración</div>
+    <div class="q-text">La penetración de los productos LE fue del 4,3%. ¿Qué indica ese número según el benchmark que explicó Alfons?</div>
+    <div class="q-opts">
+      <button class="q-opt" data-c="0" onclick="qa(this,4)"><span class="oid">A</span>Fue un fracaso — debería haber superado el 20%</button>
+      <button class="q-opt" data-c="1" onclick="qa(this,4)"><span class="oid">B</span>Es lo esperado para una edición limitada (menos del 5%). No es un fracaso ni un éxito extraordinario.</button>
+      <button class="q-opt" data-c="0" onclick="qa(this,4)"><span class="oid">C</span>Es un superproducto — hay que convertirlo en permanente</button>
+      <button class="q-opt" data-c="0" onclick="qa(this,4)"><span class="oid">D</span>Significa que el 4,3% de los clientes compró LE</button>
+    </div>
+    <div class="q-fb" id="f4"></div>
+  </div>
+
+  <div class="q-box"><div class="q-num">Pregunta 5 · QUERY estructura</div>
+    <div class="q-text">¿Cuál es la estructura correcta de una QUERY?</div>
+    <div class="q-opts">
+      <button class="q-opt" data-c="0" onclick="qa(this,5)"><span class="oid">A</span>=QUERY("consulta"; datos; 1)</button>
+      <button class="q-opt" data-c="1" onclick="qa(this,5)"><span class="oid">B</span>=QUERY(datos; "consulta"; 1)</button>
+      <button class="q-opt" data-c="0" onclick="qa(this,5)"><span class="oid">C</span>=QUERY(datos; 1; "consulta")</button>
+      <button class="q-opt" data-c="0" onclick="qa(this,5)"><span class="oid">D</span>=QUERY("consulta"; 1; datos)</button>
+    </div>
+    <div class="q-fb" id="f5"></div>
+  </div>
+
+  <div class="q-box"><div class="q-num">Pregunta 6 · GROUP BY</div>
+    <div class="q-text">SELECT E, SUM(B) — para que esta QUERY funcione, ¿qué cláusula es obligatoria?</div>
+    <div class="q-opts">
+      <button class="q-opt" data-c="0" onclick="qa(this,6)"><span class="oid">A</span>ORDER BY — para que los resultados tengan sentido</button>
+      <button class="q-opt" data-c="0" onclick="qa(this,6)"><span class="oid">B</span>WHERE — para filtrar los datos</button>
+      <button class="q-opt" data-c="1" onclick="qa(this,6)"><span class="oid">C</span>GROUP BY E — porque E no tiene operación y SUM(B) sí. Obligatorio cuando hay operaciones mezcladas con columnas simples.</button>
+      <button class="q-opt" data-c="0" onclick="qa(this,6)"><span class="oid">D</span>LABEL — para que las columnas tengan nombre</button>
+    </div>
+    <div class="q-fb" id="f6"></div>
+  </div>
+
+  <div class="q-box"><div class="q-num">Pregunta 7 · QUERY sintaxis</div>
+    <div class="q-text">En el SELECT de una QUERY, ¿qué regla aplica al separar columnas?</div>
+    <div class="q-opts">
+      <button class="q-opt" data-c="0" onclick="qa(this,7)"><span class="oid">A</span>Todas las columnas van separadas por punto y coma</button>
+      <button class="q-opt" data-c="1" onclick="qa(this,7)"><span class="oid">B</span>Las columnas se separan con coma, excepto la última que no lleva coma</button>
+      <button class="q-opt" data-c="0" onclick="qa(this,7)"><span class="oid">C</span>Todas las columnas van entre paréntesis</button>
+      <button class="q-opt" data-c="0" onclick="qa(this,7)"><span class="oid">D</span>Las columnas se separan con espacio</button>
+    </div>
+    <div class="q-fb" id="f7"></div>
+  </div>
+
+  <div class="q-box"><div class="q-num">Pregunta 8 · ORDER BY</div>
+    <div class="q-text">Querés ver los segmentos ordenados de mayor a menor revenue. ¿Qué cláusula agregás al final de la consulta?</div>
+    <div class="q-opts">
+      <button class="q-opt" data-c="0" onclick="qa(this,8)"><span class="oid">A</span>ORDER BY SUM(B) ASC</button>
+      <button class="q-opt" data-c="0" onclick="qa(this,8)"><span class="oid">B</span>SORT BY E DESC</button>
+      <button class="q-opt" data-c="1" onclick="qa(this,8)"><span class="oid">C</span>ORDER BY SUM(B) DESC</button>
+      <button class="q-opt" data-c="0" onclick="qa(this,8)"><span class="oid">D</span>ORDER BY B DESCEND</button>
+    </div>
+    <div class="q-fb" id="f8"></div>
+  </div>
+
+  <div class="q-box"><div class="q-num">Pregunta 9 · QUERY vs SQL</div>
+    <div class="q-text">¿Cuál es la limitación principal de QUERY en Google Sheets respecto a SQL?</div>
+    <div class="q-opts">
+      <button class="q-opt" data-c="0" onclick="qa(this,9)"><span class="oid">A</span>QUERY no puede sumar ni promediar</button>
+      <button class="q-opt" data-c="0" onclick="qa(this,9)"><span class="oid">B</span>QUERY no funciona con tablas grandes</button>
+      <button class="q-opt" data-c="1" onclick="qa(this,9)"><span class="oid">C</span>QUERY solo puede trabajar sobre una tabla a la vez. SQL puede hacer JOIN entre múltiples tablas.</button>
+      <button class="q-opt" data-c="0" onclick="qa(this,9)"><span class="oid">D</span>QUERY no tiene ORDER BY</button>
+    </div>
+    <div class="q-fb" id="f9"></div>
+  </div>
+
+  <div class="q-box"><div class="q-num">Pregunta 10 · Dashboard</div>
+    <div class="q-text">Según la "teoría de los cuadrados" de Alfons, ¿cuántos elementos como máximo debería tener un dashboard BSC?</div>
+    <div class="q-opts">
+      <button class="q-opt" data-c="0" onclick="qa(this,10)"><span class="oid">A</span>4 elementos en total — uno por perspectiva BSC</button>
+      <button class="q-opt" data-c="0" onclick="qa(this,10)"><span class="oid">B</span>8 elementos — 2 por cuadrante</button>
+      <button class="q-opt" data-c="1" onclick="qa(this,10)"><span class="oid">C</span>16 elementos como máximo — 4 cuadrantes × 4 elementos cada uno. Pero menos es mejor.</button>
+      <button class="q-opt" data-c="0" onclick="qa(this,10)"><span class="oid">D</span>Sin límite — cuantos más datos, más completo</button>
+    </div>
+    <div class="q-fb" id="f10"></div>
+  </div>
+
+  <div class="q-box"><div class="q-num">Pregunta 11 · IA en análisis</div>
+    <div class="q-text">Alfons usó Gemini para generar una fórmula compleja. ¿Cuál es la condición necesaria para usar bien la IA en este contexto?</div>
+    <div class="q-opts">
+      <button class="q-opt" data-c="0" onclick="qa(this,11)"><span class="oid">A</span>Tener suscripción premium a Gemini</button>
+      <button class="q-opt" data-c="1" onclick="qa(this,11)"><span class="oid">B</span>Saber exactamente qué querés lograr. La IA genera la sintaxis; vos definís el objetivo y evaluás si la fórmula tiene sentido.</button>
+      <button class="q-opt" data-c="0" onclick="qa(this,11)"><span class="oid">C</span>Ya no hace falta entender las fórmulas — la IA lo hace todo</button>
+      <button class="q-opt" data-c="0" onclick="qa(this,11)"><span class="oid">D</span>Solo usarla cuando la fórmula tiene más de 3 argumentos</button>
+    </div>
+    <div class="q-fb" id="f11"></div>
+  </div>
+
+  <div class="q-box"><div class="q-num">Pregunta 12 · Cierre del módulo</div>
+    <div class="q-text">¿Cuál es la recomendación de práctica de Alfons para consolidar lo aprendido?</div>
+    <div class="q-opts">
+      <button class="q-opt" data-c="0" onclick="qa(this,12)"><span class="oid">A</span>Hacer 50 casos diferentes en la próxima semana</button>
+      <button class="q-opt" data-c="0" onclick="qa(this,12)"><span class="oid">B</span>Esperar a ver el próximo módulo antes de practicar</button>
+      <button class="q-opt" data-c="1" onclick="qa(this,12)"><span class="oid">C</span>Repetir el caso Unicorn Espresso solo de 0, luego un caso nuevo. 2-3 horas semanales constantes es mejor que maratones.</button>
+      <button class="q-opt" data-c="0" onclick="qa(this,12)"><span class="oid">D</span>Memorizar todas las fórmulas antes de practicar</button>
+    </div>
+    <div class="q-fb" id="f12"></div>
+  </div>
+
+</div>
+
+<script>
+const qfb={
+  1:{ok:"Correcto. Como RECEIVED_COMMUNICATION tiene solo 0s y 1s, SUMA directa = CONTAR.SI. Son equivalentes en este caso. Alfons lo usó para mostrar que no hay una sola forma de resolver.",bad:"CONTAR.SI cuenta los 1s en la columna. SUMA directa funciona porque los valores son exactamente 0 y 1 → sumar equivale a contar los unos. Son la misma respuesta en este contexto."},
+  2:{ok:"Exacto. Cuando un CLIENT_ID no existe en order_line_table, BUSCARV devuelve #N/A, no un 0. Hay que envolver con ESNUMERO (que devuelve VERDADERO si hay número) y SI para convertir #N/A en 0 y número en 1.",bad:"El problema es el #N/A. Un BUSCARV simple devuelve #N/A cuando no encuentra el valor. Para convertir ese #N/A en 0 (no compró) y el valor numérico en 1 (sí compró), necesitás ESNUMERO + SI."},
+  3:{ok:"Correcto. El asterisco * es el comodín que representa 'cualquier cosa'. *LE* = cualquier texto que tenga 'LE' en cualquier posición: al principio, en el medio o al final.",bad:"El comodín * representa 'cualquier cosa'. *LE* = debe contener 'LE' en cualquier posición. LE* sería solo las que empiezan con LE. *LE sería las que terminan con LE."},
+  4:{ok:"Exacto. Menos del 5% = edición limitada normal, resultado esperado. No es un fracaso (llegó a la meta de una edición limitada) ni un superproducto (para eso necesitaría superar el 20%).",bad:"La penetración del 4,3% está por debajo del 5%, que es el umbral de una edición limitada 'normal'. No es fracaso — es lo que se espera de este tipo de producto. Un superproducto estaría por encima del 20%."},
+  5:{ok:"Correcto. Primero los datos (rango de la tabla), luego la consulta entre comillas, luego el número de encabezados (casi siempre 1).",bad:"El orden correcto: =QUERY(datos; 'consulta'; 1). Los datos siempre primero como rango de tabla. La consulta va entre comillas como segundo argumento. El número de encabezados al final."},
+  6:{ok:"Correcto. Cuando el SELECT mezcla columnas simples (E) con operaciones (SUM(B)), Google Sheets necesita saber cómo agrupar los resultados. Las columnas sin operación deben ir en GROUP BY.",bad:"Cuando hay operaciones (SUM, AVG, COUNT) en el SELECT, las columnas que no tienen operación deben ir en GROUP BY. Sin eso, Sheets no sabe cómo agregar y da error."},
+  7:{ok:"Exacto. La coma separa columnas en el SELECT, pero la ÚLTIMA columna no lleva coma al final. Si la ponés, da error de sintaxis.",bad:"En SELECT, columnas separadas por coma — EXCEPTO la última, que no lleva coma. Es una trampa frecuente: poner coma después de la última columna genera error."},
+  8:{ok:"Correcto. ORDER BY especifica por qué ordenar. SUM(B) es la métrica del revenue. DESC = descendente = mayor a menor. ASC sería ascendente (menor a mayor).",bad:"ORDER BY + la columna o expresión por la que ordenar. DESC = descendente (mayor a menor). ASC = ascendente. Para mayor a menor revenue: ORDER BY SUM(B) DESC."},
+  9:{ok:"Exacto. Esa es la limitación fundamental: QUERY trabaja sobre una sola tabla. Por eso en este módulo primero enriquecemos con BUSCARV (para tener todo en una tabla) y luego QUERY analiza esa tabla enriquecida.",bad:"La limitación principal es el JOIN: SQL puede cruzar N tablas con JOIN. QUERY solo trabaja sobre 1 tabla. Por eso primero usamos BUSCARV para enriquecer, y QUERY analiza la tabla ya enriquecida."},
+  10:{ok:"Exacto. 4 cuadrantes × 4 elementos = 16 máximo. Pero Alfons aclara que 16 ya es mucho — siempre tratar de tener menos. El director tiene que entender el dashboard de un vistazo.",bad:"La regla es 4 cuadrantes × 4 elementos cada uno = 16 máximo. Pero eso ya es demasiado para muchos casos. Alfons dice que menos siempre es mejor — el director tiene que entenderlo en segundos."},
+  11:{ok:"Exacto. La IA no puede saber qué querés medir — eso sos vos quien lo define. La IA da la sintaxis técnica. Vos evaluás si la fórmula producida tiene sentido para tu objetivo.",bad:"La condición es saber qué querés lograr. La IA genera el código/fórmula — eso se volvió accesible a todos. Lo que no automatiza es la parte de PENSAR: definir qué medir, por qué y cómo estructurarlo."},
+  12:{ok:"Exacto. Repetir el caso conocido primero (más fácil) y después un caso nuevo. Lo clave es la constancia: 2-3 horas semanales regulares. Los maratones de 50 casos en una semana agotan y no consolidan.",bad:"La recomendación de Alfons es constancia sobre volumen: 2-3 horas semanales. Primero repetir Unicorn Espresso solo de 0, luego un caso nuevo. No hacer 50 casos en una semana — eso agota y no consolida el aprendizaje."}
+};
+
+let qcorr=0,qcnt=0;
+function qa(btn,n){
+  const all=btn.closest('.q-opts').querySelectorAll('.q-opt');
+  all.forEach(b=>b.disabled=true);
+  const fb=document.getElementById('f'+n);
+  const ok=btn.dataset.c==='1';
+  if(ok){btn.classList.add('correct');qcorr++;fb.className='q-fb ok show';fb.textContent=qfb[n].ok;}
+  else{btn.classList.add('wrong');fb.className='q-fb bad show';fb.textContent=qfb[n].bad;all.forEach(b=>{if(b.dataset.c==='1')b.classList.add('correct')});}
+  qcnt++;
+  document.getElementById('qscore').textContent=qcorr+' / '+qcnt;
+}
+function resetQuiz(){
+  qcorr=0;qcnt=0;
+  document.getElementById('qscore').textContent='0 / 12';
+  document.querySelectorAll('.q-opt').forEach(b=>{b.disabled=false;b.classList.remove('correct','wrong')});
+  document.querySelectorAll('.q-fb').forEach(f=>f.className='q-fb');
+}
+function showTab(id,el){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.tab-btn,.hero-pill').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  if(el)el.classList.add('active');
+  document.querySelectorAll('.tab-btn').forEach(b=>{if(b.textContent.toLowerCase().includes(id.slice(0,4)))b.classList.add('active')});
+  document.querySelectorAll('.hero-pill').forEach(p=>{if(p.textContent.toLowerCase().includes(id.slice(0,4)))p.classList.add('active')});
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+</script>
+</body>
+</html>
