@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Repaso General · Unicorn Academy</title>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YQFR59Q23T"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-YQFR59Q23T');
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#1a1a20;--ink2:#3a3848;--muted:#8080a0;--bg:#f2f0ec;--white:#fdfcfb;
+  --border:#ddd8d0;--border2:#c8c0b8;
+  --v1:#2d1b69;--v1l:#edeaff;--v1b:#b0a4e8;
+  --v2:#0f5c3a;--v2l:#e4f5ee;--v2b:#7ecaa8;
+  --v3:#7a3000;--v3l:#fff2e8;--v3b:#f0b880;
+  --v4:#1a3a6a;--v4l:#e6eef8;--v4b:#90b0d8;
+  --red:#c0202a;--redl:#fce8e8;--redb:#e08090;
+  --gold:#8a6a00;--goldl:#fffce0;--goldb:#d8c000;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:'Outfit',sans-serif;font-size:15px;line-height:1.65;min-height:100vh}
+
+/* HERO */
+.hero{background:#100820;padding:52px 48px 44px;position:relative;overflow:hidden}
+.hero::before{content:'REPASO';position:absolute;right:-10px;top:-20px;font-family:'Playfair Display',serif;font-size:200px;font-weight:900;color:rgba(255,255,255,0.03);line-height:1;pointer-events:none}
+.hero::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 70% at 0% 50%,rgba(74,42,138,.18) 0%,transparent 60%),radial-gradient(ellipse 40% 50% at 100% 20%,rgba(15,92,58,.12) 0%,transparent 60%);pointer-events:none}
+.hero-inner{max-width:880px;margin:0 auto;position:relative;z-index:1}
+.hero-eyebrow{font-family:'JetBrains Mono',monospace;font-size:.68rem;color:rgba(255,255,255,.4);letter-spacing:.18em;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.hero-eyebrow::before{content:'';width:24px;height:1px;background:rgba(255,255,255,.25)}
+.hero-title{font-family:'Playfair Display',serif;font-size:clamp(2.2rem,5vw,3.4rem);font-weight:900;color:#fff;line-height:1.08;letter-spacing:-.01em;margin-bottom:14px}
+.hero-title em{color:#d4c4ff;font-style:italic}
+.hero-desc{font-size:.95rem;color:rgba(255,255,255,.5);max-width:580px;line-height:1.75;margin-bottom:30px}
+.hero-pills{display:flex;flex-wrap:wrap;gap:7px}
+.hero-pill{font-family:'JetBrains Mono',monospace;font-size:.63rem;padding:4px 11px;border-radius:20px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.5);cursor:pointer;transition:all .2s}
+.hero-pill:hover,.hero-pill.active{background:rgba(212,196,255,.15);color:#d4c4ff;border-color:rgba(212,196,255,.3)}
+
+/* NAV */
+.tab-nav{display:flex;background:var(--white);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:50;overflow-x:auto}
+.tab-btn{padding:14px 22px;font-family:'Outfit',sans-serif;font-weight:600;font-size:.75rem;letter-spacing:.04em;text-transform:uppercase;background:none;border:none;border-bottom:2px solid transparent;cursor:pointer;color:var(--muted);transition:all .2s;white-space:nowrap}
+.tab-btn:hover{color:var(--ink)}
+.tab-btn.active{color:var(--v1);border-bottom-color:var(--v1)}
+
+/* SECTION */
+.section{display:none;max-width:880px;margin:0 auto;padding:44px 28px 80px}
+.section.active{display:block;animation:fadeUp .3s ease}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.sec-label{font-family:'JetBrains Mono',monospace;font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.sec-title{font-family:'Playfair Display',serif;font-size:1.65rem;font-weight:700;color:var(--ink);line-height:1.2;margin-bottom:6px}
+.sec-sub{font-size:.88rem;color:var(--muted);margin-bottom:32px;line-height:1.6}
+
+/* ALFONS QUOTE */
+.quote-box{background:#100820;color:#fff;border-radius:12px;padding:20px 24px;margin-bottom:22px;position:relative;overflow:hidden}
+.quote-box::before{content:'"';position:absolute;right:16px;top:-8px;font-family:'Playfair Display',serif;font-size:80px;color:rgba(255,255,255,.06);line-height:1}
+.quote-label{font-family:'JetBrains Mono',monospace;font-size:.6rem;color:#d4c4ff;letter-spacing:.14em;text-transform:uppercase;margin-bottom:8px}
+.quote-text{font-size:.9rem;line-height:1.7;color:rgba(255,255,255,.82);position:relative;z-index:1}
+.quote-text strong{color:#d4c4ff;font-weight:600}
+
+/* CLASS MOMENT — Q&A box */
+.qa-box{background:var(--goldl);border:1px solid var(--goldb);border-radius:10px;padding:14px 18px;margin:12px 0;font-size:.84rem;color:#5a3800;line-height:1.65}
+.qa-box .qa-q{font-weight:600;color:#3a2400;margin-bottom:4px}
+.qa-box .qa-a{color:#5a3800}
+.qa-box .qa-label{font-family:'JetBrains Mono',monospace;font-size:.6rem;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);margin-bottom:6px}
+
+/* CONCEPT CARD */
+.cc{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:22px 24px;margin-bottom:16px;border-left:4px solid}
+.cc1{border-left-color:var(--v1)}.cc2{border-left-color:var(--v2)}.cc3{border-left-color:var(--v3)}.cc4{border-left-color:var(--v4)}
+.cc-header{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:12px}
+.cc-title{font-weight:700;font-size:.95rem;color:var(--ink);line-height:1.3}
+.cc-badge{font-family:'JetBrains Mono',monospace;font-size:.6rem;font-weight:600;padding:3px 9px;border-radius:4px;white-space:nowrap;flex-shrink:0;letter-spacing:.06em;text-transform:uppercase;margin-top:2px}
+.b1{background:var(--v1l);color:var(--v1)}.b2{background:var(--v2l);color:var(--v2)}.b3{background:var(--v3l);color:var(--v3)}.b4{background:var(--v4l);color:var(--v4)}
+.cc-body{font-size:.86rem;color:var(--ink2);line-height:1.72}
+.cc-body p+p{margin-top:8px}.cc-body ul{padding-left:18px;margin-top:6px}.cc-body li{margin-bottom:5px}
+.cc-body strong{color:var(--ink);font-weight:600}
+
+/* CODE */
+.fblock{background:#0d0820;border-radius:10px;padding:14px 18px;font-family:'JetBrains Mono',monospace;font-size:.77rem;line-height:1.9;color:#d0c0f0;margin:12px 0;overflow-x:auto;border-left:3px solid var(--v1)}
+.fblock.fb2{border-left-color:var(--v2);background:#0d1a0d;color:#c0e8d0}
+.fn{color:#7ec8f0}.kw{color:#ff7070}.str{color:#f0a06a}.num{color:#a3e635}.cm{color:#5050a0;font-style:italic}.acc{color:#d0b8ff;font-weight:700}
+
+/* TIP */
+.tip{border-radius:8px;padding:12px 16px;font-size:.82rem;line-height:1.65;margin-top:12px;display:flex;gap:8px;align-items:flex-start}
+.tip-warn{background:#fff8e0;border:1px solid #e8d800;color:#5a4800}.tip-warn::before{content:'⚠️';flex-shrink:0}
+.tip-ok{background:var(--v2l);border:1px solid var(--v2b);color:#0a3a20}.tip-ok::before{content:'✓';flex-shrink:0;font-weight:700;color:var(--v2)}
+.tip-quote{background:#100820;color:rgba(255,255,255,.8);border:1px solid rgba(212,196,255,.2)}.tip-quote::before{content:'💬';flex-shrink:0}
+.tip strong{font-weight:600}
+
+/* TABLE */
+.tbl-wrap{background:var(--white);border:1px solid var(--border);border-radius:12px;overflow:hidden;overflow-x:auto;margin:14px 0}
+.dtbl{width:100%;border-collapse:collapse;font-size:.82rem}
+.dtbl th{padding:10px 14px;font-family:'JetBrains Mono',monospace;font-size:.66rem;font-weight:600;color:var(--muted);text-align:left;border-bottom:1px solid var(--border);background:var(--bg);text-transform:uppercase;letter-spacing:.06em}
+.dtbl td{padding:10px 14px;border-bottom:1px solid rgba(0,0,0,.05);color:var(--ink2);line-height:1.5}
+.dtbl tr:last-child td{border-bottom:none}.dtbl tr:hover td{background:var(--bg)}
+.dtbl .key{font-family:'JetBrains Mono',monospace;font-size:.76rem;font-weight:600}
+.c1{color:var(--v1)}.c2{color:var(--v2)}.c3{color:var(--v3)}.c4{color:var(--v4)}
+
+/* DIVIDER */
+.divider{display:flex;align-items:center;gap:12px;margin:28px 0}
+.divider::before,.divider::after{content:'';flex:1;height:1px;background:var(--border)}
+.divider span{font-family:'JetBrains Mono',monospace;font-size:.64rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;white-space:nowrap}
+
+/* BSC GRID */
+.bsc-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0}
+.bsc-card{border-radius:10px;padding:16px 18px;border:1px solid}
+.bsc-fin{background:#e8f5f5;border-color:#80c8c8}
+.bsc-cli{background:var(--v1l);border-color:var(--v1b)}
+.bsc-pro{background:var(--v3l);border-color:var(--v3b)}
+.bsc-inn{background:#f0f5e0;border-color:#a0c880}
+.bsc-ico{font-size:1rem;margin-bottom:5px}
+.bsc-label{font-weight:700;font-size:.8rem;text-transform:uppercase;letter-spacing:.07em;margin-bottom:4px}
+.bsc-fin .bsc-label{color:#1a6a6a}.bsc-cli .bsc-label{color:var(--v1)}.bsc-pro .bsc-label{color:var(--v3)}.bsc-inn .bsc-label{color:#3a6a00}
+.bsc-q{font-size:.8rem;color:var(--ink2);font-style:italic;margin-bottom:6px;line-height:1.45}
+.bsc-m{font-family:'JetBrains Mono',monospace;font-size:.67rem;color:var(--muted);line-height:1.75}
+
+/* CHEATSHEET */
+.cs-wrap{background:var(--white);border:1px solid var(--border);border-radius:12px;overflow:hidden}
+.cs-row{display:grid;grid-template-columns:180px 1fr;border-bottom:1px solid var(--border)}
+.cs-row:last-child{border-bottom:none}
+.cs-term{padding:13px 16px;font-family:'JetBrains Mono',monospace;font-size:.76rem;font-weight:700;color:var(--v1);background:var(--bg);border-right:1px solid var(--border);display:flex;align-items:flex-start}
+.cs-def{padding:13px 18px;font-size:.83rem;color:var(--ink2);line-height:1.6}
+
+/* FLASHCARDS */
+.fc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(252px,1fr));gap:14px}
+.fc{perspective:600px;height:158px;cursor:pointer}
+.fc-inner{position:relative;width:100%;height:100%;transition:transform .45s;transform-style:preserve-3d}
+.fc.flipped .fc-inner{transform:rotateY(180deg)}
+.fc-front,.fc-back{position:absolute;inset:0;border-radius:12px;padding:16px 18px;backface-visibility:hidden;display:flex;flex-direction:column;justify-content:space-between}
+.fc-front{background:var(--white);border:1px solid var(--border)}
+.fc-back{background:#100820;transform:rotateY(180deg)}
+.fc-q{font-size:.84rem;color:var(--ink2);line-height:1.55;font-weight:500}
+.fc-hint{font-family:'JetBrains Mono',monospace;font-size:.6rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+.fc-a{font-size:.81rem;line-height:1.6;color:rgba(255,255,255,.88)}
+.fc-a strong{color:#d4c4ff}
+.fc-cat{font-family:'JetBrains Mono',monospace;font-size:.6rem;color:rgba(255,255,255,.35);text-transform:uppercase;letter-spacing:.08em}
+
+/* QUIZ */
+.qscore-bar{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:16px 22px;display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;flex-wrap:wrap;gap:10px}
+.qscore-num{font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:700;color:var(--red);line-height:1}
+.qscore-lbl{font-family:'JetBrains Mono',monospace;font-size:.62rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+.q-box{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:20px 22px;margin-bottom:16px}
+.q-num{font-family:'JetBrains Mono',monospace;font-size:.63rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px}
+.q-text{font-size:.92rem;color:var(--ink);line-height:1.65;margin-bottom:14px;font-weight:500}
+.q-opts{display:flex;flex-direction:column;gap:8px}
+.q-opt{background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:11px 14px;cursor:pointer;font-size:.84rem;color:var(--ink2);text-align:left;transition:all .15s;display:flex;align-items:flex-start;gap:10px;line-height:1.5}
+.q-opt:hover:not(:disabled){background:#ece8e0;border-color:var(--border2)}
+.q-opt:disabled{cursor:default}
+.q-opt.correct{border-color:var(--v2);background:var(--v2l);color:#0a3a20}
+.q-opt.wrong{border-color:var(--red);background:var(--redl);color:#5a1010}
+.q-opt .oid{width:22px;height:22px;border-radius:50%;background:var(--border);display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:.64rem;font-weight:700;flex-shrink:0;color:var(--muted)}
+.q-opt.correct .oid{background:var(--v2);color:#fff}
+.q-fb{border-radius:8px;padding:10px 14px;font-size:.82rem;line-height:1.6;display:none;margin-top:10px}
+.q-fb.show{display:block}
+.q-fb.ok{background:var(--v2l);border:1px solid var(--v2b);color:#0a3a20}
+.q-fb.bad{background:var(--redl);border:1px solid var(--redb);color:#5a1010}
+
+.chip-row{display:flex;flex-wrap:wrap;gap:7px;margin:14px 0}
+.chip{font-family:'JetBrains Mono',monospace;font-size:.64rem;padding:3px 10px;border-radius:20px;border:1px solid;letter-spacing:.04em}
+.ch1{background:var(--v1l);color:var(--v1);border-color:var(--v1b)}.ch2{background:var(--v2l);color:var(--v2);border-color:var(--v2b)}
+.ch3{background:var(--v3l);color:var(--v3);border-color:var(--v3b)}.ch4{background:var(--v4l);color:var(--v4);border-color:var(--v4b)}
+.chk{background:#f0ede8;color:#444;border-color:var(--border2)}
+
+.btn-sm{font-family:'Outfit',sans-serif;font-weight:600;font-size:.72rem;letter-spacing:.04em;text-transform:uppercase;padding:8px 16px;border-radius:7px;cursor:pointer;border:1px solid;transition:all .15s}
+.btn-sec{background:transparent;color:var(--muted);border-color:var(--border)}.btn-sec:hover{border-color:var(--border2);color:var(--ink)}
+
+@media(max-width:640px){
+  .hero{padding:36px 22px 28px}.section{padding:30px 16px 60px}
+  .bsc-grid{grid-template-columns:1fr}.cs-row{grid-template-columns:1fr}
+  .cs-term{border-right:none;border-bottom:1px solid var(--border)}
+  .fc-grid{grid-template-columns:1fr}.tab-btn{padding:13px 15px;font-size:.7rem}
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Unicorn Academy · Sesión Extra</div>
+    <h1 class="hero-title">Repaso <em>general</em><br>del módulo</h1>
+    <p class="hero-desc">Sesión de revisión y dudas donde Alfons repasó todo el módulo de Google Sheets: desde estructuras de datos hasta QUERY y Dashboard BSC, con preguntas reales de los alumnos.</p>
+    <div class="hero-pills">
+      <span class="hero-pill" onclick="showTab('resumen',this)">Resumen</span>
+      <span class="hero-pill active" onclick="showTab('conceptos',this)">Conceptos</span>
+      <span class="hero-pill" onclick="showTab('cheatsheet',this)">Cheatsheet</span>
+      <span class="hero-pill" onclick="showTab('flashcards',this)">Flashcards</span>
+      <span class="hero-pill" onclick="showTab('quiz',this)">Quiz</span>
+    </div>
+  </div>
+</div>
+
+<nav class="tab-nav">
+  <button class="tab-btn" onclick="showTab('resumen',this)">📋 Resumen</button>
+  <button class="tab-btn active" onclick="showTab('conceptos',this)">📚 Conceptos</button>
+  <button class="tab-btn" onclick="showTab('cheatsheet',this)">⚡ Cheatsheet</button>
+  <button class="tab-btn" onclick="showTab('flashcards',this)">🃏 Flashcards</button>
+  <button class="tab-btn" onclick="showTab('quiz',this)">✏️ Quiz</button>
+</nav>
+
+<!-- ═══════════ RESUMEN ═══════════ -->
+<div class="section" id="tab-resumen">
+  <div class="sec-label">Vista general</div>
+  <h2 class="sec-title">¿Qué pasó en esta sesión?</h2>
+  <p class="sec-sub">Sesión de repaso y preguntas. Alfons revisó el módulo completo en orden y respondió dudas concretas de los alumnos.</p>
+
+  <div class="quote-box">
+    <div class="quote-label">💬 Alfons abriendo la sesión</div>
+    <div class="quote-text">"No hay dudas, pues entonces vamos a hacer un repaso general. Quería hacer un recordatorio de todo lo que vimos en las primeras sesiones — para que tengamos constancia ahora y que tenga todo más sentido."</div>
+  </div>
+
+  <div class="cc cc1">
+    <div class="cc-header"><div class="cc-title">Orden del repaso — qué se cubrió</div><div class="cc-badge b1">Mapa</div></div>
+    <div class="cc-body">
+      <ul>
+        <li><strong>Datos en formato tabular:</strong> fila, columna, celda. Por qué todo aparece en tablas.</li>
+        <li><strong>Fact Tables vs Dimension Tables:</strong> qué guardan, con qué frecuencia se actualizan.</li>
+        <li><strong>Métricas vs Dimensiones:</strong> el patrón OPERACIÓN + MÉTRICA + DIMENSIÓN.</li>
+        <li><strong>IDs, PK, FK y tipos de relaciones</strong> (1:1, 1:N) — por qué afectan a BUSCARV.</li>
+        <li><strong>Frameworks:</strong> BSC, AARRR, HEART. Por qué el BSC para este caso.</li>
+        <li><strong>El Business Case — Unicorn Espresso:</strong> la doble campaña (carta + LE), grupos y tablas.</li>
+        <li><strong>4 perspectivas BSC aplicadas al caso:</strong> métricas de cada una.</li>
+        <li><strong>BUSCARV (VLOOKUP):</strong> para qué sirve, límite de la relación 1:N.</li>
+        <li><strong>Fórmulas clave:</strong> SUMA, SUMAR.SI (SUMIF), Lift %, ROI, segmentos.</li>
+        <li><strong>QUERY:</strong> SELECT, WHERE, GROUP BY. Relación con SQL.</li>
+        <li><strong>Dashboard BSC:</strong> "teoría de los cuadrantes", diseño, Power BI vs Sheets.</li>
+        <li><strong>Dudas de alumnos:</strong> criterios para elegir métricas, penetración, próximos pasos.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="cc cc4">
+    <div class="cc-header"><div class="cc-title">Mensaje de cierre de Alfons</div><div class="cc-badge b4">Motivación</div></div>
+    <div class="cc-body">
+      <div class="tip tip-quote">Alfons: "Es normal que estéis abrumados. Estoy seguro que todos trabajáis o tenéis 1.000 cosas a la vez. <strong>Paciencia, reved los vídeos, preguntad.</strong> Ahora no entendéis algo pero cuando veáis Power BI veréis que los fundamentos son iguales. Lo que os va a ir bien es esa práctica constante — cosas que quizás ahora no veis claras, poco a poco se van a ver."</div>
+    </div>
+  </div>
+
+  <div class="chip-row">
+    <span class="chip ch1">Fact / Dim</span><span class="chip ch1">BSC</span>
+    <span class="chip ch2">BUSCARV</span><span class="chip ch2">SUMAR.SI</span>
+    <span class="chip ch3">Lift · ROI</span><span class="chip ch3">Penetración</span>
+    <span class="chip ch4">QUERY</span><span class="chip chk">Dashboard</span>
+  </div>
+</div>
+
+<!-- ═══════════ CONCEPTOS ═══════════ -->
+<div class="section active" id="tab-conceptos">
+  <div class="sec-label">Todos los temas del repaso</div>
+  <h2 class="sec-title">Conceptos repasados en la sesión</h2>
+  <p class="sec-sub">En el orden exacto en que Alfons los revisó, incluyendo las preguntas reales de los alumnos y las respuestas clave.</p>
+
+  <div class="divider"><span>Bloque 1 · Estructura de datos</span></div>
+
+  <div class="cc cc1">
+    <div class="cc-header"><div class="cc-title">Datos en formato tabular — el punto de partida</div><div class="cc-badge b1">Fundamentos</div></div>
+    <div class="cc-body">
+      <p>Como analistas de datos, la mayoría de veces trabajamos a través de tablas. Toda tabla tiene:</p>
+      <ul>
+        <li><strong>Fila</strong> → un registro individual (una compra, un cliente)</li>
+        <li><strong>Columna</strong> → una característica (nombre, importe, segmento)</li>
+        <li><strong>Celda</strong> → el valor concreto en la intersección</li>
+      </ul>
+      <p>Las tablas no se explotan de forma arbitraria — siguen una estructura organizada en <strong>Facts</strong> y <strong>Dimensions</strong>. Eso hace que el análisis sea más óptimo y la estructura de los esquemas más clara.</p>
+    </div>
+  </div>
+
+  <div class="cc cc1">
+    <div class="cc-header"><div class="cc-title">Fact Tables vs Dimension Tables — la diferencia clave</div><div class="cc-badge b1">Estructura</div></div>
+    <div class="cc-body">
+      <p>La diferencia principal está en <strong>con qué frecuencia se actualiza el dato</strong>:</p>
+      <div class="tbl-wrap">
+        <table class="dtbl">
+          <thead><tr><th>Tipo</th><th>Guarda</th><th>Frecuencia</th><th>Ejemplo en el caso</th></tr></thead>
+          <tbody>
+            <tr><td class="key c2">Fact Table</td><td>Transacciones, eventos</td><td>Alta — puede haber +10.000 entradas al día</td><td>order_line_table — cada venta</td></tr>
+            <tr><td class="key c1">Dimension Table</td><td>Información de entidades (clientes, productos)</td><td>Baja — un cliente no cambia sus datos constantemente</td><td>client_table — ficha de cada cliente</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="tip tip-quote">Alfons: "En el caso de clientes, no nos van a entrar tantos clientes nuevos de forma diaria. Un cliente no va a cambiar mucho su información personal — puede mudarse, sí, pero no pasa de forma constante."</div>
+    </div>
+  </div>
+
+  <div class="cc cc2">
+    <div class="cc-header"><div class="cc-title">Métricas vs Dimensiones — el patrón universal</div><div class="cc-badge b2">Patrón</div></div>
+    <div class="cc-body">
+      <p>Como analistas, todo lo que hacemos sigue este patrón:</p>
+      <div class="fblock fb2">
+        <span class="acc">[ OPERACIÓN ]</span> sobre <span class="acc">[ MÉTRICA ]</span> por <span class="acc">[ DIMENSIÓN ]</span><br><br>
+        <span class="cm">// Ejemplo del caso:</span><br>
+        <span class="fn">SUMA</span> de <span class="str">NB_SLEEVES</span> por <span class="str">CLIENT_SEGMENT</span>
+      </div>
+      <div class="qa-box">
+        <div class="qa-label">Pregunta en clase</div>
+        <div class="qa-q">¿COFFEE_PRODUCT es una métrica o una dimensión?</div>
+        <div class="qa-a">Es una <strong>dimensión</strong> — no se suma, se usa para agrupar o filtrar. Lo que se suma es NB_SLEEVES (las cajas vendidas). COFFEE_PRODUCT es el nombre del café → con eso filtrás o agrupás.</div>
+      </div>
+      <div class="tip tip-warn">CLIENT_SEGMENT también es dimensión aunque sea un número (1 al 6). La clave no es si es número o texto — es si lo vas a SUMAR o a AGRUPAR.</div>
+    </div>
+  </div>
+
+  <div class="cc cc3">
+    <div class="cc-header"><div class="cc-title">IDs, PK, FK y tipos de relaciones entre tablas</div><div class="cc-badge b3">Relaciones</div></div>
+    <div class="cc-body">
+      <p>Los identificadores (IDs) permiten conectar tablas entre sí. Los informáticos asignan números únicos a cada entidad para no repetir texto.</p>
+      <div class="tbl-wrap">
+        <table class="dtbl">
+          <thead><tr><th>Concepto</th><th>Dónde está</th><th>¿Se repite?</th></tr></thead>
+          <tbody>
+            <tr><td class="key c2">Primary Key (PK)</td><td>Dimension Table — client_table</td><td>No — aparece 1 vez por cliente</td></tr>
+            <tr><td class="key c3">Foreign Key (FK)</td><td>Fact Table — order_line_table</td><td>Sí — un cliente puede tener N pedidos</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="margin-top:10px"><strong>Tipos de relaciones:</strong></p>
+      <ul>
+        <li><strong>1:1</strong> — un registro en cada tabla</li>
+        <li><strong>1:N</strong> — un cliente puede tener muchos pedidos (la más frecuente)</li>
+        <li><strong>N:N</strong> — muchos a muchos (no se puede usar BUSCARV directamente)</li>
+      </ul>
+      <div class="tip tip-ok">Para BUSCARV funcione correctamente, necesitamos relación 1:N — el CLIENT_ID debe aparecer <em>una sola vez</em> en la tabla de referencia (client_table). Si hay N:N, BUSCARV no puede utilizarse de forma correcta.</div>
+    </div>
+  </div>
+
+  <div class="divider"><span>Bloque 2 · Frameworks y Business Case</span></div>
+
+  <div class="cc cc1">
+    <div class="cc-header"><div class="cc-title">Los frameworks de análisis — no somos magos</div><div class="cc-badge b1">Frameworks</div></div>
+    <div class="cc-body">
+      <p>Como analistas, no tenemos una bola de cristal. Usamos <strong>procesos estructurados</strong> para analizar de forma sistemática. En este módulo vimos 3 frameworks:</p>
+      <div class="tbl-wrap">
+        <table class="dtbl">
+          <thead><tr><th>Framework</th><th>Cuándo usarlo</th></tr></thead>
+          <tbody>
+            <tr><td class="key c1">BSC ✓ (el nuestro)</td><td>Empresa establecida evaluando resultados. 4 perspectivas: Financiera, Cliente, Procesos, Innovación.</td></tr>
+            <tr><td class="key">AARRR</td><td>Producto digital con embudo: Acquisition, Activation, Retention, Revenue, Referral.</td></tr>
+            <tr><td class="key">HEART</td><td>Experiencia de usuario dentro de una app o producto.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="qa-box">
+        <div class="qa-label">Pregunta de Lucas en clase</div>
+        <div class="qa-q">¿Qué criterios se usan para definir las métricas?</div>
+        <div class="qa-a">El framework BSC guía qué métricas elegir a través de sus 4 perspectivas. A partir de las preguntas de cada perspectiva, listás las métricas que las responden. No es determinista — también hay una parte de criterio e iteración: calculás, ves si aporta valor, y ajustás.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cc cc2">
+    <div class="cc-header"><div class="cc-title">El Business Case — Unicorn Espresso</div><div class="cc-badge b2">Caso</div></div>
+    <div class="cc-body">
+      <ul>
+        <li><strong>Empresa:</strong> Unicorn Espresso — cápsulas de café premium (tipo Nespresso), 35.903 clientes.</li>
+        <li><strong>Doble campaña:</strong> envío de carta física al 50% de clientes + lanzamiento de 2 ediciones limitadas (Caffè Venezia LE y Café Istanbul LE).</li>
+        <li><strong>Coste campaña:</strong> €27.000. <strong>Precio por sleeve:</strong> €4,50 (sleeve = caja de 10 cápsulas).</li>
+        <li><strong>Grupo tratamiento:</strong> 50% que recibió la carta. <strong>Grupo control:</strong> 50% que no recibió nada.</li>
+      </ul>
+      <div class="tip tip-warn">En un mundo ideal, no se testearían 2 cosas a la vez (carta + LE). En la realidad, todo se lanza junto. El analista trabaja con eso y es transparente sobre las limitaciones.</div>
+
+      <p style="margin-top:12px"><strong>Las 2 tablas del caso:</strong></p>
+      <div class="tbl-wrap">
+        <table class="dtbl">
+          <thead><tr><th>Tabla</th><th>Tipo</th><th>Columnas</th><th>Granularidad</th></tr></thead>
+          <tbody>
+            <tr><td class="key c1">client_table</td><td>Dimensión</td><td>CLIENT_ID · CLIENT_SEGMENT · AVG_CONSO · AVG_BASKET_SIZE · RECEIVED_COMMUNICATION</td><td>1 fila = 1 cliente</td></tr>
+            <tr><td class="key c2">order_line_table</td><td>Fact</td><td>CLIENT_ID · NB_SLEEVES · ORDER_ID · COFFEE_PRODUCT</td><td>1 fila = 1 línea de pedido</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"><span>Bloque 3 · Las 4 perspectivas BSC aplicadas</span></div>
+
+  <div class="cc cc1">
+    <div class="cc-header"><div class="cc-title">BSC aplicado al caso — qué se respondió en cada perspectiva</div><div class="cc-badge b1">BSC</div></div>
+    <div class="cc-body">
+      <div class="bsc-grid">
+        <div class="bsc-card bsc-fin">
+          <div class="bsc-ico">💰</div>
+          <div class="bsc-label">Financiera</div>
+          <div class="bsc-q">"¿Fue rentable?"</div>
+          <div class="bsc-m">Revenue total · Revenue por segmento · Revenue mailing vs control · Lift % · ROI</div>
+        </div>
+        <div class="bsc-card bsc-cli">
+          <div class="bsc-ico">👥</div>
+          <div class="bsc-label">Cliente</div>
+          <div class="bsc-q">"¿Quiénes son?"</div>
+          <div class="bsc-m">Perfilado de cliente · AVG_CONSO · AVG_BASKET_SIZE · Frecuencia de compra</div>
+        </div>
+        <div class="bsc-card bsc-pro">
+          <div class="bsc-ico">⚙️</div>
+          <div class="bsc-label">Procesos</div>
+          <div class="bsc-q">"¿Funcionó la carta?"</div>
+          <div class="bsc-m">Conversión grupo mailing vs control · COMPRÓ (columna auxiliar) · Cobertura %</div>
+        </div>
+        <div class="bsc-card bsc-inn">
+          <div class="bsc-ico">🚀</div>
+          <div class="bsc-label">Innovación</div>
+          <div class="bsc-q">"¿Qué pasó con los LE?"</div>
+          <div class="bsc-m">Unidades LE vendidas · Venezia vs Istanbul · Penetración de mercado</div>
+        </div>
+      </div>
+
+      <div class="qa-box" style="margin-top:14px">
+        <div class="qa-label">Repaso en clase — 3 métricas de cliente</div>
+        <div class="qa-q">¿Cuáles son las 3 variables que definen un cliente en la perspectiva Cliente?</div>
+        <div class="qa-a"><strong>1. Consumo promedio (AVG_CONSO)</strong> — cuántas cápsulas consume al mes.<br><strong>2. Basket promedio (AVG_BASKET_SIZE)</strong> — cuántos productos trae en cada cesta.<br><strong>3. Frecuencia</strong> — cada cuánto va a la tienda. (Respondida por Maryangel en clase.)</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"><span>Bloque 4 · Cálculo de métricas</span></div>
+
+  <div class="cc cc2">
+    <div class="cc-header"><div class="cc-title">Enriquecer la tabla — el Paso 0</div><div class="cc-badge b2">BUSCARV</div></div>
+    <div class="cc-body">
+      <p>Antes de calcular cualquier métrica, se importaron 2 columnas de client_table a order_line_table usando <strong>BUSCARV (VLOOKUP)</strong>:</p>
+      <ul>
+        <li><strong>CLIENT_SEGMENT</strong> → para saber el segmento de ese cliente en cada pedido</li>
+        <li><strong>RECEIVED_COMMUNICATION</strong> → para saber si recibió mailing o no</li>
+      </ul>
+      <p>Esto creó la <strong>"tabla enriquecida"</strong> que permitía responder todas las métricas de forma más rápida y directa.</p>
+      <div class="fblock fb2">
+        <span class="cm">// Traer CLIENT_SEGMENT (columna 2 de client_table):</span><br>
+        <span class="fn">=BUSCARV(</span><span class="str">A2</span><span class="kw">;</span> <span class="str">client_table!A:E</span><span class="kw">;</span> <span class="num">2</span><span class="kw">;</span> <span class="kw">FALSO</span><span class="fn">)</span><br><br>
+        <span class="cm">// Traer RECEIVED_COMMUNICATION (columna 5):</span><br>
+        <span class="fn">=BUSCARV(</span><span class="str">A2</span><span class="kw">;</span> <span class="str">client_table!A:E</span><span class="kw">;</span> <span class="num">5</span><span class="kw">;</span> <span class="kw">FALSO</span><span class="fn">)</span>
+      </div>
+      <div class="tip tip-warn">BUSCARV necesita relación 1:N — el CLIENT_ID debe aparecer UNA SOLA VEZ en client_table. Si la relación fuera N:N, no funcionaría correctamente.</div>
+    </div>
+  </div>
+
+  <div class="cc cc3">
+    <div class="cc-header"><div class="cc-title">Fórmulas clave y resultados del caso</div><div class="cc-badge b3">Fórmulas</div></div>
+    <div class="cc-body">
+      <div class="tbl-wrap">
+        <table class="dtbl">
+          <thead><tr><th>Qué calculamos</th><th>Fórmula</th><th>Resultado</th></tr></thead>
+          <tbody>
+            <tr><td>Revenue total (sleeves)</td><td class="key c2">=SUMA(NB_SLEEVES) × 4,50</td><td>Revenue total del período</td></tr>
+            <tr><td>Revenue por segmento</td><td class="key c2">=SUMAR.SI(segmento; X; sleeves)</td><td>Ventas de cada tipo de cliente</td></tr>
+            <tr><td>Revenue grupo mailing</td><td class="key c2">=SUMAR.SI(comm; 1; sleeves)</td><td>El grupo con carta vendió mucho más</td></tr>
+            <tr><td>Revenue grupo control</td><td class="key c2">=SUMAR.SI(comm; 0; sleeves)</td><td>Referencia sin campaña</td></tr>
+            <tr><td>Lift porcentual</td><td class="key c3">(mailing − control) / control</td><td><strong>+61%</strong> más ventas con carta</td></tr>
+            <tr><td>ROI</td><td class="key c3">(Lift€ − 27.000) / 27.000</td><td><strong>10,67</strong> — €10,67 por cada €1 invertido</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="tip tip-quote">Alfons: "El 61% más de ventas al enviar la carta — y un ROI de 10,67. Ojalá siempre pasara eso. Es un caso inaudito."</div>
+    </div>
+  </div>
+
+  <div class="cc cc3">
+    <div class="cc-header"><div class="cc-title">Penetración de mercado — concepto y decisión</div><div class="cc-badge b3">Innovación</div></div>
+    <div class="cc-body">
+      <div class="fblock">
+        <span class="acc">Penetración</span> = Sleeves LE vendidas / Total sleeves vendidas × 100
+      </div>
+      <p style="margin-top:10px">¿Qué te permite decidir la penetración?</p>
+      <ul>
+        <li>Si el % es <strong>muy alto</strong> (ej: 90%) → el producto es un superéxito → <strong>mantenerlo de forma permanente</strong> en el catálogo.</li>
+        <li>Si el % es <strong>bajo pero esperado</strong> (ej: 5%) → edición limitada normal → <strong>repetirla en el futuro, pero no hacerla permanente</strong>.</li>
+        <li>Si el % es <strong>muy bajo con stock disponible</strong> → puede que no haya funcionado, o que no había stock suficiente → hay que medir el tiempo de agotamiento.</li>
+      </ul>
+      <div class="qa-box">
+        <div class="qa-label">Pregunta de Mauro en clase</div>
+        <div class="qa-q">¿Cómo sé si el % de penetración fue bueno o malo?</div>
+        <div class="qa-a">Siempre se necesita un <strong>benchmark</strong> — un valor de referencia del mercado o de la propia empresa. Sin ese contexto, el número solo no dice si fue bien o mal. Lo mejor es que la empresa te dé ese valor objetivo antes del análisis.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"><span>Bloque 5 · QUERY y Dashboard</span></div>
+
+  <div class="cc cc4">
+    <div class="cc-header"><div class="cc-title">QUERY — como una pivot table pero más flexible</div><div class="cc-badge b4">QUERY</div></div>
+    <div class="cc-body">
+      <p>QUERY hizo lo mismo que las fórmulas SUMAR.SI — pero de forma más ágil y programática. Alfons lo describió como "una pivot table pero de manera mucho más flexible".</p>
+      <div class="fblock">
+        <span class="cm">// Ejemplo: revenue por segmento</span><br>
+        <span class="fn">=QUERY(</span><span class="str">1.Enriquecer!A:S</span><span class="kw">;</span><br>
+        &nbsp;&nbsp;<span class="str">"SELECT E, SUM(B)</span><br>
+        &nbsp;&nbsp;&nbsp;<span class="str">GROUP BY E"</span><span class="kw">;</span> <span class="num">1</span><span class="fn">)</span><br><br>
+        <span class="cm">// Con filtro — solo segmento 1:</span><br>
+        <span class="fn">=QUERY(</span><span class="str">A:S</span><span class="kw">;</span><br>
+        &nbsp;&nbsp;<span class="str">"SELECT E, SUM(B)</span><br>
+        &nbsp;&nbsp;&nbsp;<span class="str">WHERE E = 1</span><br>
+        &nbsp;&nbsp;&nbsp;<span class="str">GROUP BY E"</span><span class="kw">;</span> <span class="num">1</span><span class="fn">)</span>
+      </div>
+      <div class="tip tip-ok">QUERY es casi idéntico a SQL. <strong>Lo que aprendiste con QUERY en Sheets te sirve directamente para SQL</strong> — las cláusulas SELECT, WHERE, GROUP BY son las mismas. Solo cambia cómo se especifica la tabla.</div>
+    </div>
+  </div>
+
+  <div class="cc cc4">
+    <div class="cc-header"><div class="cc-title">Dashboard BSC — diseño y herramientas</div><div class="cc-badge b4">Dashboard</div></div>
+    <div class="cc-body">
+      <p>El Dashboard organiza visualmente los resultados de las 4 perspectivas BSC. Alfons repasó su regla de diseño:</p>
+      <ul>
+        <li><strong>"Teoría de los cuadrantes":</strong> máximo 4 cuadrantes por pantalla × máximo 4 elementos por cuadrante.</li>
+        <li>Los gráficos pueden ser horizontales o verticales — depende de cómo se quiera leer el dato.</li>
+        <li>El objetivo: que un director pueda entenderlo <em>de un vistazo</em>.</li>
+      </ul>
+      <div class="tip tip-quote">Alfons: "Google Sheets para el Dashboard es bastante manual. Lo que ya veréis es que la parte de Dashboards o cuadro de mandos es mucho más sencilla con <strong>Power BI</strong>."</div>
+    </div>
+  </div>
+
+  <div class="divider"><span>Bloque 6 · Próximos pasos</span></div>
+
+  <div class="cc cc1">
+    <div class="cc-header"><div class="cc-title">Qué sigue — Power BI y frameworks avanzados</div><div class="cc-badge b1">Próximos pasos</div></div>
+    <div class="cc-body">
+      <ul>
+        <li><strong>Semana de descanso</strong> (entre comillas) — para reflexionar y practicar.</li>
+        <li><strong>Próximo módulo: frameworks avanzados</strong> — aprenderán otros frameworks con más detalle.</li>
+        <li><strong>Power BI</strong> — los dashboards serán mucho más naturales e intuitivos que en Sheets.</li>
+        <li><strong>SQL y Python</strong> — todo lo de QUERY y los fundamentos que vieron sirven de base.</li>
+      </ul>
+      <div class="tip tip-ok">Los fundamentos son los mismos para todas las herramientas. Fact Tables, Dimension Tables, métricas vs dimensiones, el patrón OPERACIÓN + MÉTRICA + DIMENSIÓN — todo eso vale para Sheets, Power BI, SQL y Python.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ CHEATSHEET ═══════════ -->
+<div class="section" id="tab-cheatsheet">
+  <div class="sec-label">Referencia rápida</div>
+  <h2 class="sec-title">Cheatsheet del repaso</h2>
+  <p class="sec-sub">Todo lo que Alfons repasó en la sesión, comprimido para leer en 5 minutos.</p>
+
+  <div class="cs-wrap">
+    <div class="cs-row"><div class="cs-term">Fact Table</div><div class="cs-def">Registra transacciones/eventos. Crece constantemente (muchas entradas al día). Ejemplo: order_line_table. Contiene NB_SLEEVES — la métrica principal.</div></div>
+    <div class="cs-row"><div class="cs-term">Dimension Table</div><div class="cs-def">Describe entidades (clientes, productos). Cambia poco. Ejemplo: client_table. Contiene CLIENT_SEGMENT, AVG_CONSO, AVG_BASKET_SIZE, RECEIVED_COMMUNICATION.</div></div>
+    <div class="cs-row"><div class="cs-term">Granularidad</div><div class="cs-def">Qué representa CADA FILA. Siempre hay que preguntarlo primero. client_table: 1 fila = 1 cliente. order_line_table: 1 fila = 1 línea de pedido.</div></div>
+    <div class="cs-row"><div class="cs-term">Métrica</div><div class="cs-def">Lo que se SUMA o PROMEDIA. Responde ¿cuánto? Ejemplo: NB_SLEEVES (número de cajas de cápsulas).</div></div>
+    <div class="cs-row"><div class="cs-term">Dimensión</div><div class="cs-def">Lo que se usa para AGRUPAR o FILTRAR. Responde ¿por qué categoría? Ejemplo: CLIENT_SEGMENT, COFFEE_PRODUCT, RECEIVED_COMMUNICATION. Puede ser un número — lo que importa es si se suma o agrupa.</div></div>
+    <div class="cs-row"><div class="cs-term">Patrón universal</div><div class="cs-def">[ OPERACIÓN ] sobre [ MÉTRICA ] por [ DIMENSIÓN ]. Ejemplo: SUMA de NB_SLEEVES por CLIENT_SEGMENT. Todas las fórmulas del módulo siguen este patrón.</div></div>
+    <div class="cs-row"><div class="cs-term">PK (Primary Key)</div><div class="cs-def">ID único que NO se repite. Está en la Dimension Table. Ejemplo: CLIENT_ID en client_table — cada cliente tiene un único ID.</div></div>
+    <div class="cs-row"><div class="cs-term">FK (Foreign Key)</div><div class="cs-def">Ese mismo ID en la Fact Table, donde SÍ se repite (un cliente puede tener muchos pedidos). CLIENT_ID en order_line_table.</div></div>
+    <div class="cs-row"><div class="cs-term">Relación 1:N</div><div class="cs-def">1 cliente → N pedidos. La más frecuente. Necesaria para que BUSCARV funcione correctamente. Si es N:N, BUSCARV no puede utilizarse de forma correcta.</div></div>
+    <div class="cs-row"><div class="cs-term">BSC</div><div class="cs-def">Balanced Scorecard. 4 perspectivas: Financiera (¿fue rentable?), Cliente (¿quiénes?), Procesos (¿funcionó?), Innovación (¿qué aprendemos?). Se usa para empresas establecidas evaluando una campaña.</div></div>
+    <div class="cs-row"><div class="cs-term">Tabla enriquecida</div><div class="cs-def">order_line_table + CLIENT_SEGMENT + RECEIVED_COMMUNICATION. Paso 0 — sin ella no se pueden calcular las métricas condicionadas por segmento o por mailing.</div></div>
+    <div class="cs-row"><div class="cs-term">BUSCARV / VLOOKUP</div><div class="cs-def">Conecta dos tablas por un ID. Necesita relación 1:N. Sintaxis: =BUSCARV(valor; tabla; nº_columna; FALSO). El índice se cuenta desde la primera columna del rango.</div></div>
+    <div class="cs-row"><div class="cs-term">SUMAR.SI / SUMIF</div><div class="cs-def">Suma con UNA condición. =SUMAR.SI(rango_criterio; criterio; rango_suma). Rango_suma al FINAL. Ejemplo: sleeves del grupo que recibió mailing.</div></div>
+    <div class="cs-row"><div class="cs-term">Lift porcentual</div><div class="cs-def">(Revenue_mailing − Revenue_control) / Revenue_control. Resultado del caso: +61%. El grupo con carta vendió 61% más.</div></div>
+    <div class="cs-row"><div class="cs-term">ROI</div><div class="cs-def">(Lift€ − Coste_campaña) / Coste_campaña. Resultado del caso: 10,67. Por cada €1 en cartas, se obtuvieron €10,67 de retorno.</div></div>
+    <div class="cs-row"><div class="cs-term">Penetración</div><div class="cs-def">Sleeves LE vendidas / Total sleeves × 100. Mide qué % del total son las ediciones limitadas. Necesita benchmark para interpretar si fue bien o mal.</div></div>
+    <div class="cs-row"><div class="cs-term">Sleeve</div><div class="cs-def">Unidad de medida del caso. 1 sleeve = caja de 10 cápsulas. Precio: €4,50 por sleeve. NB_SLEEVES es la métrica de volumen del caso.</div></div>
+    <div class="cs-row"><div class="cs-term">QUERY</div><div class="cs-def">Equivalente a SQL en Sheets. Cláusulas: SELECT (qué columnas), WHERE (filtrar), GROUP BY (agrupar), ORDER BY (ordenar), LABEL (renombrar). Todo en inglés. Trabaja sobre 1 tabla a la vez.</div></div>
+    <div class="cs-row"><div class="cs-term">Dashboard BSC</div><div class="cs-def">4 cuadrantes (uno por perspectiva BSC). Máximo 4 elementos por cuadrante. El director debe entenderlo de un vistazo. En Sheets es manual — Power BI es mejor para dashboards formales.</div></div>
+    <div class="cs-row"><div class="cs-term">3 variables del cliente</div><div class="cs-def">Consumo promedio (AVG_CONSO), Basket promedio (AVG_BASKET_SIZE) y Frecuencia de compra. Las 3 juntas permiten definir el perfil del cliente de forma completa.</div></div>
+  </div>
+</div>
+
+<!-- ═══════════ FLASHCARDS ═══════════ -->
+<div class="section" id="tab-flashcards">
+  <div class="sec-label">Memorización activa</div>
+  <h2 class="sec-title">Flashcards — Tocá para ver la respuesta</h2>
+  <p class="sec-sub">Intentá responder antes de voltear. Las que te cuesten, repetílas.</p>
+
+  <div class="fc-grid">
+
+    <div class="fc" onclick="this.classList.toggle('flipped')">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-q">¿Cuál es la diferencia principal entre una <strong>Fact Table</strong> y una <strong>Dimension Table</strong>?</div><div class="fc-hint">Estructura de datos</div></div>
+        <div class="fc-back"><div class="fc-a"><strong>Fact</strong>: registra eventos/transacciones. Crece mucho y rápido (miles de entradas al día).<br><strong>Dimension</strong>: describe entidades. Cambia poco (un cliente no cambia sus datos constantemente).</div><div class="fc-cat">Bloque 1</div></div>
+      </div>
+    </div>
+
+    <div class="fc" onclick="this.classList.toggle('flipped')">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-q">¿COFFEE_PRODUCT es una <strong>métrica</strong> o una <strong>dimensión</strong>? ¿Por qué?</div><div class="fc-hint">Métricas vs Dimensiones</div></div>
+        <div class="fc-back"><div class="fc-a">Es una <strong>dimensión</strong>. No se suma — se usa para agrupar o filtrar (¿cuántas sleeves vendí de Venezia LE?). Lo que se suma es NB_SLEEVES.</div><div class="fc-cat">Bloque 1</div></div>
+      </div>
+    </div>
+
+    <div class="fc" onclick="this.classList.toggle('flipped')">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-q">¿Por qué BUSCARV necesita una relación <strong>1:N</strong> para funcionar bien?</div><div class="fc-hint">BUSCARV · Relaciones</div></div>
+        <div class="fc-back"><div class="fc-a">Porque BUSCARV trae solo la <strong>primera coincidencia</strong>. Si el ID aparece varias veces en la tabla de referencia (N:N), solo trae el primer resultado — lo cual es incorrecto. Necesita que el ID aparezca una sola vez (1 lado de la relación 1:N).</div><div class="fc-cat">Bloque 4</div></div>
+      </div>
+    </div>
+
+    <div class="fc" onclick="this.classList.toggle('flipped')">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-q">¿Cuáles son las <strong>3 variables</strong> que definen el perfil de un cliente?</div><div class="fc-hint">Perspectiva Cliente · BSC</div></div>
+        <div class="fc-back"><div class="fc-a">1. <strong>AVG_CONSO</strong> — consumo promedio mensual (cuántas cápsulas al mes).<br>2. <strong>AVG_BASKET_SIZE</strong> — tamaño promedio de cesta (cuántos productos por visita).<br>3. <strong>Frecuencia</strong> — cada cuánto va a la tienda.</div><div class="fc-cat">Bloque 3</div></div>
+      </div>
+    </div>
+
+    <div class="fc" onclick="this.classList.toggle('flipped')">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-q">El grupo que recibió la carta vendió un <strong>61% más</strong>. ¿Qué métrica expresa eso y cuál es su fórmula?</div><div class="fc-hint">Perspectiva Financiera</div></div>
+        <div class="fc-back"><div class="fc-a"><strong>Lift porcentual</strong> = (Revenue_mailing − Revenue_control) / Revenue_control<br><br>El 61% significa que por haber enviado la carta, se vendió un 61% más que el grupo sin carta.</div><div class="fc-cat">Bloque 4</div></div>
+      </div>
+    </div>
+
+    <div class="fc" onclick="this.classList.toggle('flipped')">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-q">El ROI fue <strong>10,67</strong>. ¿Qué significa eso en palabras concretas?</div><div class="fc-hint">ROI · Financiero</div></div>
+        <div class="fc-back"><div class="fc-a">Por cada <strong>€1 invertido</strong> en las cartas físicas, la empresa obtuvo <strong>€10,67 de retorno</strong> en revenue adicional. Es un ROI excepcionalmente positivo — Alfons lo llamó "un caso inaudito".</div><div class="fc-cat">Bloque 4</div></div>
+      </div>
+    </div>
+
+    <div class="fc" onclick="this.classList.toggle('flipped')">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-q">¿Para qué sirve la <strong>penetración</strong> de mercado y qué necesitás para interpretarla?</div><div class="fc-hint">Perspectiva Innovación</div></div>
+        <div class="fc-back"><div class="fc-a">Mide qué % del total de ventas corresponde a las ediciones limitadas (Sleeves LE / Total × 100). Para saber si fue buena o mala, necesitás un <strong>benchmark</strong> — un valor de referencia de la empresa o del mercado.</div><div class="fc-cat">Bloque 3</div></div>
+      </div>
+    </div>
+
+    <div class="fc" onclick="this.classList.toggle('flipped')">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-q">¿Qué hace la <strong>"tabla enriquecida"</strong> y por qué es el Paso 0?</div><div class="fc-hint">BUSCARV · Paso previo</div></div>
+        <div class="fc-back"><div class="fc-a">Agrega CLIENT_SEGMENT y RECEIVED_COMMUNICATION a order_line_table usando BUSCARV. Sin ella, no se pueden calcular métricas condicionadas por segmento ni por si recibió mailing — esa info solo existe en client_table.</div><div class="fc-cat">Bloque 4</div></div>
+      </div>
+    </div>
+
+    <div class="fc" onclick="this.classList.toggle('flipped')">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-q">¿En qué se parece <strong>QUERY</strong> a SQL? ¿Cuál es la única diferencia real?</div><div class="fc-hint">QUERY vs SQL</div></div>
+        <div class="fc-back"><div class="fc-a">Son casi iguales: mismas cláusulas (SELECT, WHERE, GROUP BY, ORDER BY). La diferencia: en SQL la tabla se especifica en FROM dentro de la consulta; en QUERY va como argumento externo. SQL también puede hacer JOIN entre varias tablas; QUERY solo trabaja con una.</div><div class="fc-cat">Bloque 5</div></div>
+      </div>
+    </div>
+
+    <div class="fc" onclick="this.classList.toggle('flipped')">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-q">¿Cuáles son las <strong>4 perspectivas del BSC</strong> en el caso Unicorn Espresso?</div><div class="fc-hint">BSC</div></div>
+        <div class="fc-back"><div class="fc-a"><strong>Financiera</strong>: Revenue, Lift %, ROI.<br><strong>Cliente</strong>: Perfilado — consumo, basket, frecuencia.<br><strong>Procesos</strong>: Conversión mailing vs control, COMPRÓ.<br><strong>Innovación</strong>: Unidades LE, Venezia vs Istanbul, penetración.</div><div class="fc-cat">Bloque 3</div></div>
+      </div>
+    </div>
+
+    <div class="fc" onclick="this.classList.toggle('flipped')">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-q">¿Por qué es importante aprender las fórmulas en <strong>inglés</strong>?</div><div class="fc-hint">Consejo práctico</div></div>
+        <div class="fc-back"><div class="fc-a">Todas las herramientas futuras (Power BI, Python, SQL) están en inglés. Si aprendés SUMIF ahora, ya conocés SUM() en Python y SQL. Además, buscar ayuda online y usar IA da mejores resultados en inglés.</div><div class="fc-cat">Bloque 1</div></div>
+      </div>
+    </div>
+
+    <div class="fc" onclick="this.classList.toggle('flipped')">
+      <div class="fc-inner">
+        <div class="fc-front"><div class="fc-q">¿Por qué en un mundo ideal no se testearían la carta y los LE <strong>al mismo tiempo</strong>?</div><div class="fc-hint">Diseño experimental</div></div>
+        <div class="fc-back"><div class="fc-a">Porque al testear dos cosas a la vez (carta + LE), no podés aislar el efecto de cada una. Si las ventas suben, ¿fue por la carta, por los LE o por ambos? En la realidad las empresas lanzan todo junto por tiempo y coste — el analista debe ser transparente sobre esa limitación.</div><div class="fc-cat">Business Case</div></div>
+      </div>
+    </div>
+
+  </div>
+  <div style="text-align:right;margin-top:16px">
+    <button class="btn-sm btn-sec" onclick="document.querySelectorAll('.fc').forEach(c=>c.classList.remove('flipped'))">↺ Reiniciar tarjetas</button>
+  </div>
+</div>
+
+<!-- ═══════════ QUIZ ═══════════ -->
+<div class="section" id="tab-quiz">
+  <div class="sec-label">Autoevaluación</div>
+  <h2 class="sec-title">Quiz de repaso — 12 preguntas</h2>
+  <p class="sec-sub">Cubre todos los bloques de la sesión. Feedback inmediato en cada respuesta.</p>
+
+  <div class="qscore-bar">
+    <div><div class="qscore-num" id="qscore">0 / 12</div><div class="qscore-lbl">respuestas correctas</div></div>
+    <button class="btn-sm btn-sec" onclick="resetQuiz()">↺ Reiniciar</button>
+  </div>
+
+  <div class="q-box"><div class="q-num">Pregunta 1 · Fact vs Dim</div>
+    <div class="q-text">¿Por qué order_line_table es una Fact Table y client_table es una Dimension Table?</div>
+    <div class="q-opts">
+      <button class="q-opt" data-c="0" onclick="qa(this,1)"><span class="oid">A</span>Porque order_line_table tiene más filas</button>
+      <button class="q-opt" data-c="1" onclick="qa(this,1)"><span class="oid">B</span>Porque order_line_table registra transacciones (ventas) que ocurren constantemente, mientras que client_table describe clientes que cambian poco</button>
+      <button class="q-opt" data-c="0" onclick="qa(this,1)"><span class="oid">C</span>Porque client_table tiene más columnas</button>
+      <button class="q-opt" data-c="0" onclick="qa(this,1)"><span class="oid">D</span>Porque order_line_table tiene IDs y client_table no</button>
+    </div>
+    <div class="q-fb" id="f1"></div>
+  </div>
+
+  <div class="q-box"><div class="q-num">Pregunta 2 · Métricas vs Dimensiones</div>
+    <div class="q-text">CLIENT_SEGMENT tiene valores 1, 2, 3, 4, 5, 6. ¿Es una métrica o una dimensión?</div>
+    <div class="q-opts">
+      <button class="q-opt" data-c="0" onclick="qa(this,2)"><span class="oid">A</span>Métrica — es un número y los números siempre son métricas</button>
+      <button class="q-opt" data-c="1" onclick="qa(this,2)"><span class="oid">B</span>Dimensión — aunque sea un número, lo usamos para agrupar o filtrar, no para sumarlo</button>
+      <button class="q-opt" data-c="0" onclick="qa(this,2)"><span class="oid">C</span>Ambas — puede ser las dos cosas según el contexto</button>
+      <button class="q-opt" data-c="0" onclick="qa(this,2)"><span class="oid">D</span>Ninguna — es un identificador, no una métrica ni una dimensión</button>
+    </div>
+    <div class="q-fb" id="f2"></div>
+  </div>
+
+  <div class="q-box"><div class="q-num">Pregunta 3 · Patrón universal</div>
+    <div class="q-text">El CFO pide "total de cajas vendidas por tipo de café". Aplicando el patrón OPERACIÓN + MÉTRICA + DIMENSIÓN, ¿cómo se traduce?</div>
+    <div class="q-opts">
+      <button class="q-opt" data-c="1" onclick="qa(this,3)"><span class="oid">A</span>SUMA de NB_SLEEVES por COFFEE_PRODUCT</button>
+      <button class="q-opt" data-c="0" onclick="qa(this,3)"><span class="oid">B</span>SUMA de COFFEE_PRODUCT por NB_SLEEVES</button>
+      <button class="q-opt" data-c="0" onclick="qa(this,3)"><span class="oid">C</span>PROMEDIO de CLIENT_SEGMENT por NB_SLEEVES</button>
+      <button class="q-opt" data-c="0" onclick="qa(this,3)"><span class="oid">D</span>CONTAR de ORDER_ID por CLIENT_ID</button>
+    </div>
+    <div class="q-fb" id="f3"></div>
+  </div>
+
+  <div class="q-box"><div class="q-num">Pregunta 4 · Relaciones entre tablas</div>
+    <div class="q-text">¿Por qué BUSCARV no funciona correctamente en una relación N:N?</div>
+    <div class="q-opts">
+      <button class="q-opt" data-c="0" onclick="qa(this,4)"><span class="oid">A</span>Porque N:N solo funciona en SQL, no en Google Sheets</button>
+      <button class="q-opt" data-c="1" onclick="qa(this,4)"><span class="oid">B</span>Porque BUSCARV solo trae la primera coincidencia — si el ID aparece varias veces en la tabla de referencia, el resultado es incorrecto</button>
+      <button class="q-opt" data-c="0" onclick="qa(this,4)"><span class="oid">C</span>Porque N:N requiere más de 3 argumentos en BUSCARV</button>
+      <button class="q-opt" data-c="0" onclick="qa(this,4)"><span class="oid">D</span>BUSCARV sí funciona en N:N — lo que no funciona es SUMAR.SI</button>
+    </div>
+    <div class="q-fb" id="f4"></div>
+  </div>
+
+  <div class="q-box"><div class="q-num">Pregunta 5 · BSC</div>
+    <div class="q-text">La pregunta "¿funcionó la campaña de carta?" (comparando conversión de mailing vs control), ¿a qué perspectiva BSC pertenece?</div>
+    <div class="q-opts">
+      <button class="q-opt" data-c="0" onclick="qa(this,5)"><span class="oid">A</span>Financiera — mide si fue rentable</button>
+      <button class="q-opt" data-c="0" onclick="qa(this,5)"><span class="oid">B</span>Cliente — mide el comportamiento de los clientes</button>
+      <button class="q-opt" data-c="1" onclick="qa(this,5)"><span class="oid">C</span>Procesos — mide la eficiencia de la ejecución de la campaña</button>
+      <button class="q-opt" data-c="0" onclick="qa(this,5)"><span class="oid">D</span>Innovación — mide el aprendizaje del lanzamiento</button>
+    </div>
+    <div class="q-fb" id="f5"></div>
+  </div>
+
+  <div class="q-box"><div class="q-num">Pregunta 6 · Tablas del caso</div>
+    <div class="q-text">¿Por qué fue necesario crear la "tabla enriquecida" antes de calcular las métricas?</div>
+    <div class="q-opts">
+      <button class="q-opt" data-c="0" onclick="qa(this,6)"><span class="oid">A</span>Porque Google Sheets no puede trabajar con dos tablas al mismo tiempo</button>
+      <button class="q-opt" data-c="1" onclick="qa(this,6)"><span class="oid">B</span>Porque order_line_table no tenía CLIENT_SEGMENT ni RECEIVED_COMMUNICATION — esa info estaba en client_table. Sin ella, no se podía filtrar por segmento ni por si recibió mailing</button>
+      <button class="q-opt" data-c="0" onclick="qa(this,6)"><span class="oid">C</span>Para reducir el número de filas de order_line_table</button>
+      <button class="q-opt" data-c="0" onclick="qa(this,6)"><span class="oid">D</span>Porque SUMAR.SI no funciona con tablas separadas en pestañas distintas</button>
+    </div>
+    <div class="q-fb" id="f6"></div>
+  </div>
+
+  <div class="q-box"><div class="q-num">Pregunta 7 · Lift y ROI</div>
+    <div class="q-text">El Lift porcentual fue del 61% y el ROI de 10,67. ¿Qué mide cada uno específicamente?</div>
+    <div class="q-opts">
+      <button class="q-opt" data-c="0" onclick="qa(this,7)"><span class="oid">A</span>Lift = retorno por euro invertido · ROI = % de aumento de ventas</button>
+      <button class="q-opt" data-c="1" onclick="qa(this,7)"><span class="oid">B</span>Lift = cuánto % más vendió el grupo con carta vs sin carta · ROI = cuánto retornó por cada euro invertido en la campaña</button>
+      <button class="q-opt" data-c="0" onclick="qa(this,7)"><span class="oid">C</span>Ambos miden lo mismo con distinto formato</button>
+      <button class="q-opt" data-c="0" onclick="qa(this,7)"><span class="oid">D</span>Lift = % de clientes que compraron · ROI = coste de la campaña</button>
+    </div>
+    <div class="q-fb" id="f7"></div>
+  </div>
+
+  <div class="q-box"><div class="q-num">Pregunta 8 · Penetración</div>
+    <div class="q-text">La penetración de los productos LE fue del 5%. Sin más contexto, ¿se puede saber si fue buena o mala?</div>
+    <div class="q-opts">
+      <button class="q-opt" data-c="0" onclick="qa(this,8)"><span class="oid">A</span>Sí — un 5% siempre es bajo, claramente fue un fracaso</button>
+      <button class="q-opt" data-c="0" onclick="qa(this,8)"><span class="oid">B</span>Sí — cualquier número por encima del 3% es siempre exitoso</button>
+      <button class="q-opt" data-c="1" onclick="qa(this,8)"><span class="oid">C</span>No — necesitás un benchmark (valor de referencia del mercado o de la empresa) para poder interpretarlo correctamente</button>
+      <button class="q-opt" data-c="0" onclick="qa(this,8)"><span class="oid">D</span>No se puede calcular sin saber el precio de los productos LE</button>
+    </div>
+    <div class="q-fb" id="f8"></div>
+  </div>
+
+  <div class="q-box"><div class="q-num">Pregunta 9 · QUERY</div>
+    <div class="q-text">Alfons dijo que QUERY "es como una pivot table pero más flexible". ¿Qué ventaja concreta tiene sobre SUMAR.SI?</div>
+    <div class="q-opts">
+      <button class="q-opt" data-c="0" onclick="qa(this,9)"><span class="oid">A</span>Puede trabajar con más de 1 millón de filas (SUMAR.SI no puede)</button>
+      <button class="q-opt" data-c="1" onclick="qa(this,9)"><span class="oid">B</span>Permite obtener múltiples agrupaciones y filtros en una sola fórmula, de forma más ágil y programática, sin escribir una SUMAR.SI por cada segmento</button>
+      <button class="q-opt" data-c="0" onclick="qa(this,9)"><span class="oid">C</span>Es más precisa matemáticamente que SUMAR.SI</button>
+      <button class="q-opt" data-c="0" onclick="qa(this,9)"><span class="oid">D</span>Puede conectar con bases de datos externas</button>
+    </div>
+    <div class="q-fb" id="f9"></div>
+  </div>
+
+  <div class="q-box"><div class="q-num">Pregunta 10 · Dashboard</div>
+    <div class="q-text">¿Cuál es la "teoría de los cuadrantes" de Alfons para diseñar dashboards?</div>
+    <div class="q-opts">
+      <button class="q-opt" data-c="0" onclick="qa(this,10)"><span class="oid">A</span>Usar exactamente 4 gráficos por dashboard, uno por perspectiva BSC</button>
+      <button class="q-opt" data-c="0" onclick="qa(this,10)"><span class="oid">B</span>Dividir el dashboard en cuadrantes de igual tamaño</button>
+      <button class="q-opt" data-c="1" onclick="qa(this,10)"><span class="oid">C</span>Máximo 4 cuadrantes por pantalla × máximo 4 elementos por cuadrante. El director tiene que entenderlo de un vistazo — menos es mejor</button>
+      <button class="q-opt" data-c="0" onclick="qa(this,10)"><span class="oid">D</span>Poner todos los KPIs disponibles para demostrar la profundidad del análisis</button>
+    </div>
+    <div class="q-fb" id="f10"></div>
+  </div>
+
+  <div class="q-box"><div class="q-num">Pregunta 11 · Criterios para elegir métricas</div>
+    <div class="q-text">Lucas preguntó cómo se eligen las métricas. ¿Cuál es la respuesta que dio Alfons?</div>
+    <div class="q-opts">
+      <button class="q-opt" data-c="0" onclick="qa(this,11)"><span class="oid">A</span>Siempre se usan las mismas métricas estándar para todos los casos</button>
+      <button class="q-opt" data-c="0" onclick="qa(this,11)"><span class="oid">B</span>Las métricas las define el CFO — el analista solo las calcula</button>
+      <button class="q-opt" data-c="1" onclick="qa(this,11)"><span class="oid">C</span>El framework BSC guía qué métricas elegir según sus 4 perspectivas. No es determinista — hay una parte de criterio e iteración: calculás, ves si aporta valor, ajustás</button>
+      <button class="q-opt" data-c="0" onclick="qa(this,11)"><span class="oid">D</span>Solo se calculan métricas para las que ya hay datos disponibles, sin planificación previa</button>
+    </div>
+    <div class="q-fb" id="f11"></div>
+  </div>
+
+  <div class="q-box"><div class="q-num">Pregunta 12 · Fundamentos transferibles</div>
+    <div class="q-text">Alfons dijo que los fundamentos aprendidos en este módulo valen para otras herramientas. ¿Cuáles mencionó?</div>
+    <div class="q-opts">
+      <button class="q-opt" data-c="0" onclick="qa(this,12)"><span class="oid">A</span>Solo Excel — el resto usa lenguajes completamente distintos</button>
+      <button class="q-opt" data-c="0" onclick="qa(this,12)"><span class="oid">B</span>Únicamente Power BI, porque también es de Microsoft</button>
+      <button class="q-opt" data-c="1" onclick="qa(this,12)"><span class="oid">C</span>Power BI, SQL y Python — las Fact/Dim tables, métricas vs dimensiones y el patrón OPERACIÓN + MÉTRICA + DIMENSIÓN se aplican igual en todos</button>
+      <button class="q-opt" data-c="0" onclick="qa(this,12)"><span class="oid">D</span>Ninguna — cada herramienta tiene su propia lógica desde cero</button>
+    </div>
+    <div class="q-fb" id="f12"></div>
+  </div>
+
+</div>
+
+<script>
+const qfb={
+  1:{ok:"Exacto. La clave es la frecuencia de actualización. order_line_table registra cada venta (pueden ser miles al día) → Fact. client_table describe a los clientes (cambian poco) → Dimension.",bad:"La diferencia no es el número de filas ni de columnas, sino lo que guarda cada tabla y con qué frecuencia se actualiza. Fact = eventos frecuentes. Dimension = entidades estables."},
+  2:{ok:"Correcto. Aunque sea un número, CLIENT_SEGMENT se usa para agrupar (¿cuántas sleeves vendió el segmento 1?) o filtrar (ver solo Champions). No se suma. La clave no es si es número o texto — es si lo SUMÁS o AGRUPÁS.",bad:"Ser un número no hace automáticamente métrica a un campo. CLIENT_SEGMENT = 1, 2, 3... se usa para agrupar y filtrar clientes. No tiene sentido sumarlo. Por eso es una dimensión."},
+  3:{ok:"Perfecto. NB_SLEEVES es la métrica (lo que sumás), COFFEE_PRODUCT es la dimensión (cómo agrupás). SUMA de NB_SLEEVES por COFFEE_PRODUCT = total de cajas por tipo de café.",bad:"El patrón es: OPERACIÓN sobre MÉTRICA por DIMENSIÓN. NB_SLEEVES es lo que sumás (métrica de volumen). COFFEE_PRODUCT es cómo agrupás (dimensión). Nunca al revés."},
+  4:{ok:"Exacto. BUSCARV solo trae la primera coincidencia que encuentra. En una relación N:N, el ID aparece varias veces en la tabla de referencia — BUSCARV siempre traería solo el primer resultado, que puede no ser el correcto.",bad:"El problema es que BUSCARV solo trae la PRIMERA coincidencia. En N:N hay múltiples filas con el mismo ID en la tabla de referencia → solo traería la primera → resultado incorrecto. Por eso necesita relación 1:N."},
+  5:{ok:"Correcto. La perspectiva Procesos mide la eficiencia operativa de la ejecución — en este caso, si la carta generó más compradores que el grupo control. Financiera mide el dinero. Cliente mide quiénes son. Innovación mide los LE.",bad:"La conversión (% que compró tras recibir la carta vs sin carta) mide si el proceso de la campaña funcionó → Perspectiva Procesos. Financiera mediría el revenue. Cliente mediría el perfil. Innovación mediría los LE."},
+  6:{ok:"Exacto. order_line_table tiene los pedidos pero NO sabe si el cliente recibió la carta (eso está en client_table) ni cuál es su segmento. Sin importar esa info con BUSCARV, no se puede filtrar por esas dimensiones.",bad:"El problema es que la información necesaria para las métricas (segmento y si recibió mailing) estaba en client_table, no en order_line_table. Sin enriquecer, no había forma de calcular métricas condicionadas por esas variables."},
+  7:{ok:"Exacto. Son métricas distintas. Lift % = cuánto porcentaje más vendió el grupo con carta respecto al control (+61%). ROI = cuánto retorna por cada euro invertido en la campaña (10,67x).",bad:"Son métricas distintas. Lift % = (mailing - control) / control = cuánto % más vendió el grupo con carta. ROI = (Lift€ - Coste) / Coste = retorno por cada euro invertido."},
+  8:{ok:"Exacto. El % de penetración solo tiene sentido comparado con un benchmark — un valor de referencia del mercado o de la empresa. Sin ese contexto, no se puede saber si el 5% fue un éxito o un fracaso.",bad:"Sin un benchmark, el % de penetración no dice nada por sí solo. Un 5% puede ser excelente (si el mercado espera 2%) o malo (si la empresa esperaba 15%). Siempre se necesita un valor de referencia."},
+  9:{ok:"Correcto. QUERY permite hacer múltiples agrupaciones y filtros en una sola fórmula de forma programática — sin escribir una SUMAR.SI por segmento 1, otra por segmento 2, etc. Es más flexible y ágil para análisis complejos.",bad:"La ventaja de QUERY es la flexibilidad y agilidad: hace en una fórmula lo que antes requería múltiples SUMAR.SI. También se aprende directamente para SQL, que usa las mismas cláusulas."},
+  10:{ok:"Exacto. La 'teoría de los cuadrantes': máximo 4 cuadrantes (uno por perspectiva BSC) × máximo 4 elementos cada uno. El objetivo es que el director entienda el dashboard de un vistazo — menos elementos, más claridad.",bad:"La teoría es: máximo 4 cuadrantes × 4 elementos = 16 elementos como máximo. Y menos es mejor. Poner todo lo que calculaste sobrecarga el dashboard y lo hace ilegible para quien lo tiene que leer en 30 segundos."},
+  11:{ok:"Exacto. El BSC da la dirección (4 perspectivas con sus preguntas), pero elegir las métricas específicas tiene una parte de criterio e iteración. No hay una fórmula determinista — se analiza, se ve si aporta valor, y se ajusta.",bad:"El BSC guía la elección de métricas a través de sus 4 perspectivas. Pero no es un proceso completamente determinista — hay que calcular, evaluar si el resultado aporta insight, y ajustar. El criterio del analista siempre está presente."},
+  12:{ok:"Correcto. Los fundamentos (Fact/Dim, métricas vs dimensiones, patrón OPERACIÓN + MÉTRICA + DIMENSIÓN) son universales. Lo que aprendiste en Sheets te sirve directamente para Power BI, SQL y Python.",bad:"Alfons fue claro: los fundamentos son los mismos para Power BI, SQL y Python. Fact Tables, Dimension Tables, métricas vs dimensiones — todo eso vale igual en cualquier herramienta. Lo que cambia es la sintaxis."}
+};
+
+let qcorr=0,qcnt=0;
+function qa(btn,n){
+  const all=btn.closest('.q-opts').querySelectorAll('.q-opt');
+  all.forEach(b=>b.disabled=true);
+  const fb=document.getElementById('f'+n);
+  const ok=btn.dataset.c==='1';
+  if(ok){btn.classList.add('correct');qcorr++;fb.className='q-fb ok show';fb.textContent=qfb[n].ok;}
+  else{btn.classList.add('wrong');fb.className='q-fb bad show';fb.textContent=qfb[n].bad;all.forEach(b=>{if(b.dataset.c==='1')b.classList.add('correct')});}
+  qcnt++;
+  document.getElementById('qscore').textContent=qcorr+' / '+qcnt;
+}
+function resetQuiz(){
+  qcorr=0;qcnt=0;
+  document.getElementById('qscore').textContent='0 / 12';
+  document.querySelectorAll('.q-opt').forEach(b=>{b.disabled=false;b.classList.remove('correct','wrong')});
+  document.querySelectorAll('.q-fb').forEach(f=>f.className='q-fb');
+}
+function showTab(id,el){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.tab-btn,.hero-pill').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  if(el)el.classList.add('active');
+  document.querySelectorAll('.tab-btn').forEach(b=>{if(b.textContent.toLowerCase().includes(id.slice(0,4)))b.classList.add('active')});
+  document.querySelectorAll('.hero-pill').forEach(p=>{if(p.textContent.toLowerCase().includes(id.slice(0,4)))p.classList.add('active')});
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+</script>
+</body>
+</html>
